@@ -1,0 +1,40 @@
+{
+  "name": "orbit-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "format:check": "turbo run format:check",
+    "format:fix": "turbo run format:fix",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "orbit",
+    "ui",
+    "components",
+    "astro",
+    "tailwind"
+  ],
+  "author": "NSMichelJ (Michelito)",
+  "license": "MIT",
+  "packageManager": "pnpm@10.9.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "1.2.8",
+    "@eslint/js": "9.25.1",
+    "eslint": "9.25.1",
+    "eslint-config-prettier": "10.1.2",
+    "globals": "16.0.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.1",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "0.6.11",
+    "turbo": "2.5.2",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.31.1"
+  }
+}
