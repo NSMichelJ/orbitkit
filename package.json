@@ -5,8 +5,12 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "dev": "turbo run dev",
+    "cli:dev": "pnpm --filter=orbitui dev",
     "format:check": "turbo run format:check",
     "format:fix": "turbo run format:fix",
+    "cli:link": "pnpm --filter=orbitui cli:link",
+    "cli:unlink": "pnpm --filter=orbitui cli:unlink",
     "prepare": "husky"
   },
   "keywords": [

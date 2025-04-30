@@ -1,0 +1,30 @@
+{
+  "name": "orbitui",
+  "version": "0.0.1",
+  "description": "Add customizable and incredible UI components to your Astro project!",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "tsup --watch",
+    "format:check": "eslint . && prettier --check .",
+    "format:fix": "eslint --fix . && prettier --write .",
+    "cli:link": "pnpm link . --global",
+    "cli:unlink": "pnpm link . --global"
+  },
+  "keywords": [
+    "orbit",
+    "ui",
+    "cli"
+  ],
+  "author": "NSMichelJ (Michelito)",
+  "license": "MIT",
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "tsup": "8.4.0"
+  },
+  "dependencies": {
+    "commander": "13.1.0"
+  },
+  "bin": {
+    "orbitui": "./dist/index.js"
+  }
+}
