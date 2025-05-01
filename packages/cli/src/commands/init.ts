@@ -1,9 +1,11 @@
 import {
   CLASS_MERGE_UTILS_NAME,
   ORBIT_CONFIG_FILE_NAME,
+  ORBIT_REQUIRE_PACKAGES,
 } from "@/utils/constants";
 import { log } from "@/utils/log";
 import { mergeCSS } from "@/utils/mergeCSS";
+import { installDependencies } from "@/utils/packageManager";
 import {
   CLASS_MERGE_UTIL_TEMPLATE,
   ORBIT_CONFIG_CSS_TEMPLATE,
@@ -15,6 +17,7 @@ import { Command } from "commander";
 import fs from "fs-extra";
 import inquirer from "inquirer";
 import path from "node:path";
+import ora from "ora";
 
 export const init = new Command()
   .name("init")
@@ -95,6 +98,52 @@ export const init = new Command()
       await initializeUtils(utilsFilePath);
 
       await setupTsPathAliases(path.join(PATH, "tsconfig.json"));
+
+      log.ln();
+      log.blank("Some required dependencies are missing:");
+      log.info(ORBIT_REQUIRE_PACKAGES.join(", "));
+      const { shouldInstall } = await inquirer.prompt([
+        {
+          type: "confirm",
+          name: "shouldInstall",
+          message: "Would you like to install these dependencies now?",
+          default: true,
+        },
+      ]);
+
+      if (shouldInstall) {
+        const { pkgManager } = await inquirer.prompt([
+          {
+            type: "select",
+            name: "pkgManager",
+            message: "Which package manager would you like to use?",
+            default: "npm",
+            choices: ["npm", "pnpm", "yarn", "bun"],
+          },
+        ]);
+
+        const spinner = ora(
+          `Installing dependencies with ${pkgManager}`,
+        ).start();
+
+        try {
+          await installDependencies(pkgManager, ORBIT_REQUIRE_PACKAGES);
+          spinner.stop();
+          log.ln();
+          log.success("Dependencies installed successfully!");
+        } catch {
+          spinner.stop();
+          log.ln();
+          log.error(
+            "Error installing dependencies. Please try again manually.",
+          );
+        }
+      } else {
+        log.ln();
+        log.warn(
+          "Skipping dependency installation. Some features may not work properly.",
+        );
+      }
 
       const { created } = writeConfig(answers);
       if (created) {
