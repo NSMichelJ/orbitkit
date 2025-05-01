@@ -1,5 +1,6 @@
 import { Command } from "commander";
 
+import { init } from "@/commands";
 import packageJson from "package.json";
 
 const program = new Command();
@@ -18,6 +19,8 @@ function main() {
       "-v, --version",
       "Output the current version",
     );
+
+  program.addCommand(init);
 
   program.parse();
 }
