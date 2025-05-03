@@ -7,10 +7,13 @@
   "scripts": {
     "dev": "turbo run dev",
     "cli:dev": "pnpm --filter=orbitui dev",
+    "components:dev": "pnpm --filter=@orbitui/components dev",
     "format:check": "turbo run format:check",
     "format:fix": "turbo run format:fix",
     "cli:link": "pnpm --filter=orbitui cli:link",
     "cli:unlink": "pnpm --filter=orbitui cli:unlink",
+    "components:link": "pnpm --filter=@orbitui/components components:link",
+    "components:unlink": "pnpm --filter=@orbitui/components components:unlink",
     "prepare": "husky"
   },
   "keywords": [
@@ -40,5 +43,9 @@
     "turbo": "2.5.2",
     "typescript": "5.8.3",
     "typescript-eslint": "8.31.1"
-  }
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
 }
