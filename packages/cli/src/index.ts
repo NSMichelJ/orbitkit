@@ -1,6 +1,6 @@
 import { Command } from "commander";
 
-import { init } from "@/commands";
+import { add, init } from "@/commands";
 import packageJson from "package.json";
 
 const program = new Command();
@@ -21,6 +21,7 @@ function main() {
     );
 
   program.addCommand(init);
+  program.addCommand(add);
 
   program.parse();
 }
