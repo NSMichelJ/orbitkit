@@ -10,7 +10,7 @@
     "format:check": "eslint . && prettier --check .",
     "format:fix": "eslint --fix . && prettier --write .",
     "cli:link": "pnpm link . --global",
-    "cli:unlink": "pnpm link . --global"
+    "cli:unlink": "pnpm rm --global orbitui"
   },
   "keywords": [
     "orbit",
