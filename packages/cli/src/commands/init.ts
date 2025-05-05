@@ -145,7 +145,7 @@ export const init = new Command()
         );
       }
 
-      const { created } = writeConfig(answers);
+      const { created } = await writeConfig(answers);
       if (created) {
         log.ln();
         log.success("Success!");
