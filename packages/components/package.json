@@ -13,6 +13,7 @@
     "./dist/*": "./dist/*"
   },
   "scripts": {
+    "build": "tsup",
     "dev": "tsup --watch",
     "format:check": "eslint . && prettier --check .",
     "format:fix": "eslint --fix . && prettier --write .",

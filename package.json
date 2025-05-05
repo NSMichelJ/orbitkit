@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "build": "turbo run build",
     "dev": "turbo run dev",
     "cli:dev": "pnpm --filter=orbitui dev",
     "components:dev": "pnpm --filter=@orbitui/components dev",
