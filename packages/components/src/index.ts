@@ -15,15 +15,16 @@ export function getComponentPath(componentName: string) {
 }
 
 export async function checkComponentsInRegistry(components: string[]) {
-  const valid: string[] = [];
+  const valid: ComponentRegistryEntry[] = [];
   const invalid: string[] = [];
-  const registeredComponents = getAllComponents().map((component) =>
-    component.name.toLocaleLowerCase(),
-  );
+  const allComponents = getAllComponents();
 
   for (const component of components) {
-    if (registeredComponents.includes(component.toLowerCase())) {
-      valid.push(component);
+    const found = allComponents.find(
+      (c) => c.name.toLowerCase() === component.toLowerCase(),
+    );
+    if (found) {
+      valid.push(found);
     } else {
       invalid.push(component);
     }
@@ -31,3 +32,5 @@ export async function checkComponentsInRegistry(components: string[]) {
 
   return { valid, invalid };
 }
+
+export { type ComponentRegistryEntry } from "@/types/registry";
