@@ -7,6 +7,10 @@
     {
       "name": "alert",
       "version": "0.0.1"
+    },
+    {
+      "name": "badge",
+      "version": "0.0.1"
     }
   ]
 }
