@@ -15,6 +15,10 @@
     {
       "name": "avatar",
       "version": "0.0.1"
+    },
+    {
+      "name": "card",
+      "version": "0.0.1"
     }
   ]
 }
