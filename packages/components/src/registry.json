@@ -11,6 +11,10 @@
     {
       "name": "badge",
       "version": "0.0.1"
+    },
+    {
+      "name": "avatar",
+      "version": "0.0.1"
     }
   ]
 }
