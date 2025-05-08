@@ -1,17 +1,14 @@
 import { cva } from "class-variance-authority";
 
 const baseClass =
-  "inline-flex justify-center gap-1.5 items-center font-medium cursor-pointer outline-none border [&_svg]:pointer-events-none [&_svg]:shrink-0";
+  "flex justify-center gap-1.5 items-center font-medium cursor-pointer outline-none border [&_svg]:pointer-events-none [&_svg]:shrink-0";
 
 const buttonVariants = cva(baseClass, {
   variants: {
     variant: {
-      default:
-        "border-blue-700 text-white bg-blue-700 dark:border-blue-600 dark:bg-blue-600",
-      outline:
-        "text-blue-700 border-blue-700 dark:border-blue-500 dark:text-blue-500",
-      ghost:
-        "text-blue-700 bg-transparent border-transparent dark:text-blue-600",
+      default: "border-primary text-primary-foreground bg-primary",
+      outline: "text-primary  border-primary",
+      ghost: "text-primary bg-transparent border-transparent",
     },
     rounded: {
       none: "rounded-none",
@@ -38,20 +35,19 @@ const buttonVariants = cva(baseClass, {
     {
       variant: "default",
       disabled: false,
-      class:
-        "hover:bg-blue-800 hover:border-blue-800 dark:hover:bg-blue-700 dark:hover:border-blue-700",
+      class: "hover:bg-primary-accent hover:border-primary-accent",
     },
     {
       variant: "outline",
       disabled: false,
       class:
-        "hover:text-white hover:bg-blue-800 dark:hover:text-white dark:hover:bg-blue-500",
+        "hover:text-primary-foreground hover:bg-primary-accent hover:border-primary-accent",
     },
     {
       variant: "ghost",
       disabled: false,
       class:
-        "hover:bg-blue-700 hover:text-white dark:hover:bg-blue-600 hover:border-blue-700 dark:hover:border-blue-600",
+        "hover:bg-primary hover:text-primary-foreground hover:border-primary",
     },
   ],
   defaultVariants: {

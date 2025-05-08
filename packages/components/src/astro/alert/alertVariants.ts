@@ -5,8 +5,7 @@ const baseClass = "flex justify-start gap-y-1 gap-x-2 flex-wrap w-full";
 const alertVariants = cva(baseClass, {
   variants: {
     variant: {
-      default:
-        "text-gray-800 border-gray-300 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600",
+      default: "bg-surface border-border text-foreground",
       info: " text-blue-800 border-blue-300 bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800",
       danger:
         "text-red-800 border-red-300 bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800",

@@ -1,14 +1,14 @@
 import { cva } from "class-variance-authority";
 
 const classBase =
-  "inline-flex justify-center items-center gap-1 text-xs font-medium px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300";
+  "inline-flex justify-center items-center gap-1 text-xs font-medium px-2.5 py-0.5";
 
 const badgeVariants = cva(classBase, {
   variants: {
     variant: {
-      default: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
+      default: "bg-secondary text-secondary-foreground",
       outline:
-        "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400 border border-gray-500",
+        "bg-secondary text-secondary-foreground border-secondary-accent border",
     },
     rounded: {
       none: "rounded-none",

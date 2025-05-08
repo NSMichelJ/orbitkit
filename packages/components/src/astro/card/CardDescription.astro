@@ -7,9 +7,6 @@ interface Props extends HTMLAttributes<"p"> {}
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<p
-  {...attrs}
-  class={cn("font-normal text-gray-700 dark:text-gray-400", className)}
->
+<p {...attrs} class={cn("font-normal text-muted-foreground", className)}>
   <slot />
 </p>
