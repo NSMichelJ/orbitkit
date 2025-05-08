@@ -41,6 +41,11 @@ export const init = new Command()
         return;
       }
 
+      if (!(await isTailwindInstalled())) {
+        log.error("Tailwindcss v4 is required.");
+        return;
+      }
+
       if (await fs.pathExists(ORBIT_CONFIG_FILE_NAME)) {
         log.info("Orbit UI is already initialized in this project.");
 
@@ -200,4 +205,22 @@ async function setupTsPathAliases(path: string) {
     encoding: "utf-8",
     spaces: 2,
   });
+}
+
+async function isTailwindInstalled() {
+  const pkgJson = await fs.readJSON("package.json");
+  if (pkgJson.dependencies) {
+    const dependencies = {
+      ...pkgJson.dependencies,
+      ...pkgJson.devDependencies,
+    };
+
+    if (dependencies["tailwindcss"]) {
+      const version = dependencies["tailwindcss"].replace(/^[\^~]/, "");
+      const [major] = version.split(".").map(Number);
+      if (major >= 4) return true;
+    }
+  }
+
+  return false;
 }
