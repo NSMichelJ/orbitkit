@@ -1,9 +1,9 @@
 import { ORBIT_CONFIG_FILE_NAME } from "@/utils/constants";
-import { highlighted } from "@/utils/highlighted";
 import { log } from "@/utils/log";
 import { Command } from "commander";
 import fs from "fs-extra";
 
+import { highlighted } from "@/utils/highlighted";
 import readConfig from "@/utils/readConfig";
 import writeConfig from "@/utils/writeConfig";
 import {
@@ -15,6 +15,7 @@ import {
 import inquirer from "inquirer";
 import path from "node:path";
 import ora from "ora";
+import { runInit } from "./init";
 
 export const add = new Command()
   .name("add")
@@ -23,11 +24,26 @@ export const add = new Command()
   .action(async (components: string[]) => {
     if (!(await fs.pathExists(ORBIT_CONFIG_FILE_NAME))) {
       log.error("Orbit UI configuration not found.");
-      log.blank(
-        "Please run " +
-          highlighted.info("orbitui init") +
-          " to initialize the project.",
-      );
+
+      const { initialize } = await inquirer.prompt([
+        {
+          type: "confirm",
+          name: "initialize",
+          message: "initialize the project?",
+          default: true,
+        },
+      ]);
+
+      if (initialize) {
+        await runInit();
+      } else {
+        log.blank(
+          "Please run " +
+            highlighted.info("orbitui init") +
+            " to initialize the project.",
+        );
+        return;
+      }
     }
 
     const PATH = process.cwd();
