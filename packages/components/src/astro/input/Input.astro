@@ -1,0 +1,18 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { inputVariants } from "./inputVariants";
+
+interface Props
+  extends Omit<HTMLAttributes<"input">, "disabled">,
+    VariantProps<typeof inputVariants> {}
+
+const { class: className, variant, disabled, ...attrs } = Astro.props;
+---
+
+<input
+  {...attrs}
+  disabled={disabled}
+  class={cn(inputVariants({ variant, disabled, className }))}
+/>
