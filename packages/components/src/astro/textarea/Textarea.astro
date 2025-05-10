@@ -1,0 +1,19 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { textareaVariants } from "./TextareaVariants";
+
+interface Props
+  extends Omit<HTMLAttributes<"textarea">, "disabled">,
+    VariantProps<typeof textareaVariants> {}
+
+const { class: className, variant, disabled, ...attrs } = Astro.props;
+---
+
+<textarea
+  {...attrs}
+  disabled={disabled}
+  class={cn(textareaVariants({ variant, disabled, className }))}
+>
+</textarea>
