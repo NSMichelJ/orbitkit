@@ -51,6 +51,10 @@
     {
       "name": "checkbox",
       "version": "0.0.1"
+    },
+    {
+      "name": "radio",
+      "version": "0.0.1"
     }
   ]
 }
