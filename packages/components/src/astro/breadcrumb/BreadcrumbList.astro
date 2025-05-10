@@ -1,0 +1,18 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"ol"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<ol
+  {...attrs}
+  class={cn(
+    "flex flex-row flex-wrap items-center gap-2 rtl:flex-row-reverse text-muted-foreground break-words font-medium",
+    className,
+  )}
+>
+  <slot />
+</ol>

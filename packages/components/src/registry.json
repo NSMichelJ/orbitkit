@@ -27,6 +27,10 @@
     {
       "name": "label",
       "version": "0.0.1"
+    },
+    {
+      "name": "breadcrumb",
+      "version": "0.0.1"
     }
   ]
 }

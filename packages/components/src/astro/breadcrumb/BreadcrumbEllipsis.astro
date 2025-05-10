@@ -1,0 +1,20 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"span">;
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<span
+  {...attrs}
+  role="presentation"
+  aria-hidden="true"
+  class={cn(
+    "flex size-6 items-center justify-center [&>svg]:size-4",
+    className,
+  )}
+>
+  <slot> ... </slot>
+</span>

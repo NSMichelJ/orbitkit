@@ -1,0 +1,18 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<spam
+  {...attrs}
+  class={cn(
+    "flex items-center justify-between gap-1 cursor-pointer text-foreground [&_svg]:size-4",
+    className,
+  )}
+>
+  <slot />
+</spam>

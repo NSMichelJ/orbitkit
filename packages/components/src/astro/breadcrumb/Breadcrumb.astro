@@ -1,0 +1,12 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"nav"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<nav aria-label="breadcrumb" class={cn("w-max", className)}>
+  <slot />
+</nav>
