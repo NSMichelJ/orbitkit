@@ -1,0 +1,11 @@
+---
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends Omit<HTMLAttributes<"select">, "type"> {}
+
+const { ...attrs } = Astro.props;
+---
+
+<option {...attrs}>
+  <slot />
+</option>

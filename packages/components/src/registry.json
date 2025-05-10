@@ -39,6 +39,10 @@
     {
       "name": "textarea",
       "version": "0.0.1"
+    },
+    {
+      "name": "select",
+      "version": "0.0.1"
     }
   ]
 }
