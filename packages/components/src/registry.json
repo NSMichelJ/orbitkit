@@ -47,6 +47,10 @@
     {
       "name": "switch",
       "version": "0.0.1"
+    },
+    {
+      "name": "checkbox",
+      "version": "0.0.1"
     }
   ]
 }
