@@ -21,7 +21,8 @@ export const add = new Command()
   .name("add")
   .description("Add OrbitUI components to your project")
   .argument("[components...]", "The components to add")
-  .action(async (components: string[]) => {
+  .option("-a, --all", "Add all available OrbitUI components", false)
+  .action(async (components: string[], args) => {
     if (!(await fs.pathExists(ORBIT_CONFIG_FILE_NAME))) {
       log.error("Orbit UI configuration not found.");
 
@@ -47,42 +48,9 @@ export const add = new Command()
     }
 
     const PATH = process.cwd();
-    const componentsToInstall: ComponentRegistryEntry[] = [];
+    const componentsToInstall: ComponentRegistryEntry[] =
+      await promptForComponents({ components, ...args });
 
-    if (!components.length) {
-      const availableComponents = getAllComponents().map((component) => ({
-        name: component.name,
-        value: component,
-      }));
-
-      const { selectedComponents } = await inquirer.prompt([
-        {
-          type: "checkbox",
-          message: "Which components would you like to add?",
-          name: "selectedComponents",
-          choices: availableComponents,
-        },
-      ]);
-
-      if (!selectedComponents.length) {
-        log.warn("You did not select any components to add.");
-        return;
-      }
-
-      componentsToInstall.push(...selectedComponents);
-    }
-
-    const { valid: validComponents, invalid: invalidComponents } =
-      await checkComponentsInRegistry(components);
-
-    if (invalidComponents.length) {
-      log.warn("The following components were not found:");
-      for (const invalidComponent of invalidComponents) {
-        log.blank(`- ${invalidComponent}`);
-      }
-    }
-
-    componentsToInstall.push(...validComponents);
     if (!componentsToInstall.length) {
       return;
     }
@@ -126,3 +94,45 @@ export const add = new Command()
     }
     spinner.stop();
   });
+
+async function promptForComponents(opts: { components: string[]; all: true }) {
+  if (opts.all) {
+    log.info("Adding all available OrbitUI components...");
+    return getAllComponents();
+  }
+
+  if (!opts.components.length) {
+    const availableComponents = getAllComponents().map((component) => ({
+      name: component.name,
+      value: component,
+    }));
+
+    const { selectedComponents } = await inquirer.prompt([
+      {
+        type: "checkbox",
+        message: "Which components would you like to add?",
+        name: "selectedComponents",
+        choices: availableComponents,
+      },
+    ]);
+
+    if (!selectedComponents.length) {
+      log.warn("You did not select any components to add.");
+      return;
+    }
+
+    return selectedComponents;
+  }
+
+  const { valid: validComponents, invalid: invalidComponents } =
+    await checkComponentsInRegistry(opts.components);
+
+  if (invalidComponents.length) {
+    log.warn("The following components were not found:");
+    for (const invalidComponent of invalidComponents) {
+      log.blank(`- ${invalidComponent}`);
+    }
+  }
+
+  return validComponents;
+}
