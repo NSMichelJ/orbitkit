@@ -1,0 +1,23 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  value?: number;
+}
+
+const { class: className, value = 50 } = Astro.props;
+
+if (value < 0 || value > 100) {
+  throw new Error("Value must be between 0 and 100");
+}
+---
+
+<div
+  class={cn(
+    "flex items-center justify-center h-full overflow-hidden text-primary-foreground break-all bg-primary rounded-full",
+    className,
+  )}
+  style={{ width: `${value}%` }}
+>
+</div>
