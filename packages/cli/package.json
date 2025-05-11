@@ -38,6 +38,6 @@
     "@orbitui/components": "workspace:*"
   },
   "bin": {
-    "orbitui": "./dist/index.js"
+    "orbitui": "dist/index.js"
   }
 }
