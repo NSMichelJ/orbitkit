@@ -8,8 +8,6 @@
 
 _A modular, customizable component library to accelerate your Astro projects with pre-built components powered by Tailwind CSS._
 
-![Hero](./hero.png)
-
 ## 🤔 Why OrbitUI?
 
 When I was creating static, low-interactivity websites using Astro, I looked for components I could reuse and customize to develop faster without compromising performance or adding unnecessary dependencies. My first choice was shadcn/ui (my favorite library), but it required React as an additional dependency. However, React seemed unnecessary for simple user interfaces. Other alternatives depended on JavaScript frameworks, lacked flexibility, or included extra packages I didn’t need. Building components from scratch worked, but it required more development time: I wanted to focus on content, not reinventing buttons and cards. That’s when I thought:
