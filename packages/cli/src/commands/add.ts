@@ -36,7 +36,7 @@ export const add = new Command()
       ]);
 
       if (initialize) {
-        await runInit();
+        await runInit({ force: false });
       } else {
         log.blank(
           "Please run " +

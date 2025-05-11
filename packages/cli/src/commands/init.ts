@@ -22,11 +22,12 @@ import ora from "ora";
 export const init = new Command()
   .name("init")
   .description("Prepares your Astro project for OrbitUI components")
-  .action(async () => {
-    await runInit();
+  .option("-f, --force", "Force overwrite existing OrbitUI config", false)
+  .action(async (args) => {
+    await runInit(args);
   });
 
-export async function runInit() {
+export async function runInit(args: { force: boolean }) {
   try {
     if (!(await fs.pathExists("package.json"))) {
       log.error(
@@ -50,7 +51,7 @@ export async function runInit() {
       return;
     }
 
-    if (await fs.pathExists(ORBIT_CONFIG_FILE_NAME)) {
+    if ((await fs.pathExists(ORBIT_CONFIG_FILE_NAME)) && !args.force) {
       log.info("Orbit UI is already initialized in this project.");
 
       const { reinitialize } = await inquirer.prompt([
