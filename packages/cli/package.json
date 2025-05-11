@@ -1,5 +1,5 @@
 {
-  "name": "orbitui",
+  "name": "orbitkit",
   "version": "0.0.1",
   "description": "Add customizable and incredible UI components to your Astro project!",
   "main": "./dist/index.js",
@@ -11,7 +11,7 @@
     "format:check": "eslint . && prettier --check .",
     "format:fix": "eslint --fix . && prettier --write .",
     "cli:link": "pnpm link . --global",
-    "cli:unlink": "pnpm rm --global orbitui"
+    "cli:unlink": "pnpm rm --global orbitkit"
   },
   "keywords": [
     "orbit",
@@ -27,6 +27,7 @@
     "tsup": "8.4.0"
   },
   "dependencies": {
+    "@orbitkit/components": "0.0.1",
     "chalk": "5.4.1",
     "commander": "13.1.0",
     "execa": "^9.5.2",
@@ -34,10 +35,12 @@
     "inquirer": "12.6.0",
     "ora": "8.2.0",
     "postcss": "8.5.3",
-    "tailwindcss": "4.1.5",
-    "@orbitui/components": "workspace:*"
+    "tailwindcss": "4.1.5"
   },
   "bin": {
-    "orbitui": "dist/index.js"
-  }
+    "orbitkit": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ]
 }

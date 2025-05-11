@@ -1,4 +1,4 @@
-import { ComponentRegistryEntry } from "@orbitui/components";
+import { ComponentRegistryEntry } from "@orbitkit/components";
 
 export type Config = {
   tailwindConfig: string;

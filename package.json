@@ -1,5 +1,5 @@
 {
-  "name": "orbit-ui",
+  "name": "orbit",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,14 +7,14 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "cli:dev": "pnpm --filter=orbitui dev",
-    "components:dev": "pnpm --filter=@orbitui/components dev",
+    "cli:dev": "pnpm --filter=orbitkit dev",
+    "components:dev": "pnpm --filter=@orbitkit/components dev",
     "format:check": "turbo run format:check",
     "format:fix": "turbo run format:fix",
-    "cli:link": "pnpm --filter=orbitui cli:link",
-    "cli:unlink": "pnpm --filter=orbitui cli:unlink",
-    "components:link": "pnpm --filter=@orbitui/components components:link",
-    "components:unlink": "pnpm --filter=@orbitui/components components:unlink",
+    "cli:link": "pnpm --filter=orbitkit cli:link",
+    "cli:unlink": "pnpm --filter=orbitkit cli:unlink",
+    "components:link": "pnpm --filter=@orbitkit/components components:link",
+    "components:unlink": "pnpm --filter=@orbitkit/components components:unlink",
     "prepare": "husky"
   },
   "keywords": [

@@ -1,8 +1,8 @@
-# @orbitui/components
+# @orbitkit/components
 
 _A collection of accessible, customizable, and lightweight UI components for Astro projects, powered by Tailwind CSS._
 
-> **Warning:** Do not install or use this package directly in your projects. Use the OrbitUI CLI for integration and component management.
+> **Warning:** Do not install or use this package directly in your projects. Use the Orbit CLI for integration and component management.
 
 ## 🛠️ Customization
 
@@ -18,7 +18,7 @@ Pull requests are welcome! For major changes, please open an issue first.
 
 ## 📜 License
 
-This project is licensed under the MIT License - See [MIT License](https://github.com/NSMichelJ/orbitui/blob/main/LICENSE) for details.
+This project is licensed under the MIT License - See [MIT License](https://github.com/NSMichelJ/orbitkit/blob/main/LICENSE) for details.
 
 ---
 

@@ -21,8 +21,8 @@ import ora from "ora";
 
 export const init = new Command()
   .name("init")
-  .description("Prepares your Astro project for OrbitUI components")
-  .option("-f, --force", "Force overwrite existing OrbitUI config", false)
+  .description("Prepares your Astro project for Orbit components")
+  .option("-f, --force", "Force overwrite existing Orbit config", false)
   .action(async (args) => {
     await runInit(args);
   });
@@ -52,7 +52,7 @@ export async function runInit(args: { force: boolean }) {
     }
 
     if ((await fs.pathExists(ORBIT_CONFIG_FILE_NAME)) && !args.force) {
-      log.info("Orbit UI is already initialized in this project.");
+      log.info("Orbit is already initialized in this project.");
 
       const { reinitialize } = await inquirer.prompt([
         {
@@ -155,7 +155,7 @@ export async function runInit(args: { force: boolean }) {
     if (created) {
       log.ln();
       log.success("Success!");
-      log.blank("OrbitUI has been successfully initialized in your project.");
+      log.blank("Orbit has been successfully initialized in your project.");
     } else {
       log.error(`Could not write configuration file.`);
     }

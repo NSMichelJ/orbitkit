@@ -11,7 +11,7 @@ import {
   ComponentRegistryEntry,
   getAllComponents,
   getComponentPath,
-} from "@orbitui/components";
+} from "@orbitkit/components";
 import inquirer from "inquirer";
 import path from "node:path";
 import ora from "ora";
@@ -19,12 +19,12 @@ import { runInit } from "./init";
 
 export const add = new Command()
   .name("add")
-  .description("Add OrbitUI components to your project")
+  .description("Add Orbit components to your project")
   .argument("[components...]", "The components to add")
-  .option("-a, --all", "Add all available OrbitUI components", false)
+  .option("-a, --all", "Add all available Orbit components", false)
   .action(async (components: string[], args) => {
     if (!(await fs.pathExists(ORBIT_CONFIG_FILE_NAME))) {
-      log.error("Orbit UI configuration not found.");
+      log.error("Orbit configuration not found.");
 
       const { initialize } = await inquirer.prompt([
         {
@@ -40,7 +40,7 @@ export const add = new Command()
       } else {
         log.blank(
           "Please run " +
-            highlighted.info("orbitui init") +
+            highlighted.info("orbitkit init") +
             " to initialize the project.",
         );
         return;
@@ -97,7 +97,7 @@ export const add = new Command()
 
 async function promptForComponents(opts: { components: string[]; all: true }) {
   if (opts.all) {
-    log.info("Adding all available OrbitUI components...");
+    log.info("Adding all available Orbit components...");
     return getAllComponents();
   }
 

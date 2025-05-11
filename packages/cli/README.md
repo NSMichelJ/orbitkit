@@ -1,15 +1,15 @@
-# OrbitUI CLI
+# OrbitKIT CLI
 
-A command-line tool to add OrbitUI components to your Astro project with ease.
+A command-line tool to add OrbitKIT components to your Astro project with ease.
 
 ## ⚙️ Usage
 
-### Initialize OrbitUI
+### Initialize OrbitKIT
 
 Use the init command to initialize your project
 
 ```bash
-npx orbitui init
+npx orbitkit init
 ```
 
 ### Add Components
@@ -17,16 +17,16 @@ npx orbitui init
 Add specific components:
 
 ```bash
-npx orbitui add button card
+npx orbitkit add button card
 ```
 
 Add all components:
 
 ```bash
-npx orbitui add --all
+npx orbitkit add --all
 ```
 
-Or run `npx orbitui add` for an interactive selection.
+Or run `npx orbitkit add` for an interactive selection.
 
 ## 📖 Documentation
 
@@ -38,7 +38,7 @@ Pull requests are welcome! For major changes, please open an issue first.
 
 ## 📜 License
 
-This project is licensed under the MIT License - See [MIT License](https://github.com/NSMichelJ/orbitui/blob/main/LICENSE) for details.
+This project is licensed under the MIT License - See [MIT License](https://github.com/NSMichelJ/orbitkit/blob/main/LICENSE) for details.
 
 ---
 
