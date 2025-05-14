@@ -1,5 +1,19 @@
 {
   "tailwindConfig": "./src/styles/global.css",
   "componentsDir": "./src/components/ui",
-  "utilsDir": "./src/utils"
+  "utilsDir": "./src/utils",
+  "components": [
+    {
+      "name": "alert",
+      "version": "0.0.1"
+    },
+    {
+      "name": "button",
+      "version": "0.0.1"
+    },
+    {
+      "name": "card",
+      "version": "0.0.1"
+    }
+  ]
 }

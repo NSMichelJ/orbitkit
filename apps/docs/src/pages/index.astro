@@ -1,7 +1,44 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { RocketIcon } from "@/assets/icons";
+import FeatureHighlights from "@/components/sections/FeatureHighlights.astro";
+import Footer from "@/components/sections/Footer.astro";
+import OriginQuote from "@/components/sections/OriginQuote.astro";
+import Roadmap from "@/components/sections/Roadmap.astro";
+import Support from "@/components/sections/Support.astro";
+import WhyOrbitUI from "@/components/sections/WhyOrbitUI.astro";
+import StarryBackground from "@/components/StarryBackground.astro";
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="OrbitUI is Amazing">
-  <h1 class="bg-primary">OrbitUI is Amazing</h1>
+  <StarryBackground />
+
+  <div class="mx-auto my-32 max-w-xl px-4 md:my-36">
+    <div class="mx-auto mb-6 flex items-start justify-center gap-2">
+      <img src="/orbitui.png" alt="orbitui logo" class="h-12 sm:h-20 md:h-24" />
+      <span class="text-2xl font-bold sm:text-3xl md:text-4xl">BETA</span>
+    </div>
+    <h2 class="mb-8 max-w-xl text-center text-2xl font-semibold sm:text-3xl">
+      Accessible, Customizable, & Lightweight component library
+    </h2>
+
+    <FeatureHighlights />
+
+    <div class="mt-12 flex justify-center gap-4">
+      <Button class="text-lg [&_svg]:size-5">
+        Get Started <RocketIcon />
+      </Button>
+    </div>
+  </div>
+
+  <WhyOrbitUI />
+
+  <Roadmap />
+
+  <Support />
+
+  <OriginQuote />
+
+  <Footer />
 </Layout>
