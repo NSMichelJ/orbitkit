@@ -137,3 +137,11 @@ dist
 
 # turbo
 .turbo
+
+.astro/
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/

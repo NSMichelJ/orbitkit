@@ -9,6 +9,7 @@
     "dev": "turbo run dev",
     "cli:dev": "pnpm --filter=orbitkit dev",
     "components:dev": "pnpm --filter=@orbitkit/components dev",
+    "docs:dev": "pnpm -filter=docs dev",
     "format:check": "turbo run format:check",
     "format:fix": "turbo run format:fix",
     "cli:link": "pnpm --filter=orbitkit cli:link",
