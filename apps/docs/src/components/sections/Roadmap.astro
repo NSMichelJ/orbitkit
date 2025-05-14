@@ -1,0 +1,124 @@
+---
+import { CircleCheckIcon, CircleIcon, ClockIcon } from "@/assets/icons";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/utils/cn";
+
+type TimelineStatus = "completed" | "inProgress" | "planned";
+
+interface TimelineItem {
+  title: string;
+  description: string;
+  status: TimelineStatus;
+}
+
+const timeline: TimelineItem[] = [
+  {
+    title: "Component Management CLI",
+    description:
+      "Command-line tool for creating, modifying, and managing OrbitUI components.",
+    status: "completed",
+  },
+  {
+    title: "Basic UI Components (14 Initial)",
+    description:
+      "First collection of fundamental components for building interfaces.",
+    status: "completed",
+  },
+  {
+    title: "Initial Documentation",
+    description:
+      "Landing page and basic documentation to get started with OrbitUI.",
+    status: "inProgress",
+  },
+  {
+    title: "Interactive Components Expansion",
+    description:
+      "Adding interactive components like Modals, Dropdowns, Tooltips, etc.",
+    status: "planned",
+  },
+  {
+    title: "Comprehensive Documentation",
+    description:
+      "Expanding documentation with advanced guides, examples, API references, and usage patterns.",
+    status: "planned",
+  },
+  {
+    title: "Advanced Theming System",
+    description:
+      "Enhancing the theming capabilities for greater flexibility and customization.",
+    status: "planned",
+  },
+  {
+    title: "Framework Compatibility (React, Vue, Svelte)",
+    description:
+      "Exploring and implementing compatibility layers for popular JavaScript frameworks.",
+    status: "planned",
+  },
+];
+
+const statusClassNames: Record<TimelineStatus, string> = {
+  completed: "text-primary/80",
+  inProgress: "text-yellow-500/80",
+  planned: "text-gray-200",
+};
+
+const statusIcons: Record<TimelineStatus, any> = {
+  completed: CircleCheckIcon,
+  inProgress: ClockIcon,
+  planned: CircleIcon,
+};
+---
+
+<div class="my-32 px-4">
+  <div class="mx-auto my-10 max-w-xl text-center">
+    <h2 class="mb-4 text-2xl font-bold sm:text-3xl">Development Roadmap</h2>
+    <p class="text-muted-foreground font-semibold sm:text-xl">
+      OrbitUI is in its early stages of development. Here you can see our
+      current progress and future plans.
+    </p>
+  </div>
+
+  <Card class="mx-auto max-w-2xl bg-transparent backdrop-blur-sm">
+    <CardContent>
+      <div class="flex h-full">
+        <div class="border-muted space-y-6 border-l-2 border-dashed">
+          {
+            timeline.map((step) => {
+              const IconComponent = statusIcons[step.status];
+
+              return (
+                <div class="relative w-full">
+                  <IconComponent
+                    class={cn(
+                      "bg-muted border-muted absolute -top-0.5 z-10 -ml-3.5 h-7 w-7 rounded-full border",
+                      statusClassNames[step.status],
+                    )}
+                  />
+                  <div class="ml-6">
+                    <h4 class={cn("font-bold", statusClassNames[step.status])}>
+                      {step.title}
+                    </h4>
+                    <p class="text-muted-foreground mt-2 max-w-screen-sm text-sm">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+
+  <div class="mx-auto my-10 max-w-xl text-center">
+    <p class="text-muted-foreground mb-2 font-semibold sm:text-xl">
+      Have ideas for new components, improvements, or general feedback? <a
+        href=""
+        class="text-primary underline"
+      >
+        Contribute on GitHub or share your suggestions!
+      </a>
+    </p>
+  </div>
+</div>

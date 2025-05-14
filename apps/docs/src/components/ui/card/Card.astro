@@ -1,0 +1,18 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div
+  {...attrs}
+  class={cn(
+    "bg-surface text-foreground border-border border rounded-lg shadow-sm",
+    className,
+  )}
+>
+  <slot />
+</div>

@@ -1,0 +1,46 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/utils/cn";
+
+const featuresHighlights = [
+  {
+    feature: "Components",
+    stat: "14+",
+    className: "bg-[#2db5a3]/10 border-[#2db5a3]/20 shadow-[#2db5a3]/30",
+  },
+  {
+    feature: "TS Typing",
+    stat: "100%",
+    className: "bg-[#0761dd]/10 border-[#0761dd]/20 shadow-[#0761dd]/30",
+  },
+  {
+    feature: "Customizable",
+    stat: "99%",
+    className: "bg-[#7838d1]/10 border-[#7838d1]/20 shadow-[#7838d1]/30",
+  },
+];
+---
+
+<div class="flex flex-wrap items-center justify-center gap-8">
+  {
+    featuresHighlights.map((featuresHighlight) => (
+      <Card
+        class={cn(
+          `h-auto w-32 shadow-2xl backdrop-blur-sm`,
+          featuresHighlight.className,
+        )}
+      >
+        <CardContent class="px-4 py-2">
+          <div class="flex flex-col items-center">
+            <span class="text-foreground text-xl font-bold">
+              {featuresHighlight.stat}
+            </span>
+            <span class="text-muted-foreground text-base font-bold">
+              {featuresHighlight.feature}
+            </span>
+          </div>
+        </CardContent>
+      </Card>
+    ))
+  }
+</div>

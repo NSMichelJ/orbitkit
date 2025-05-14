@@ -1,0 +1,284 @@
+<div id="starry-background-container">
+  <canvas id="starry-background"></canvas>
+</div>
+
+<script>
+  class Star {
+    x: number;
+    y: number;
+    radius: number;
+    color: string;
+    alpha: number;
+    alphaChange: number;
+    originalRadius: number;
+    speed: number;
+
+    constructor(x: number, y: number, radius: number, color: string) {
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.color = color;
+      this.alpha = Math.random();
+      this.alphaChange = Math.random() * 0.02 - 0.01;
+      this.originalRadius = radius;
+      this.speed = Math.random() * 3 + 1;
+    }
+
+    update(deltaTime: number): void {
+      this.y += this.speed * deltaTime;
+
+      if (this.y > window.innerHeight) {
+        this.y = -10;
+        this.x = Math.random() * window.innerWidth;
+      }
+
+      this.alpha += this.alphaChange * deltaTime;
+
+      if (this.alpha > 1) {
+        this.alpha = 1;
+        this.alphaChange = -this.alphaChange;
+      } else if (this.alpha < 0.3) {
+        this.alpha = 0.3;
+        this.alphaChange = -this.alphaChange;
+      }
+
+      this.radius = this.originalRadius * (0.8 + this.alpha * 0.2);
+    }
+
+    draw(ctx: CanvasRenderingContext2D): void {
+      ctx.save();
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+
+      const gradient = ctx.createRadialGradient(
+        this.x,
+        this.y,
+        0,
+        this.x,
+        this.y,
+        this.radius * 2,
+      );
+      gradient.addColorStop(0, this.color);
+      gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (this.radius > 1) {
+        ctx.globalAlpha = this.alpha * 0.4;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius * 2, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  class ShootingStar {
+    canvas: HTMLCanvasElement;
+    x: number;
+    y: number;
+    length: number;
+    speed: number;
+    angle: number;
+    active: boolean;
+    timeout: number;
+    startTime: number | null;
+    opacity: number;
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.canvas = canvas;
+      this.x = 0;
+      this.y = 0;
+      this.length = 0;
+      this.speed = 0;
+      this.angle = 0;
+      this.active = false;
+      this.timeout = 0;
+      this.startTime = null;
+      this.opacity = 1;
+      this.reset();
+      this.timeout = Math.random() * 10000 + 2000;
+    }
+
+    reset(): void {
+      this.x = Math.random() * this.canvas.width;
+      this.y = Math.random() * (this.canvas.height / 3);
+      this.length = Math.random() * 80 + 100;
+      this.speed = Math.random() * 300 + 300;
+      this.angle = (Math.random() * 50 + 20) * (Math.PI / 180);
+      this.active = false;
+      this.timeout = Math.random() * 20000 + 10000;
+      this.startTime = null;
+      this.opacity = 1;
+    }
+
+    activate(): void {
+      this.active = true;
+      this.startTime = performance.now();
+    }
+
+    update(deltaTime: number): void {
+      if (!this.active) return;
+
+      const currentTime = performance.now();
+      const elapsed = (currentTime - (this.startTime ?? 0)) / 1000;
+
+      this.x += Math.cos(this.angle) * this.speed * deltaTime;
+      this.y += Math.sin(this.angle) * this.speed * deltaTime;
+
+      this.opacity = Math.max(0, 1 - elapsed * 2);
+
+      if (
+        this.x > this.canvas.width ||
+        this.y > this.canvas.height ||
+        this.opacity <= 0
+      ) {
+        this.reset();
+      }
+    }
+
+    draw(ctx: CanvasRenderingContext2D): void {
+      if (!this.active) return;
+
+      ctx.save();
+      ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+
+      ctx.moveTo(this.x, this.y);
+
+      const endX = this.x - Math.cos(this.angle) * this.length;
+      const endY = this.y - Math.sin(this.angle) * this.length;
+
+      const gradient = ctx.createLinearGradient(this.x, this.y, endX, endY);
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.strokeStyle = gradient;
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+
+      ctx.globalAlpha = this.opacity * 0.7;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
+
+      ctx.restore();
+    }
+  }
+
+  const canvas = document.getElementById(
+    "starry-background",
+  ) as HTMLCanvasElement;
+  const ctx = canvas.getContext("2d")!;
+
+  const stars: Star[] = [];
+  const shootingStars: ShootingStar[] = [];
+  let lastShootingStarTime = performance.now();
+  let lastTime = performance.now();
+  let isPageVisible = true;
+
+  document.addEventListener("visibilitychange", () => {
+    isPageVisible = !document.hidden;
+    if (document.hidden) {
+      lastTime = performance.now();
+    }
+  });
+
+  const starColors: string[] = [
+    "rgba(255, 255, 255, 1)",
+    "rgba(255, 255, 235, 1)",
+    "rgba(235, 235, 255, 1)",
+    "rgba(255, 230, 220, 1)",
+  ];
+
+  function resizeCanvas(): void {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars.length = 0;
+    initStars();
+  }
+
+  function initStars(): void {
+    const starDensity = 0.0003;
+    const totalStars = Math.floor(canvas.width * canvas.height * starDensity);
+
+    for (let i = 0; i < totalStars; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const size = Math.random() * 2.5;
+      const colorIndex = Math.floor(Math.random() * starColors.length);
+
+      stars.push(new Star(x, y, size, starColors[colorIndex]));
+    }
+
+    shootingStars.length = 0;
+    for (let i = 0; i < 5; i++) {
+      shootingStars.push(new ShootingStar(canvas));
+    }
+  }
+
+  function update(currentTime: number): void {
+    requestAnimationFrame(update);
+
+    if (!isPageVisible) return;
+
+    const deltaTime = Math.min((currentTime - lastTime) / 1000, 0.1);
+    lastTime = currentTime;
+
+    ctx.save();
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, "hsl(210 40% 15%)");
+    gradient.addColorStop(1, "hsl(210 60% 5%)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+
+    stars.forEach((star) => {
+      star.update(deltaTime);
+      star.draw(ctx);
+    });
+
+    if (currentTime - lastShootingStarTime > 5000) {
+      const inactiveShootingStar = shootingStars.find((star) => !star.active);
+      if (inactiveShootingStar) {
+        inactiveShootingStar.activate();
+        lastShootingStarTime = currentTime + Math.random() * 3000;
+      }
+    }
+
+    shootingStars.forEach((star) => {
+      star.update(deltaTime);
+      star.draw(ctx);
+    });
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+  requestAnimationFrame(update);
+</script>
+
+<style>
+  #starry-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  #starry-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

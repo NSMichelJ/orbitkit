@@ -1,0 +1,32 @@
+---
+import { BrandGitHubIcon, SparklesIcon } from "@/assets/icons";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+---
+
+<Alert
+  class="from-primary/20 via-primary/10 to-primary/20 border-primary/30 w-full rounded-none border-0 border-b bg-gradient-to-r backdrop-blur-sm"
+>
+  <AlertDescription
+    class="flex flex-col items-center justify-center gap-1 text-center text-base font-medium sm:flex-row"
+  >
+    <SparklesIcon class="text-primary" />
+
+    OrbitUI is currently under active development.
+  </AlertDescription>
+</Alert>
+
+<div
+  class="border-primary/5 flex items-center justify-center border-b backdrop-blur-sm"
+>
+  <div class="container flex items-center justify-between p-4">
+    <a href="/">
+      <img src="/orbitui.png" alt="orbitui logo" class="h-6" />
+    </a>
+
+    <Button href="" variant="link" class="p-0 [&_svg]:size-5">
+      <BrandGitHubIcon />
+    </Button>
+  </div>
+</div>

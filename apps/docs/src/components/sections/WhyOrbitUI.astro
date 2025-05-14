@@ -1,0 +1,86 @@
+---
+import {
+  BlocksIcon,
+  CubeIcon,
+  PackageOffIcon,
+  PalleteIcon,
+  ShieldIcon,
+  TerminalIcon,
+} from "@/assets/icons";
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: any;
+}
+
+const features: Feature[] = [
+  {
+    title: "Full TypeScript Support",
+    description:
+      "Benefit from the type safety and code suggestions provided by TypeScript, improving maintainability and development workflow.",
+    icon: ShieldIcon,
+  },
+  {
+    title: "Easily Customizable",
+    description:
+      "Gain complete control over each component. Modify styles with Tailwind CSS and adapt logic to fit your exact needs.",
+    icon: BlocksIcon,
+  },
+  {
+    title: "Optimized Components",
+    description:
+      "Lightweight and high-performance components, built to leverage Astro's performance-focused architecture.",
+    icon: CubeIcon,
+  },
+  {
+    title: "No Unnecessary Dependencies",
+    description:
+      "Components are copied directly into your project, avoiding bloat and external dependencies you don't need.",
+    icon: PackageOffIcon,
+  },
+  {
+    title: "Flexible Theming System",
+    description:
+      "Easily customize colors and styles to match your brand identity, including native dark mode support.",
+    icon: PalleteIcon,
+  },
+  {
+    title: "Intuitive CLI",
+    description:
+      "A command-line interface tool that simplifies adding and managing components within your project.",
+    icon: TerminalIcon,
+  },
+];
+---
+
+<div class="bg-background my-32 w-full">
+  <div class="container mx-auto p-4 py-20">
+    <h2 class="mb-2 text-2xl font-bold sm:text-3xl">Why OrbitUI?</h2>
+    <p class="text-muted-foreground mb-8 max-w-xl font-semibold sm:text-xl">
+      Built with performance, accessibility, and developer experience in mind.
+      OrbitUI helps you build better Astro websites, faster.
+    </p>
+    <div class="grid gap-10 md:grid-cols-2">
+      {
+        features.map((feature) => (
+          <div class="flex justify-start gap-4">
+            <div>
+              <div class="bg-primary/10 text-primary rounded-lg p-2">
+                <feature.icon class="size-6" />
+              </div>
+            </div>
+            <div>
+              <h4 class="mb-1 text-xl font-semibold sm:text-2xl">
+                {feature.title}
+              </h4>
+              <p class="text-muted-foreground font-semibold">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
