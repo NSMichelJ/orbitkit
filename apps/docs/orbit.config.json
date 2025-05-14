@@ -1,0 +1,5 @@
+{
+  "tailwindConfig": "./src/styles/global.css",
+  "componentsDir": "./src/components/ui",
+  "utilsDir": "./src/utils"
+}
