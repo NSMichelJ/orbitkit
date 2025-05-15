@@ -1,0 +1,135 @@
+---
+title: Installation
+description: Learn how to install and set up OrbitUI in your Astro project.
+---
+import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+This guide will walk you through the steps to add OrbitUI to your Astro project.
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+* Node.js (v20.0 or later)
+
+## Using the CLI
+<Steps>
+1. If you don't have an existing Astro project, you can create a new one using your preferred package manager. Open your terminal and run one of the following   commands:
+
+    <Tabs syncKey="pkg-manager">
+      <TabItem label="npm">
+      ```bash
+      npm create astro@latest
+      ```
+      </TabItem>
+      <TabItem label="pnpm">
+      ```bash
+      pnpm create astro@latest
+      ```
+      </TabItem>
+      <TabItem label="yarn">
+      ```bash
+      yarn create astro
+      ```
+      </TabItem>
+    </Tabs>
+
+    Follow the on-screen prompts to set up your project.
+
+2. OrbitUI components are styled using Tailwind CSS. If you don't already have Tailwind CSS configured in your Astro project, [follow the steps in the documentation](https://tailwindcss.com/docs/installation/framework-guides/astro).
+
+    <Tabs syncKey="pkg-manager">
+      <TabItem label="npm">
+      ```bash
+      npm install tailwindcss @tailwindcss/vite
+      ```
+      </TabItem>
+      <TabItem label="pnpm">
+      ```bash
+      pnpm add tailwindcss @tailwindcss/vite
+      ```
+      </TabItem>
+      <TabItem label="yarn">
+      ```bash
+      yarn add tailwindcss @tailwindcss/vite
+      ```
+      </TabItem>
+    </Tabs>
+
+    Add the `@tailwindcss/vite` plugin to your Vite plugins in your Astro config file.
+
+    ```js 
+    // astro.config.mjs
+    // @ts-check
+    import { defineConfig } from "astro/config";
+    import tailwindcss from "@tailwindcss/vite";
+    // https://astro.build/config
+    export default defineConfig({
+      vite: {
+        plugins: [tailwindcss()],
+      },
+    });
+    ```
+
+    Create a ./src/styles/global.css file and add an @import for Tailwind CSS. Or let the OrbitUI CLI create it for you.
+
+3. OrbitUI components are designed to be copied directly into your project, and we provide a Command Line Interface (CLI) tool to simplify this process.
+
+    **Using the OrbitUI CLI:**
+
+    While the OrbitUI CLI is still experimental and under active development, it's the recommended way to get started.
+
+    To initialize OrbitUI in your Astro project, open your terminal in the project's root directory and run the following command:
+
+    <Tabs syncKey="pkg-manager">
+      <TabItem label="npm">
+      ```bash
+      npx orbitkit@latest init
+      ```
+      </TabItem>
+      <TabItem label="pnpm">
+      ```bash
+      pnpx orbitkit@latest init
+      ```
+      </TabItem>
+      <TabItem label="yarn">
+      ```bash
+      yarn dlx orbitkit@latest init
+      ```
+      </TabItem>
+    </Tabs>
+
+    Follow the prompts provided by the CLI. This command will help you configure your project to use OrbitUI and may set up the necessary directories and files for components.
+
+4. Once the initialization is complete, you can start adding components using the CLI:
+
+    <Tabs syncKey="pkg-manager">
+      <TabItem label="npm">
+      ```bash
+      npx orbitkit@latest add button
+      ```
+      </TabItem>
+      <TabItem label="pnpm">
+      ```bash
+      pnpx orbitkit@latest add button
+      ```
+      </TabItem>
+      <TabItem label="yarn">
+      ```bash
+      yarn dlx orbitkit@latest add button
+      ```
+      </TabItem>
+    </Tabs>
+
+5. After adding a component, you can import and use it in your Astro pages or components:
+
+    ```astro
+    // index.astro
+    ---
+    import { Button } from "@/components/ui/button";
+    ---
+
+    <Button>Click Me</Button>
+    ```
+</Steps>
