@@ -1,0 +1,56 @@
+---
+title: Alert
+description: Display a callout box for highlighting important information.
+---
+
+The Alert component is used to display important information or messages to the user in a prominent callout box. It supports different styles to indicate the nature of the message (e.g., info, success, danger).
+
+## Installation
+
+Since OrbitUI components are copied directly into your project, you'll add the Alert component using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add alert
+```
+
+## Usage
+
+Import the `Alert`, `AlertTitle`, and `AlertDescription` components and use them in your Astro components or pages:
+
+```astro
+// index.astro import {(Alert, AlertTitle, AlertDescription)} from "@/components/ui/alert";
+
+<Alert>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    This is an example alert to grab attention.
+  </AlertDescription>
+</Alert>
+```
+
+## Props
+
+### Alert
+
+The Alert component accepts the following props, which are based on the alertVariants defined using class-variance-authority:
+
+| Prop        | Type                                              | Default   |
+| ----------- | ------------------------------------------------- | --------- |
+| `variant`   | `default`, `info`, `danger`, `success`, `warning` | `default` |
+| `rounded`   | `none`,`xs`, `sm`, `md`, `lg`, `xl`, `full`       | `lg`      |
+| `size`      | `xs`, `sm`, `md`, `lg`, `xl`                      | `sm`      |
+| `direction` | `row`, `col`                                      | `col`     |
+| `border`    | `boolean`                                         | `true`    |
+| `class`     | `string`                                          | `''`      |
+
+### AlertTitle
+
+The AlertTitle component is used to provide a concise heading for the alert message.
+
+This component accepts all the standard HTML attributes that a `<p>` element would.
+
+### AlertDescription
+
+The AlertDescription component contains the main content or detailed message of the alert.
+
+Similar to AlertTitle, this component accepts all the standard HTML attributes that a `<p>` element would.
