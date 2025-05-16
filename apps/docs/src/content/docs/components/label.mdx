@@ -1,0 +1,34 @@
+---
+title: Label
+description: Provides a descriptive label for form controls.
+---
+
+The `Label` component is used to provide a descriptive text label for form controls such as `Input`, `Checkbox`, `Radio`, and `Textarea`. Associating a label with a form control is a fundamental aspect of web accessibility.
+
+## Installation
+
+Add the Label component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add label
+```
+
+## Usage
+
+Import the `Label` component and use it next to your form control. The most important attribute for a `Label` is for, which should match the id of the form control it is associated with. Clicking on the label text will focus the associated control.
+
+```astro
+---
+import { Label } from "@/components/ui/label";
+---
+
+<div>
+  <Label for="email-address">Email Address</Label>
+</div>
+```
+
+## Props
+
+### Label
+
+The `Label` component accepts all standard HTML attributes for a `<label>` element.
