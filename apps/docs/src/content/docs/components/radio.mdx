@@ -1,0 +1,33 @@
+---
+title: Radio
+description: Allows users to select a single option from a set of choices.
+---
+
+
+The `Radio` component is a form control that allows users to select exactly one option from a mutually exclusive set of choices. Radio buttons with the same `name` attribute are treated as a single group.
+
+## Installation
+
+Add the Radio component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add radio
+```
+
+## Usage
+Import the `Radio` component and use it in your forms or interactive elements. `Radio` buttons are typically used in groups, where each button in the group shares the same name attribute but has a unique value. Use the standard HTML `checked` attribute to pre-select an option. It is essential to pair a radio button with a `<label>` element for accessibility.
+
+```astro
+---
+// index.astro
+import { Radio } from "@/components/ui/radio";
+---
+
+<div>
+  <Radio id="option-one" name="my-options" value="one" />
+</div>
+```
+## Props
+
+### Radio
+the `Radio` component accepts all standard HTML attributes for an `<input>` element, except for the `type` attribute (as it's fixed to 'radio').
