@@ -1,0 +1,34 @@
+---
+title: Switch
+description: A control that allows the user to toggle a setting on or off.
+---
+
+## Switch
+
+The Switch component provides a visual toggle that allows users to turn a setting or option on or off. It's often implemented semantically as a checkbox with custom styling.
+
+### Installation
+
+Add the Switch component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add switch
+```
+
+## Usage
+
+Import the `Switch` component and use it in your forms or settings panels. Since it's based on an input, you can use standard HTML input attributes like `id`, `name`, `value`, and `disabled`. Use the `checked` attribute to control its toggle state (on or off). It is highly recommended to pair a Switch with a `<label>` element for accessibility.
+
+```astro
+---
+import { Switch } from "@/components/ui/switch";
+---
+
+<Switch id="toggle-setting" />
+```
+
+## Props
+
+### Switch
+
+The `Switch` component accepts all standard HTML attributes for an `<input>` element, except for the `type` attribute (as it's implicitly 'checkbox').
