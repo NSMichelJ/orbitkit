@@ -1,6 +1,8 @@
 ---
 title: Introduction
 description: OrbitUI is an accessible, customizable, & lightweight component library for Astro projects built with Tailwind CSS. Learn how to get started.
+sidebar:
+  order: 0
 ---
 
 OrbitUI is an **accessible, customizable, & lightweight component library** designed to accelerate the development of your [Astro](https://astro.build/) projects using the power of [Tailwind CSS](https://tailwindcss.com/).
@@ -32,7 +34,9 @@ If you are new to OrbitUI, we recommend starting with the **[installation](/gett
 
 ## Exploring the Documentation
 
-_(Note: Some sections are still under development. Thank you for your patience while we work on completing them!)_
+:::note
+Some sections are still under development. Thank you for your patience while we work on completing them!
+:::
 
 ## Project Status and How to Contribute
 
