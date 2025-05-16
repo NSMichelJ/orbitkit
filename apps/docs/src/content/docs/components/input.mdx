@@ -1,0 +1,46 @@
+---
+title: Input
+description: Allows users to enter text or data into a form field.
+---
+
+The Input component is a fundamental form control used to receive text, numbers, emails, passwords, and other data from the user.
+
+## Installation
+
+Add the Input component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add input
+```
+
+## Usage
+
+Import the `Input` component and use it in your forms or interactive elements. You'll typically use standard HTML `input` attributes like `type`, `id`, `name`, `placeholder`, and `required`. It's also highly recommended to pair an input with a `<label>` element for accessibility.
+
+```astro
+---
+// index.astro
+import { Input } from "@/components/ui/input";
+---
+
+<div>
+  <Input
+    type="email"
+    name="email"
+    id="email"
+    placeholder="name@company.com"
+    required
+  />
+</div>
+```
+
+## Props
+
+### Input
+
+The Input component accepts all standard HTML attributes for an `<input>` element, plus the following props based on `inputVariants`:
+
+| Prop      | Type      | Default   |
+| --------- | --------- | --------- |
+| `variant` | `default` | `default` |
+| `disabled` | `boolean` | `false` |
