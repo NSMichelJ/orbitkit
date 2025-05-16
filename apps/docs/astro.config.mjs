@@ -12,6 +12,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "OrbitUI",
+      customCss: [
+        "./src/styles/starlight.css"
+      ]
     }),
   ],
 });
