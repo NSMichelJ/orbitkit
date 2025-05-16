@@ -1,0 +1,40 @@
+---
+title: Badge
+description: Display small status descriptors or labels.
+---
+
+The Badge component is used to display small status descriptors, labels, or categorical information. They are visually distinct and help highlight specific information within a UI.
+
+## Installation
+
+Add the Badge component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add badge
+```
+
+## Usage
+
+Import the Badge component and use it in your Astro components or pages. Place the content you want inside the badge as children of the `<Badge>` component. This can be text, icons (like SVGs), or other inline elements.
+
+```astro
+// index.astro 
+---
+import {Badge} from "@/components/ui/badge";
+---
+
+<Badge>Text</Badge>
+```
+
+## Props
+
+## Badge
+The Badge component accepts the following props, which are based on the badgeVariants defined using class-variance-authority:
+
+| Prop      | Type                                         | Default    |
+| --------- | -------------------------------------------- | ---------- |
+| `variant` | `default`, `outline`                         | `circular` |
+| `rounded` | `none`, `xs`, `sm`, `md`, `lg`, `xl`, `full` | `sm`         |
+| `size`    | `xs`, `sm`, `md`, `lg`, `xl`                 | `xs`         |
+
+This component accepts all the standard HTML attributes that a `div` or `a` element would.
