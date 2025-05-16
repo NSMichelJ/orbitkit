@@ -1,0 +1,66 @@
+---
+title: Button
+description: A button component to trigger actions.
+---
+
+The Button component allows users to trigger actions or events. They are essential interactive elements in any user interface.
+
+## Installation
+
+Add the `Button` component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add button
+```
+
+## Usage
+
+Import the `Button` component and use it in your Astro components or pages. Place the content you want inside the button as children of the `<Button>` tag. This can be text, icons (like SVGs), or a combination.
+
+```astro
+---
+// index.astro
+import { Button } from "@/components/ui/button";
+---
+
+<Button>Accept</Button>
+```
+
+### Using the Button as a Link:
+
+If you provide an `href` prop to the `Button` component, it will automatically render as an `<a>` element, making it a link. This is useful for navigation links that should have the appearance of a button.
+
+```astro
+---
+// index.astro
+import { Button } from "@/components/ui/button";
+---
+
+<Button href="/about">Learn More</Button>
+```
+
+Alternatively, You can use the `buttonVariants` helper to create a link that looks like a button.
+
+```astro
+---
+// index.astro
+import { buttonVariants } from "@/components/ui/button";
+---
+
+<a href="/some-page" class={buttonVariants({ variant: "outline", size: "lg" })}>
+  Link with Button Outline Styles
+</a>
+```
+
+## Props
+
+The Button component accepts the following props, which are based on the buttonVariants defined using class-variance-authority, plus standard button attributes:
+
+| Prop       | Type                                         | Default   |
+| ---------- | -------------------------------------------- | --------- |
+| `variant`  | `default`, `outline`, `ghost`                | `default` |
+| `rounded`  | `none`, `xs`, `sm`, `md`, `lg`, `xl`, `full` | `sm`      |
+| `size`     | `xs`, `sm`, `md`, `lg`, `xl`                 | `xs`      |
+| `disabled` | `boolean`                                    | `false`   |
+
+Accepts all standard HTML attributes for a `<button>` element (if `href` is not provided) or an `<a>` element (if `href` is provided).
