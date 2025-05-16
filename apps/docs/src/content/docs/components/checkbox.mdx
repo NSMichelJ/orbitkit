@@ -1,0 +1,34 @@
+---
+title: Checkbox
+description: A control that allows the user to select one or more options from a set.
+---
+
+The Checkbox component is a form control that allows users to select one or more options from a list of choices.
+
+## Installation
+
+Add the Checkbox component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add checkbox
+```
+
+## Usage
+Import the Checkbox component and use it in your forms or interactive elements. You will typically pair a checkbox with a `<label>` element for accessibility. Use the standard HTML `checked` attribute to control its state.
+
+Fragmento de código
+
+```astro
+---
+// index.astro
+import { Checkbox } from "@/components/ui/checkbox";
+---
+
+<div>
+  <Checkbox id="remember" checked />
+</div>
+```
+
+## Props 
+### Checkbox
+The Checkbox component accepts all standard HTML attributes for an `<input>` element, except for the type attribute (as it's fixed to 'checkbox').
