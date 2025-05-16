@@ -1,0 +1,52 @@
+---
+title: Avatar
+description: Display a user's profile picture, initials, or a fallback icon.
+---
+
+The Avatar component is used to display a visual representation of a user, typically their profile picture. It can also fall back to initials or a generic icon if no image is available (though the provided `cva` only details image handling).
+
+## Installation
+
+Add the Avatar component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add avatar
+```
+
+## Usage
+
+Import the Avatar, AvatarImage, and AvatarFallback components and use them in your Astro components or pages. Place both AvatarImage and AvatarFallback inside the Avatar component. The AvatarFallback will be displayed if the AvatarImage fails to load.
+
+```astro
+// index.astro import {(Avatar, AvatarImage, AvatarFallback)} from
+"@/components/ui/avatar";
+
+<Avatar>
+  <AvatarImage src="..." alt="A description of the image" />
+  <AvatarFallback>...</AvatarFallback>
+</Avatar>
+```
+
+## Props
+
+### Avatar
+
+The Avatar component accepts the following props, which are based on the avatarVariants defined using `class-variance-authority`:
+
+| Prop       | Type                 | Default    |
+| ---------- | -------------------- | ---------- |
+| `variant`  | `circular`, `square` | `circular` |
+| `bordered` | `boolean`            | `false`    |
+
+This component accepts all the standard HTML attributes that a `div` element would.
+
+### AvatarImage
+The AvatarImage component is responsible for rendering the image within the Avatar.
+
+This component accepts all the standard HTML attributes that an `<img>` element would. This includes important attributes like src (the image source URL) and alt (alternative text for accessibility)
+
+
+### AvatarFallback
+The AvatarFallback component is displayed when the AvatarImage fails to load or is not provided. It typically contains initials or a generic user icon.
+
+This component accepts all the standard HTML attributes that an `<div>` element would.
