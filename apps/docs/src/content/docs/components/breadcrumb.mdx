@@ -1,0 +1,169 @@
+---
+title: Breadcrumb
+description: Indicate the current page’s location within a navigational hierarchy.
+---
+
+The Breadcrumb component is a navigation aid that indicates the user's current location within a hierarchical structure. It helps users understand where they are on a website or in an application and allows them to navigate back to parent pages.
+
+## Installation
+
+Add the Breadcrumb component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add breadcrumb
+```
+
+## Usage
+
+Import the `Breadcrumb` component and its sub-components (`BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`, `BreadcrumbPage`). Assemble the breadcrumb structure using these components.
+
+```astro
+---
+// index.astro
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+---
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/home">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbEllipsis />
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/guide"> Guide </BreadcrumbLink>
+    </BreadcrumbItem>
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbItem>
+      <BreadcrumbPage> Current Page </BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Props
+
+### Breadcrumb
+
+The main `Breadcrumb` component primarily serves as a wrapper for the breadcrumb navigation structure. It accepts Accepts all standard HTML attributes for a `<nav>` element.
+
+### BreadcrumbList
+
+The `BreadcrumbList` component acts as a container for the breadcrumb items and separators. It semantically represents an ordered list of breadcrumb items.
+
+This component accepts all the standard HTML attributes that an `<ol>` element would.
+
+### BreadcrumbLink
+
+The `BreadcrumbLink` component represents a clickable link within the breadcrumb trail, allowing users to navigate to a parent page.
+
+This component accepts all the standard HTML attributes that an `<a>` element would.
+
+### BreadcrumbPage
+
+The `BreadcrumbPage` component represents the final item in the breadcrumb trail, indicating the user's current page. It is typically not a link.
+
+This component accepts all the standard HTML attributes that a `<span>` element would.
+
+### BreadcrumbSeparator
+
+The `BreadcrumbSeparator` component is used to visually separate breadcrumb items. By default, it likely renders a symbol like `/`.
+
+This component accepts all the standard HTML attributes that a `<li>` element would.
+
+You can customize the separator icon by replacing the default content inside the `<BreadcrumbSeparator>` tags with your desired icon (e.g., an SVG).
+
+```astro {18-21}
+---
+// index.astro
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+  BreadcrumbLink,
+  BreadcrumbItem,
+} from "@/components/ui/breadcrumb";
+---
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+
+    <BreadcrumbSeparator>
+      {/* Custom separator icon (e.g., an SVG or component) */}
+      >
+    </BreadcrumbSeparator>
+
+    <BreadcrumbItem>
+      <BreadcrumbPage>Current</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+### BreadcrumbEllipsis
+
+The `BreadcrumbEllipsis` component is used to indicate that some breadcrumb items are hidden or condensed, often in responsive designs. It typically appears as `...`.
+
+This component accepts all the standard HTML attributes that a `<span>` element would.
+
+You can customize the ellipsis icon by replacing the default content inside the `<BreadcrumbEllipsis>` tags with your desired icon (e.g., an SVG).
+
+```astro {22-25}
+---
+// index.astro
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbEllipsis,
+  BreadcrumbSeparator,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+---
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbEllipsis>
+      {/* Custom ellipsis icon (e.g., an SVG or component) */}
+      ***
+    </BreadcrumbEllipsis>
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/level-2">Level 2</BreadcrumbLink>
+    </BreadcrumbItem>
+
+    <BreadcrumbSeparator />
+
+    <BreadcrumbItem>
+      <BreadcrumbPage>Current</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
