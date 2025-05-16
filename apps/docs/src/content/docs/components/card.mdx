@@ -1,0 +1,81 @@
+---
+title: Card
+description: A flexible container for grouping related content.
+---
+
+The Card component is a versatile container used to group related content in a visually distinct block. It's commonly used to display information, forms, or actions in a structured format. A Card is composed of several sub-components that define its different areas: `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, and `CardFooter`.
+
+## Installation
+
+Add the Card component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add card
+```
+
+## Usage
+
+Import the `Card` component and its sub-components (`CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) and assemble them to create your card structure.
+
+```astro
+---
+// index.astro
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+---
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Optional description for the card header.</CardDescription>
+  </CardHeader>
+
+  <CardContent>
+    <p>This is the main body of the card.</p>
+  </CardContent>
+
+  <CardFooter>
+    <p>Card footer content or actions.</p>
+  </CardFooter>
+</Card>
+```
+
+## Props
+
+### Card
+The main Card component serves as the primary container. Since no specific variants were provided, this component accepts all the standard HTML attributes that a `div` element would.
+
+### CardHeader
+The CardHeader component is used to define the top section of the card, typically containing the card's title and an optional description.
+
+This component likely accepts all the standard HTML attributes that a `<div>` element would.
+
+### CardTitle
+
+The CardTitle component is used for the main heading within the CardHeader.
+
+This component likely accepts all the standard HTML attributes that a heading element (e.g., `<h5>`) would, depending on its implementation. 
+
+### CardDescription
+
+The CardDescription component provides supplementary text within the CardHeader, typically used to elaborate on the card's title.
+
+This component likely accepts all the standard HTML attributes that a `<p>` element would.
+
+### CardContent
+
+The CardContent component is the main area of the card where you place the primary content, such as text, images, forms, or other components.
+
+This component likely accepts all the standard HTML attributes that a `<div>` element would.
+
+### CardFooter
+
+The CardFooter component is located at the bottom of the card and is typically used for supplementary information, actions, or calls to action.
+
+This component likely accepts all the standard HTML attributes that a `<div>` element would.
