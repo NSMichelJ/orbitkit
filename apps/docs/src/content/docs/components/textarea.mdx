@@ -1,0 +1,44 @@
+---
+title: Textarea
+description: Allows users to enter multi-line text input.
+---
+
+## Textarea
+
+The `Textarea` component is a form control used to receive multi-line text input from the user. It's suitable for comments, messages, descriptions, and other longer text entries.
+
+### Installation
+
+Add the `Textarea` component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit add textarea
+```
+
+## Usage
+
+Import the `Textarea` component and use it in your forms. You'll typically use standard HTML textarea attributes like `id`, `name`, `rows`, `cols`, and `placeholder`. It's also highly recommended to pair a textarea with a `<label>` element for accessibility.
+
+```astro
+---
+import { Textarea } from "@/components/ui/textarea";
+---
+
+<Textarea
+  id="note"
+  name="note"
+  rows={4}
+  placeholder="Enter your notes here..."
+/>
+```
+
+## Props
+
+### Textarea
+
+The Textarea component accepts all standard HTML attributes for a `<textarea>` element, plus the following props based on `inputVariants`:
+
+| Prop       | Type      | Default   |
+| ---------- | --------- | --------- |
+| `variant`  | `default` | `default` |
+| `disabled` | `boolean` | `false`   |
