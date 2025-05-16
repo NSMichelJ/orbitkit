@@ -17,7 +17,17 @@ export default defineConfig({
         dark: "./src/assets/logo/orbitui-dark.png",
         light: "./src/assets/logo/OrbitUI-light.png",
         replacesTitle: true,
-        alt: "OrbitUI Logo"
+        alt: "OrbitUI Logo",
+      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/NSMichelJ/orbitui",
+        },
+      ],
+      editLink: {
+        baseUrl: "https://github.com/NSMichelJ/orbitui/edit/main/apps/docs/",
       },
     }),
   ],
