@@ -18,8 +18,10 @@ npx orbitkit@latest add avatar
 Import the Avatar, AvatarImage, and AvatarFallback components and use them in your Astro components or pages. Place both AvatarImage and AvatarFallback inside the Avatar component. The AvatarFallback will be displayed if the AvatarImage fails to load.
 
 ```astro
-// index.astro import {(Avatar, AvatarImage, AvatarFallback)} from
-"@/components/ui/avatar";
+// index.astro
+---
+import {(Avatar, AvatarImage, AvatarFallback)} from "@/components/ui/avatar";
+---
 
 <Avatar>
   <AvatarImage src="..." alt="A description of the image" />
