@@ -1,0 +1,193 @@
+---
+title: Theming
+description: Customize the look and feel of OrbitUI components using CSS variables.
+sidebar:
+  order: 1
+---
+
+## Theming OrbitUI
+
+OrbitUI's theming system is built around **CSS Custom Properties (CSS Variables)** and designed to integrate seamlessly with **Tailwind CSS**. This approach allows for easy customization of the library's look and feel to match your project's brand identity.
+
+**Theming is one of the primary ways to [customize OrbitUI components](/guides/customization/).**
+
+:::note
+The core theme file containing the CSS variables and their default values is **automatically generated when you initialize your project with the OrbitUI CLI** (`npx orbitkit init`). You can typically find this file in your project's stylesheet directory (the exact location might depend on your project setup and CLI configuration).
+:::
+
+The theme defines a set of semantic color variables that OrbitUI components use internally. These semantic variables are then mapped to core color variables that hold the actual color values for different themes (like light and dark mode).
+
+### How it Works
+
+OrbitUI's theming relies on several Tailwind CSS features and potentially plugins:
+
+1.  **CSS Variables:** A set of base CSS variables (e.g., `--background`, `--primary-color`) define the fundamental colors of your theme. These are typically set within the `:root` selector for the default (light) theme and within a `.dark` class for the dark theme. You can learn more about using [CSS Variables in Tailwind CSS](https://tailwindcss.com/docs/theme).
+2.  **Semantic Color Variables:** OrbitUI components use a different set of semantic variables (e.g., `--color-background`, `--color-primary`). These variables are defined using the `@theme` directive and map the semantic names to the core color variables (e.g., `--color-background: var(--background);`).
+3.  **Tailwind CSS Integration:** Tailwind CSS is configured to use these semantic color variables, allowing you to apply themed colors throughout your project using utility classes (e.g., `bg-background`, `text-primary`).
+4.  **Using `@layer`:** The `@layer` directive is used to explicitly define custom CSS within one of Tailwind's "layers". This helps organize your CSS and ensures that Tailwind's utility classes can override your custom styles where intended. Learn more about [Adding Custom Styles with @layer](https://tailwindcss.com/docs/adding-custom-styles).
+
+This layered approach ensures that OrbitUI components and your own elements styled with Tailwind utilities consistently use the same color palette, which can be easily swapped by changing the values of the core color variables.
+
+### Theme Variables
+
+OrbitUI defines the following core color variables that you can override to customize the theme. Their values are provided for both light and dark modes in the base stylesheet.
+
+| Variable                 | Purpose                                              | Default (Light)                | Dark Mode                   |
+| :----------------------- | :--------------------------------------------------- | :----------------------------- | :-------------------------- |
+| `--background`           | Main background color of the page.                   | `hsl(210 40% 98%)`             | `hsl(210 30% 8%)`           |
+| `--surface`              | Background color for cards, modals, etc.             | `hsl(0 0% 100%)`               | `hsl(210 30% 10%)`          |
+| `--foreground`           | Default text color.                                  | `hsl(222.2 84% 4.9%)`          | `hsl(0 0% 98%)`             |
+| `--primary-color`        | Primary brand color for main actions/elements.       | `hsl(160 84% 35%)`             | `hsl(160 100% 60%)`         |
+| `--primary-foreground`   | Text color on primary elements.                      | `hsl(210 40% 98%)`             | `hsl(210 30% 8%)`           |
+| `--primary-accent`       | Accent color for primary elements.                   | `hsl(160 84% 30%)`             | `hsl(160 100% 55%)`         |
+| `--secondary-color`      | Secondary color for less prominent elements.         | `hsl(210 40% 95%)`             | `hsl(210 30% 15%)`          |
+| `--secondary-foreground` | Text color on secondary elements.                    | `hsl(215.4 16.3% 46.9%)`       | `hsl(0 0% 63.9%)`           |
+| `--secondary-accent`     | Accent color for secondary elements.                 | `hsl(210 40% 90%)`             | `hsl(210 30% 20%)`          |
+| `--border`               | Default border color.                                | `hsl(0 0% 90%)`                | `hsl(210 30% 20%)`          |
+| `--muted`                | Background color for muted/less emphasized elements. | `hsl(210 40% 96.1%)`           | `hsl(210 30% 15%)`          |
+| `--muted-foreground`     | Text color for muted/less emphasized elements.       | `hsl(215.4 16.3% 46.9%)`       | `hsl(0 0% 63.9%)`           |
+| `--input`                | Background color for input fields.                   | `hsl(210 20% 98.04%)`          | `hsl(217.24 21.17% 26.86%)` |
+| `--input-border`         | Border color for input fields.                       | `hsl(218.18deg 13.58% 84.12%)` | `hsl(215.38 22.03% 34.71%)` |
+| `--input-placeholder`    | Placeholder text color in input fields.              | `hsl(215.4 16.3% 46.9%)`       | `hsl(0 0% 63.9%)`           |
+
+### Customization
+
+You can customize the theme by overriding these CSS variables in your own stylesheet. Define the new values within the `:root` selector for the light theme and within the `.dark` class for the dark theme. Place your overrides after the default OrbitUI theme definition in your CSS.
+
+```css
+/* ./src/styles/global.css */
+
+:root {
+  /* Override primary color for the light theme */
+  --primary-color: hsl(340 84% 54%); /* A shade of pink */
+}
+
+.dark {
+  /* Override primary color for the dark theme */
+  --primary-color: hsl(340 100% 70%); /* A brighter pink for dark mode */
+}
+
+/* You can also override other variables like background, text, etc. */
+/* --background: #f0f0f0; */
+/* --foreground: #333; */
+```
+
+By changing these core variables, all OrbitUI components and any elements using the corresponding Tailwind color utilities will reflect your new theme colors.
+
+### Adding New Theme Variables
+
+You can extend the OrbitUI theme by adding your own custom CSS variables. This is useful if you need to define new colors or other design tokens that are specific to your project but you want them to be part of your theme system.
+
+#### To add new theme variables:
+
+In your main stylesheet (or a separate CSS file imported after the OrbitUI theme file), define your new core CSS variables within the `:root` selector (for the default/light theme) and the `.dark` selector (for the dark theme). It's recommended to place these within an `@layer` base directive to ensure they are correctly ordered.
+
+```css
+/* ./src/styles/global.css */
+@layer base {
+  :root {
+    --my-custom-color: hsl(
+      45 100% 50%
+    ); /* Example: a warm orange for light mode */
+  }
+
+  .dark {
+    --my-custom-color: hsl(45 100% 70%); /* A brighter orange for dark mode */
+  }
+}
+
+@theme {
+  --color-my-custom-color: var(--my-custom-color);
+}
+```
+
+Now you can use `text-my-custom-color`, `bg-my-custom-color`, etc., in your project.
+
+### Dark Mode
+
+OrbitUI supports a dark theme out of the box. For detailed instructions on how to enable and configure dark mode in your project, please refer to the [Dark Mode Configuration Guide](/guides/dark-mode/).
+
+To enable dark mode, you typically need to add the dark class to your `<html>` element. Tailwind CSS's [documentation on Dark Mode](https://tailwindcss.com/docs/dark-mode) provides details on how to configure this. The `@custom-variant` dark directive likely assists in targeting elements specifically in dark mode.
+
+### Theme Definition (Reference)
+
+Here is the provided theme code for reference. This is the content of the file generated by `npx orbitkit init`. It includes the `@import "tailwindcss"` directive (which pulls in Tailwind's base styles and directives), defines a `@custom-variant dark` (used for dark mode styling), and uses `@layer base` to organize styles.
+
+```css
+/* ./src/styles/global.css */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary-color);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-accent: var(--primary-accent);
+  --color-secondary: var(--secondary-color);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-input: var(--input);
+  --color-input-border: var(--input-border);
+  --color-input-placeholder: var(--input-placeholder);
+}
+
+@layer base {
+  :root {
+    --background: hsl(210 40% 98%);
+    --surface: hsl(0 0% 100%);
+    --foreground: hsl(222.2 84% 4.9%);
+
+    --primary-color: hsl(160 84% 35%);
+    --primary-foreground: hsl(210 40% 98%);
+    --primary-accent: hsl(160 84% 30%);
+
+    --secondary-color: hsl(210 40% 95%);
+    --secondary-foreground: hsl(215.4 16.3% 46.9%);
+    --secondary-accent: hsl(210 40% 90%);
+
+    --border: hsl(0 0% 90%);
+
+    --muted: hsl(210 40% 96.1%);
+    --muted-foreground: hsl(215.4 16.3% 46.9%);
+
+    --input: hsl(210 20% 98.04%);
+    --input-border: hsl(218.18deg 13.58% 84.12%);
+    --input-placeholder: hsl(215.4 16.3% 46.9%);
+  }
+
+  .dark {
+    --background: hsl(210 30% 8%);
+    --surface: hsl(210 30% 10%);
+    --foreground: hsl(0 0% 98%);
+
+    --primary-color: hsl(160 100% 60%);
+    --primary-foreground: hsl(210 30% 8%);
+    --primary-accent: hsl(160 100% 55%);
+
+    --secondary-color: hsl(210 30% 15%);
+    --secondary-foreground: hsl(0 0% 63.9%);
+    --secondary-accent: hsl(210 30% 20%);
+
+    --border: hsl(210 30% 20%);
+
+    --muted: hsl(210 30% 15%);
+    --muted-foreground: hsl(0 0% 63.9%);
+
+    --input: hsl(217.24 21.17% 26.86%);
+    --input-border: hsl(215.38 22.03% 34.71%);
+    --input-placeholder: hsl(0 0% 63.9%);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
