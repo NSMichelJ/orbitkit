@@ -12,6 +12,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "OrbitUI",
+      favicon: "/favicon.png",
       customCss: ["./src/styles/starlight.css"],
       logo: {
         dark: "./src/assets/logo/orbitui-dark.png",
