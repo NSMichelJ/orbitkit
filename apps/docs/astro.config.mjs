@@ -11,8 +11,11 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "OrbitUI",
+      title:
+        "OrbitUI Accessible, Customizable, & Lightweight component library",
       favicon: "/favicon.png",
+      description:
+        "A modular, customizable component library to accelerate your Astro projects with pre-built components powered by Tailwind CSS.",
       customCss: ["./src/styles/starlight.css"],
       logo: {
         dark: "./src/assets/logo/orbitui-dark.png",
