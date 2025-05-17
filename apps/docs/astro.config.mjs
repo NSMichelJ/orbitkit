@@ -23,11 +23,14 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/NSMichelJ/orbitui",
+          href: "https://github.com/nsmichelj/orbitui",
         },
       ],
       editLink: {
-        baseUrl: "https://github.com/NSMichelJ/orbitui/edit/main/apps/docs/",
+        baseUrl: "https://github.com/nsmichelj/orbitui/edit/main/apps/docs/",
+      },
+      components: {
+        Pagination: "./src/components/overrides/pagination/Pagination.astro",
       },
     }),
   ],

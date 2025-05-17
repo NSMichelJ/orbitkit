@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  rel: "next" | "prev";
+}
+
+const { href, rel } = Astro.props;
+---
+
+<a
+  href={href}
+  rel={rel}
+  class="[&[rel='next']]: flex w-full items-center gap-2 rounded-md border border-gray-200 p-4 text-base text-gray-700 no-underline hover:bg-gray-200/10 dark:border-gray-700 dark:bg-gray-800 dark:text-white hover:dark:bg-gray-800/90 [&[rel='next']]:flex-row-reverse"
+>
+  <slot name="icon" />
+  <div class="flex flex-col">
+    <slot />
+  </div>
+</a>

@@ -1,0 +1,41 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+import PaginationButton from "./PaginationButton.astro";
+
+const { dir, pagination } = Astro.locals.starlightRoute;
+const { prev, next } = pagination;
+const isRtl = dir === "rtl";
+---
+
+<div
+  class="flex flex-col items-center justify-between gap-4 sm:flex-row"
+  dir={dir}
+>
+  {
+    prev && (
+      <PaginationButton rel="prev" href={prev.href}>
+        <Icon
+          name={isRtl ? "right-arrow" : "left-arrow"}
+          size="1.5rem"
+          slot="icon"
+        />
+        {Astro.locals.t("page.previousLink")}
+        <span class="font-semibold">{prev.label}</span>
+      </PaginationButton>
+    )
+  }
+  {
+    next && (
+      <PaginationButton rel="next" href={next.href}>
+        <Icon
+          name={isRtl ? "left-arrow" : "right-arrow"}
+          size="1.5rem"
+          slot="icon"
+        />
+
+        {Astro.locals.t("page.nextLink")}
+        <span class="font-semibold">{next.label}</span>
+      </PaginationButton>
+    )
+  }
+</div>
