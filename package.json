@@ -7,8 +7,11 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "cli:build": "pnpm --filter=orbitkit build",
     "cli:dev": "pnpm --filter=orbitkit dev",
+    "components:build": "pnpm --filter=@orbitkit/components build",
     "components:dev": "pnpm --filter=@orbitkit/components dev",
+    "docs:build": "pnpm -filter=docs build",
     "docs:dev": "pnpm -filter=docs dev",
     "format:check": "turbo run format:check",
     "format:fix": "turbo run format:fix",
