@@ -11,8 +11,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title:
-        "OrbitUI Accessible, Customizable, & Lightweight component library",
+      title: "OrbitUI Component Library",
       favicon: "/favicon.png",
       description:
         "A modular, customizable component library to accelerate your Astro projects with pre-built components powered by Tailwind CSS.",
@@ -36,6 +35,23 @@ export default defineConfig({
       components: {
         Pagination: "./src/components/overrides/pagination/Pagination.astro",
       },
+      head: [
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "/hero.png",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image:alt",
+            content:
+              "Orbit UI Accessible, Customizable, & Lightweight component library",
+          },
+        },
+      ],
     }),
   ],
 });
