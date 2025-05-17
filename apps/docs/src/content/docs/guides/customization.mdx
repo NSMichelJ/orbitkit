@@ -1,0 +1,169 @@
+---
+title: Customization
+description: Learn how to customize the look and feel of OrbitUI components.
+sidebar:
+  order: 2
+---
+
+## Component Customization
+
+OrbitUI components are designed with flexibility in mind, offering several ways to customize their appearance and behavior to fit your project's specific needs and brand identity. Since OrbitUI follows a "copy-paste friendly" approach where components are added directly to your project, you have a high degree of control over their implementation.
+
+There are three primary ways to customize OrbitUI components:
+
+1.  **Modifying the Theme:** Adjusting the global CSS variables that define the orbitUI theme.
+2.  **Overriding Classes:** Applying custom Tailwind CSS classes or standard CSS styles to individual component instances using the `class` prop.
+3.  **Modifying Source Code:** Directly editing the component files that were added to your project.
+
+### 1. Customizing via the Theme
+
+The most impactful way to customize the visual appearance of OrbitUI components across your entire project is by modifying the **CSS Variables** defined in the OrbitUI theme file. This file is generated when you run `npx orbitkit init` and typically contains definitions for colors, typography, and other design tokens.
+
+By overriding these variables in your own stylesheet, you can easily change the color palette, fonts, and other global styles used by all OrbitUI components and potentially other elements in your project that utilize these variables via Tailwind CSS utilities.
+
+For detailed information on the available theme variables and how to override them, please refer to the **[Theming Guide](/guides/theming/)**.
+
+### 2. Overriding Classes
+
+For specific styling adjustments on individual component instances, you can use the standard HTML `class` attribute. This allows you to apply utility classes from Tailwind CSS or your own custom CSS rules directly to the component's root element.
+
+```astro {7, 10}
+---
+// index.astro
+import { Button } from "@/components/ui/button";
+---
+
+{/* Applying a simple margin class */}
+<Button class="mt-4"> Button with Margin </Button>
+
+{/* Overriding a background color */}
+<Button class="bg-blue-500 text-white hover:bg-blue-700">
+  Custom Color Button
+</Button>
+```
+
+OrbitUI components internally use a utility function (`cn`) to handle the merging of the component's default classes with any classes you provide via the `class` prop. This means that for most simple cases (like adding spacing, changing colors, or adjusting padding), you can just provide the classes directly using the `class` prop, and they will be correctly applied and merged.
+
+#### The cn Utility (Advanced Usage)
+
+While OrbitUI components handle class merging for you internally, there might be advanced scenarios where you need more control over how classes are combined, especially when dealing with conditional classes or complex overrides. For these cases, you can directly import and use the `cn` utility function.
+
+The `cn` utility is a helper function that simplifies the process of conditionally joining and merging Tailwind CSS classes. It is based on popular libraries like `clsx` (for conditional class joining) and `tailwind-merge` (for intelligently merging conflicting Tailwind classes).
+
+This utility function is copied into your project when you run `npx orbitkit init`, typically in a `utils` directory (e.g., `./src/utils/cn.ts`).
+
+To use `cn` manually, import it and pass your different class strings or objects to it. The function will return a single string of merged classes, intelligently handling potential conflicts.
+
+```astro {4,13-16,23-27}
+---
+// index.astro
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils/cn";
+
+const showError = true;
+---
+
+{
+  /* Example using cn to combine default button variants with a conditional class */
+}
+<Button
+  class={cn(
+    buttonVariants({ variant: "outline" }),
+    showError && "border-red-500",
+  )}
+>
+  Button with Conditional Border
+</Button>
+
+{/* Example applying complex conditional classes to a div */}
+<div
+  class={cn("p-4", {
+    "bg-red-500 text-white": showError,
+    "bg-blue-500": !showError,
+    rounded: true,
+  })}
+>
+  Element with Complex Conditional Styles
+</div>
+```
+
+Using `cn` manually is useful when you need to perform complex class merging logic before passing the final class string to the component's `class` prop, or when applying classes to standard HTML elements where OrbitUI's internal merging is not available.
+
+### 3. Modifying Source Code
+
+Because OrbitUI components are added directly to your project's codebase by the CLI, you have the ultimate flexibility to modify their source code. This method is suitable for making deeper changes that are not possible through theme overrides or class props, such as:
+
+- Changing the underlying HTML structure of a component.
+- Adding new props or functionality.
+- Integrating with third-party libraries in a component's implementation.
+- Adjusting the component's internal logic or framework-specific details.
+
+To modify a component, locate its file in the component directory (e.g., `./src/components/ui/button.astro`) and make your desired changes.
+
+:::tip[Creating New Variants with `class-variance-authority`]
+If you find yourself repeatedly applying the same complex combinations of classes to achieve a specific look for a component that uses `class-variance-authority` (like Button, Alert, Input, Textarea, and Select), it can be more maintainable to define a new variant directly in the component's `cva` definition.
+:::
+
+This approach allows you to encapsulate that specific style combination and apply it using a simple prop value, making your component usage cleaner and more semantic.
+
+For example, if you frequently need a `danger` style button, instead of applying multiple classes or using `cn` every time:
+
+```astro
+---
+// index.astro
+---
+
+<Button class="bg-red-500 text-white hover:bg-red-600"> Danger Button </Button>
+```
+
+You could go to the `buttonVariants` definition in your button component file and add a new `danger` variant:
+
+```ts {13}
+// ./src/components/ui/button/buttonVariants.ts
+import { cva } from "class-variance-authority";
+
+const baseClass = "...";
+
+const buttonVariants = cva(baseClass, {
+  variants: {
+    variant: {
+      default: "...",
+      outline: "...",
+      ghost: "...",
+      // Add a new variant here:
+      danger: "bg-red-500 hover:bg-red-600 text-white",
+    },
+    // ... other variants like rounded, size, disabled
+  },
+  // ... compoundVariants and defaultVariants
+});
+
+export { buttonVariants }; // Make sure buttonVariants is exported
+```
+
+Then, you can use this new variant directly in your application code:
+
+```astro {6}
+---
+// index.astro
+import { Button } from "@/components/ui/button";
+---
+
+<Button variant="danger"> Danger Button </Button>
+```
+
+This makes your code more readable and ensures consistency wherever you use the "danger" variant. This approach is most applicable to components whose styling is defined using `class-variance-authority`.
+
+:::note
+While direct source code modification offers maximum flexibility, it's important to be aware that applying future updates to OrbitUI components via the CLI might overwrite your changes. Consider carefully if direct modification is necessary or if theme or class overrides can achieve your goal. If you modify a component, you might need to manually apply updates from future OrbitUI releases.
+:::
+
+By leveraging these customization methods, you can adapt OrbitUI components to perfectly match the requirements of your project.
+
+## References
+
+Here are some helpful resources for the libraries used in OrbitUI's styling and utility functions:
+
+- `class-variance-authority` (cva): https://cva.style/docs - Documentation for the library used to define component variants.
+- `tailwind-merge`: https://github.com/dcastil/tailwind-merge - Documentation for the utility that merges Tailwind CSS classes without conflicts.
+- `clsx`: https://github.com/lukeed/clsx - Documentation for the utility that conditionally joins class strings.
