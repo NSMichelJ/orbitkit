@@ -1,0 +1,46 @@
+---
+title: CLI Tool
+description: Command-line interface for adding and managing OrbitUI components.
+sidebar:
+  order: 2
+---
+
+## orbitkit
+
+The OrbitUI Command Line Interface (CLI) is a tool designed to simplify the process of adding and managing OrbitUI components within your Astro project. It helps you quickly scaffold components and keep your project organized.
+
+You can access the OrbitUI CLI using `npx orbitkit` in your terminal.
+
+:::note
+Since the CLI is still **experimental and under active development**, its functionality and commands may evolve.
+:::
+
+## Commands
+
+### `init`
+
+Prepares your Astro project for OrbitUI components by setting up the necessary configuration and directory structure.
+
+```bash
+npx orbitkit@latest init
+```
+
+#### Options:
+
+- `-f, --force`: Force overwrite existing Orbit config files if they exist. Use with caution, as this will erase previous customizations in those files.
+
+When you run `npx orbitkit init`, the CLI will guide you through the initial setup steps, including asking where you'd like to place the OrbitUI components in your project (this affects the import paths like @/components/ui/)
+
+### `add`
+
+Adds one or more specified OrbitUI components to your project. The components will be placed in the directory configured during the init process.
+
+```bash
+npx orbitkit@latest add [components...]
+```
+
+`[components...]`: A space-separated list of the names of the components you want to add (e.g., button alert card).
+
+#### Options:
+
+- `-a, --all`: Add all available OrbitUI components to your project.
