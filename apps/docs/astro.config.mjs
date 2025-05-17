@@ -17,8 +17,8 @@ export default defineConfig({
         "A modular, customizable component library to accelerate your Astro projects with pre-built components powered by Tailwind CSS.",
       customCss: ["./src/styles/starlight.css"],
       logo: {
-        dark: "./src/assets/logo/orbitui-dark.png",
-        light: "./src/assets/logo/OrbitUI-light.png",
+        dark: "./src/assets/logo/orbitui_dark.png",
+        light: "./src/assets/logo/orbitui_light.png",
         replacesTitle: true,
         alt: "OrbitUI Logo",
       },
