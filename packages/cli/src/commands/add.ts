@@ -22,8 +22,19 @@ export const add = new Command()
   .description("Add Orbit components to your project")
   .argument("[components...]", "The components to add")
   .option("-a, --all", "Add all available Orbit components", false)
+  .option(
+    "-w, --working-directory <path>",
+    "Specify the working directory path",
+    process.cwd(),
+  )
   .action(async (components: string[], args) => {
-    if (!(await fs.pathExists(ORBIT_CONFIG_FILE_NAME))) {
+    const workingDirectory = path.resolve(args.workingDirectory);
+
+    if (
+      !(await fs.pathExists(
+        path.join(workingDirectory, ORBIT_CONFIG_FILE_NAME),
+      ))
+    ) {
       log.error("Orbit configuration not found.");
 
       const { initialize } = await inquirer.prompt([
@@ -36,7 +47,10 @@ export const add = new Command()
       ]);
 
       if (initialize) {
-        await runInit({ force: false });
+        await runInit({
+          force: false,
+          workingDirectory: workingDirectory,
+        });
       } else {
         log.blank(
           "Please run " +
@@ -47,7 +61,6 @@ export const add = new Command()
       }
     }
 
-    const PATH = process.cwd();
     const componentsToInstall: ComponentRegistryEntry[] =
       await promptForComponents({ components, ...args });
 
@@ -61,7 +74,7 @@ export const add = new Command()
       log.blank(`- ${componentToInstall.name}@${componentToInstall.version}`);
     }
 
-    const config = await readConfig();
+    const config = await readConfig(workingDirectory);
     if (!config?.componentsDir) {
       return;
     }
@@ -76,7 +89,11 @@ export const add = new Command()
       }
 
       const componentPath = getComponentPath(name);
-      const componentsDir = path.join(PATH, componentsDirConfig, name);
+      const componentsDir = path.join(
+        workingDirectory,
+        componentsDirConfig,
+        name,
+      );
 
       spinner.text = `Adding ${componentToInstall.name}@${componentToInstall.version}...`;
       try {
@@ -87,7 +104,7 @@ export const add = new Command()
           name: name,
           version: version,
         });
-        await writeConfig(config);
+        await writeConfig(workingDirectory, config);
       } catch {
         log.error(`Error adding component ${componentToInstall}`);
       }
