@@ -30,8 +30,8 @@ export const init = new Command()
   )
   .action(async (args) => {
     await runInit({
-      workingDirectory: path.resolve(args.workingDirectory),
       ...args,
+      workingDirectory: path.resolve(args.workingDirectory),
     });
   });
 
@@ -71,7 +71,12 @@ export async function runInit(args: {
       return;
     }
 
-    if ((await fs.pathExists(ORBIT_CONFIG_FILE_NAME)) && !args.force) {
+    if (
+      (await fs.pathExists(
+        path.join(workingDirectory, ORBIT_CONFIG_FILE_NAME),
+      )) &&
+      !args.force
+    ) {
       log.info("Orbit is already initialized in this project.");
 
       const { reinitialize } = await inquirer.prompt([
@@ -128,7 +133,7 @@ export async function runInit(args: {
     );
     await initializeUtils(utilsFilePath);
 
-    await setupTsPathAliases(path.join(workingDirectory, "tsconfig.json"));
+    await setupTsPathAliases(workingDirectory);
 
     log.ln();
     log.blank("Some required dependencies are missing:");
@@ -156,7 +161,11 @@ export async function runInit(args: {
       const spinner = ora(`Installing dependencies with ${pkgManager}`).start();
 
       try {
-        await installDependencies(pkgManager, ORBIT_REQUIRE_PACKAGES);
+        await installDependencies(
+          workingDirectory,
+          pkgManager,
+          ORBIT_REQUIRE_PACKAGES,
+        );
         spinner.stop();
         log.ln();
         log.success("Dependencies installed successfully!");
@@ -172,7 +181,7 @@ export async function runInit(args: {
       );
     }
 
-    const { created } = await writeConfig(answers);
+    const { created } = await writeConfig(workingDirectory, answers);
     if (created) {
       log.ln();
       log.success("Success!");
@@ -212,8 +221,9 @@ async function initializeUtils(path: string) {
   });
 }
 
-async function setupTsPathAliases(path: string) {
-  const tsConfig = await fs.readJSON(path, {
+async function setupTsPathAliases(workingDirectory: string) {
+  const tsPath = path.join(workingDirectory, "tsconfig.json");
+  const tsConfig = await fs.readJSON(tsPath, {
     encoding: "utf-8",
   });
 
@@ -223,7 +233,7 @@ async function setupTsPathAliases(path: string) {
     paths: { "@/*": ["src/*"] },
   };
 
-  fs.writeJSON(path, tsConfig, {
+  fs.writeJSON(tsPath, tsConfig, {
     encoding: "utf-8",
     spaces: 2,
   });
