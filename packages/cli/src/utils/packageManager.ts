@@ -6,13 +6,17 @@ export function getInstallCommand(pkgManager: PackageManager) {
 }
 
 export async function installDependencies(
+  workingDirectory: string,
   pkgManager: PackageManager,
   packages: string[],
 ) {
-  const result = await execa(pkgManager, [
-    getInstallCommand(pkgManager),
-    ...packages,
-  ]);
+  const result = await execa(
+    pkgManager,
+    [getInstallCommand(pkgManager), ...packages],
+    {
+      cwd: workingDirectory,
+    },
+  );
 
   return result;
 }
