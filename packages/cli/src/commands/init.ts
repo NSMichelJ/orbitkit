@@ -23,30 +23,50 @@ export const init = new Command()
   .name("init")
   .description("Prepares your Astro project for Orbit components")
   .option("-f, --force", "Force overwrite existing Orbit config", false)
+  .option(
+    "-w, --working-directory <path>",
+    "Specify the working directory path",
+    process.cwd(),
+  )
   .action(async (args) => {
-    await runInit(args);
+    await runInit({
+      workingDirectory: path.resolve(args.workingDirectory),
+      ...args,
+    });
   });
 
-export async function runInit(args: { force: boolean }) {
+export async function runInit(args: {
+  force: boolean;
+  workingDirectory: string;
+}) {
   try {
-    if (!(await fs.pathExists("package.json"))) {
+    const workingDirectory = args.workingDirectory;
+
+    if (!(await fs.pathExists(workingDirectory))) {
+      log.error("The specified working directory does not exist");
+      return;
+    }
+
+    if (!(await fs.pathExists(path.join(workingDirectory, "package.json")))) {
       log.error(
         "package.json not found. This command requires a valid package.json file.",
       );
       return;
     }
 
-    if (!(await fs.pathExists("tsconfig.json"))) {
+    if (!(await fs.pathExists(path.join(workingDirectory, "tsconfig.json")))) {
       log.error("The 'tsconfig.json' file is missing in your project");
       return;
     }
 
-    if (!(await fs.pathExists("astro.config.mjs"))) {
+    if (
+      !(await fs.pathExists(path.join(workingDirectory, "astro.config.mjs")))
+    ) {
       log.error("Not an Astro project (missing astro.config.mjs).");
       return;
     }
 
-    if (!(await isTailwindInstalled())) {
+    if (!(await isTailwindInstalled(workingDirectory))) {
       log.error("Tailwindcss v4 is required.");
       return;
     }
@@ -92,22 +112,23 @@ export async function runInit(args: { force: boolean }) {
       },
     ]);
 
-    const PATH = process.cwd();
-
-    const cssFilePath = path.join(PATH, answers.tailwindConfig);
+    const cssFilePath = path.join(workingDirectory, answers.tailwindConfig);
     await initializeCSSConfig(cssFilePath);
 
-    const componentsDirPath = path.join(PATH, answers.componentsDir);
+    const componentsDirPath = path.join(
+      workingDirectory,
+      answers.componentsDir,
+    );
     fs.ensureDir(componentsDirPath);
 
     const utilsFilePath = path.join(
-      PATH,
+      workingDirectory,
       answers.utilsDir,
       CLASS_MERGE_UTILS_NAME,
     );
     await initializeUtils(utilsFilePath);
 
-    await setupTsPathAliases(path.join(PATH, "tsconfig.json"));
+    await setupTsPathAliases(path.join(workingDirectory, "tsconfig.json"));
 
     log.ln();
     log.blank("Some required dependencies are missing:");
@@ -208,8 +229,10 @@ async function setupTsPathAliases(path: string) {
   });
 }
 
-async function isTailwindInstalled() {
-  const pkgJson = await fs.readJSON("package.json");
+async function isTailwindInstalled(workingDirectory: string) {
+  const pkgJson = await fs.readJSON(
+    path.join(workingDirectory, "package.json"),
+  );
   if (pkgJson.dependencies) {
     const dependencies = {
       ...pkgJson.dependencies,
