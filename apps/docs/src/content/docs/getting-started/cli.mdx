@@ -28,6 +28,7 @@ npx orbitkit@latest init
 #### Options:
 
 - `-f, --force`: Force overwrite existing Orbit config files if they exist. Use with caution, as this will erase previous customizations in those files.
+- `-w, --working-directory <path>`: Specify the working directory path. Defaults to the current working directory where the command is executed.
 
 When you run `npx orbitkit init`, the CLI will guide you through the initial setup steps, including asking where you'd like to place the OrbitUI components in your project (this affects the import paths like @/components/ui/)
 
@@ -44,3 +45,4 @@ npx orbitkit@latest add [components...]
 #### Options:
 
 - `-a, --all`: Add all available OrbitUI components to your project.
+- `-w, --working-directory <path>`: Specify the working directory path. Defaults to the current working directory where the command is executed.
