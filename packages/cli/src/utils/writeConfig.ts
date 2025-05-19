@@ -3,9 +3,12 @@ import fs from "fs-extra";
 import path from "node:path";
 import { ORBIT_CONFIG_FILE_NAME } from "./constants";
 
-export default async function writeConfig(config: Config) {
+export default async function writeConfig(
+  workingDirectory: string,
+  config: Config,
+) {
   try {
-    const file = path.join(process.cwd(), ORBIT_CONFIG_FILE_NAME);
+    const file = path.join(workingDirectory, ORBIT_CONFIG_FILE_NAME);
     await fs.outputJSON(file, config, {
       encoding: "utf-8",
       spaces: 2,
