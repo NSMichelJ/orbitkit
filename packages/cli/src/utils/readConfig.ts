@@ -3,9 +3,9 @@ import fs from "fs-extra";
 import path from "node:path";
 import { ORBIT_CONFIG_FILE_NAME } from "./constants";
 
-export default async function readConfig() {
+export default async function readConfig(workingDirectory: string) {
   try {
-    const file = path.join(process.cwd(), ORBIT_CONFIG_FILE_NAME);
+    const file = path.join(workingDirectory, ORBIT_CONFIG_FILE_NAME);
     if (!(await fs.pathExists(file))) {
       return null;
     }
