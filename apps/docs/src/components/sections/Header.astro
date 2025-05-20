@@ -3,6 +3,17 @@ import { BrandGitHubIcon, SparklesIcon } from "@/assets/icons";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+
+const links = [
+  {
+    name: "Docs",
+    href: "/getting-started/installation/",
+  },
+  {
+    name: "Components",
+    href: "/components/",
+  },
+];
 ---
 
 <Alert
@@ -25,14 +36,28 @@ import { Button } from "@/components/ui/button";
       <img src="/orbitui.png" alt="orbitui logo" class="h-6" />
     </a>
 
-    <Button
-      href=""
-      variant="link"
-      class="p-0 [&_svg]:size-5"
-      href="https://github.com/nsmichelj/orbitui"
-      target="_blank"
-    >
-      <BrandGitHubIcon />
-    </Button>
+    <div class="hidden items-center gap-4 md:flex">
+      {
+        links.map((link) => (
+          <Button variant="link" size="lg" class="p-0" href={link.href}>
+            {link.name}
+          </Button>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-4">
+      <Button
+        href=""
+        variant="link"
+        class="p-0 [&_svg]:size-5"
+        href="https://github.com/nsmichelj/orbitui"
+        target="_blank"
+      >
+        <BrandGitHubIcon />
+      </Button>
+
+      <Button rounded="full" variant="outline"> Get Started </Button>
+    </div>
   </div>
 </div>
