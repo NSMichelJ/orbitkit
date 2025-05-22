@@ -1,0 +1,39 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { listItemVariants } from "./ListVariants";
+
+export interface Props
+  extends HTMLAttributes<"div">,
+    Omit<HTMLAttributes<"a">, "type" | "disabled">,
+    Omit<HTMLAttributes<"button">, "type" | "disabled">,
+    VariantProps<typeof listItemVariants> {
+  as?: "a" | "button" | "div";
+}
+
+const {
+  class: className,
+  as,
+  disabled,
+  rounded,
+  active,
+  ...attrs
+} = Astro.props;
+
+let Comp: typeof as = "div";
+if (as === "a" || Astro.props.href) {
+  Comp = "a";
+} else if (as === "button") {
+  Comp = "button";
+}
+---
+
+<Comp
+  {...attrs}
+  disabled={disabled}
+  class={cn(listItemVariants({ active, disabled, rounded, className }))}
+  aria-label="list-item"
+>
+  <slot />
+</Comp>
