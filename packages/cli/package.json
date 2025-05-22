@@ -1,6 +1,6 @@
 {
   "name": "orbitkit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Add customizable and incredible UI components to your Astro project!",
   "main": "./dist/index.js",
   "type": "module",
@@ -36,6 +36,11 @@
     "ora": "8.2.0",
     "postcss": "8.5.3",
     "tailwindcss": "4.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nsmichelj/orbitui.git",
+    "directory": "package/cli"
   },
   "bin": {
     "orbitkit": "dist/index.js"
