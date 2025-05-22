@@ -1,0 +1,90 @@
+---
+title: List
+description: A flexible container for displaying a series of related content items with optional borders and rounding.
+---
+
+The `List` component is a versatile container designed to display a collection of related `ListItem` elements. It offers various styling options, including outer borders, inner dividers between items, and customizable rounding, allowing you to create organized and visually appealing content presentations.
+
+## Installation
+
+Add the `List` and `ListItem` components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add list
+```
+
+## Usage
+
+Import the `List` and `ListItem` components and use them in your Astro components or pages. Place `ListItem` components inside the `List` to create your content structure.
+
+```astro
+---
+// index.astro
+import { List, ListItem } from "@/components/ui/list";
+---
+
+<List class="mx-auto max-w-md">
+  <ListItem as="button">
+    <div>
+      <p class="text-sm font-semibold">From: John Doe</p>
+      <p class="text-muted-foreground text-sm">
+        Project Update: Q2 Performance
+      </p>
+    </div>
+    <span class="text-muted-foreground mt-1 block text-right text-xs">
+      May 20, 2025
+    </span>
+  </ListItem>
+
+  <ListItem as="button">
+    <div>
+      <p class="text-sm font-semibold">User: Jane Smith</p>
+      <p class="text-muted-foreground text-sm">
+        Commented on your post: "Great insights!"
+      </p>
+    </div>
+    <span class="text-muted-foreground mt-1 block text-right text-xs">
+      10:30 AM
+    </span>
+  </ListItem>
+
+  <ListItem as="button">
+    <div>
+      <p class="text-sm font-semibold">Event: Team Meeting</p>
+      <p class="text-muted-foreground text-sm">
+        Discussing Q3 Goals and Strategy
+      </p>
+    </div>
+    <span class="text-muted-foreground mt-1 block text-right text-xs">
+      May 22, 2025 - 2:00 PM
+    </span>
+  </ListItem>
+</List>
+```
+
+## Props
+
+### List
+
+The `List` component accepts the following props, which control its appearance:
+
+| Prop           | Type                                 | Default |
+| -------------- | ------------------------------------ | ------- |
+| `outerBorder`  | `true`, `false`                      | `true`  |
+| `innerBorders` | `true`, `false`                      | `true`  |
+| `rounded`      | `none`, `xs`, `sm`, `md`, `lg`, `xl` | `lg`    |
+
+This component accepts all the standard HTML attributes that a `div` element would.
+
+### ListItem
+
+The `ListItem` component represents an individual item within a `List`. It can function as a `div`, `a (link)`, or `button`, providing interactivity.
+
+| Prop       | Type                                 | Default |
+| ---------- | ------------------------------------ | ------- |
+| `as`       | `div`, `a`, `button`                 | `div`   |
+| `active`   | `true`, `false`                      | `false` |
+| `disabled` | `true`, `false`                      | `false` |
+| `rounded`  | `none`, `xs`, `sm`, `md`, `lg`, `xl` | `lg`    |
+
+This component accepts all the standard HTML attributes that a `div`, `a`, or `button` element would.
