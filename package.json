@@ -19,7 +19,11 @@
     "cli:unlink": "pnpm --filter=orbitkit cli:unlink",
     "components:link": "pnpm --filter=@orbitkit/components components:link",
     "components:unlink": "pnpm --filter=@orbitkit/components components:unlink",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cli:publish:beta": "pnpm --filter=orbitkit publish:beta",
+    "cli:publish:release": "pnpm --filter=orbitkit publish:release",
+    "components:publish:beta": "pnpm --filter=@orbitkit/components publish:beta",
+    "components:publish:release": "pnpm --filter=@orbitkit/components publish:release"
   },
   "keywords": [
     "orbit",

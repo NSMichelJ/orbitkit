@@ -18,7 +18,9 @@
     "format:check": "eslint . && prettier --check .",
     "format:fix": "eslint --fix . && prettier --write .",
     "components:link": "pnpm link . --global",
-    "components:unlink": "pnpm rm --global @orbitkit/components"
+    "components:unlink": "pnpm rm --global @orbitkit/components",
+    "publish:beta": "pnpm build && npm publish --tag beta --access public",
+    "publish:release": "pnpm build && npm publish --access public"
   },
   "keywords": [
     "ui",

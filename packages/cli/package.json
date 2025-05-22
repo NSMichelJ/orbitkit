@@ -11,7 +11,9 @@
     "format:check": "eslint . && prettier --check .",
     "format:fix": "eslint --fix . && prettier --write .",
     "cli:link": "pnpm link . --global",
-    "cli:unlink": "pnpm rm --global orbitkit"
+    "cli:unlink": "pnpm rm --global orbitkit",
+    "publish:beta": "pnpm build && npm publish --tag beta --access public",
+    "publish:release": "pnpm build && npm publish --access public"
   },
   "keywords": [
     "orbit",
@@ -27,7 +29,7 @@
     "tsup": "8.4.0"
   },
   "dependencies": {
-    "@orbitkit/components": "0.0.1",
+    "@orbitkit/components": "0.1.0",
     "chalk": "5.4.1",
     "commander": "13.1.0",
     "execa": "^9.5.2",
