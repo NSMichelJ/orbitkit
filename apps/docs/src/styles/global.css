@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
   --color-background: var(--background);
@@ -44,6 +45,7 @@
     --input-placeholder: hsl(215.4 16.3% 46.9%);
   }
 
+  [data-theme="dark"],
   .dark {
     --background: hsl(210 30% 8%);
     --surface: hsl(210 30% 10%);
