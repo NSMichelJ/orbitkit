@@ -1,0 +1,16 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { avatarVariants } from "./avatarVariants";
+
+interface Props
+  extends HTMLAttributes<"div">,
+    VariantProps<typeof avatarVariants> {}
+
+const { class: className, variant, bordered, ...attrs } = Astro.props;
+---
+
+<div {...attrs} class={cn(avatarVariants({ variant, bordered, className }))}>
+  <slot />
+</div>

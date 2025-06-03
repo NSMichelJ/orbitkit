@@ -14,6 +14,62 @@
     {
       "name": "card",
       "version": "0.0.1"
+    },
+    {
+      "name": "badge",
+      "version": "0.0.1"
+    },
+    {
+      "name": "avatar",
+      "version": "0.0.1"
+    },
+    {
+      "name": "input",
+      "version": "0.0.1"
+    },
+    {
+      "name": "label",
+      "version": "0.0.1"
+    },
+    {
+      "name": "breadcrumb",
+      "version": "0.0.1"
+    },
+    {
+      "name": "progress",
+      "version": "0.0.1"
+    },
+    {
+      "name": "textarea",
+      "version": "0.0.1"
+    },
+    {
+      "name": "select",
+      "version": "0.0.2"
+    },
+    {
+      "name": "switch",
+      "version": "0.0.1"
+    },
+    {
+      "name": "checkbox",
+      "version": "0.0.1"
+    },
+    {
+      "name": "radio",
+      "version": "0.0.1"
+    },
+    {
+      "name": "list",
+      "version": "0.0.1"
+    },
+    {
+      "name": "divider",
+      "version": "0.0.1"
+    },
+    {
+      "name": "skeleton",
+      "version": "0.0.1"
     }
   ]
 }

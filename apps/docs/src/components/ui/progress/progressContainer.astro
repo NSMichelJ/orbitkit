@@ -1,0 +1,17 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class={cn(
+    "flex-start flex h-2.5 w-full overflow-hidden rounded-full bg-muted font-sans text-xs font-medium",
+    className,
+  )}
+>
+  <slot />
+</div>

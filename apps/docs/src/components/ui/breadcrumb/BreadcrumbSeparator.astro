@@ -1,0 +1,17 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"li">;
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<li
+  {...attrs}
+  role="presentation"
+  aria-hidden="true"
+  class={cn("[&_svg]:size-4", className)}
+>
+  <slot> / </slot>
+</li>

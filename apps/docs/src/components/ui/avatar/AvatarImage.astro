@@ -1,0 +1,14 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"img"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<img
+  {...attrs}
+  class={cn("relative aspect-square object-cover z-10", className)}
+  onerror="this.style.display='none'"
+/>

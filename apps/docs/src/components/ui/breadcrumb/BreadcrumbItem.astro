@@ -1,0 +1,15 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"li"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<li
+  {...attrs}
+  class={cn("flex flex-row items-center justify-between gap-1", className)}
+>
+  <slot />
+</li>
