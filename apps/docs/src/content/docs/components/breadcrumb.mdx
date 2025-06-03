@@ -3,6 +3,18 @@ title: Breadcrumb
 description: Indicate the current page’s location within a navigational hierarchy.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+
 The Breadcrumb component is a navigation aid that indicates the user's current location within a hierarchical structure. It helps users understand where they are on a website or in an application and allows them to navigate back to parent pages.
 
 ## Installation
@@ -17,44 +29,69 @@ npx orbitkit@latest add breadcrumb
 
 Import the `Breadcrumb` component and its sub-components (`BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`, `BreadcrumbPage`). Assemble the breadcrumb structure using these components.
 
-```astro
----
-// index.astro
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/home">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbEllipsis />
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/guide"> Guide </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage> Current Page </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      Breadcrumb,
+      BreadcrumbList,
+      BreadcrumbItem,
+      BreadcrumbLink,
+      BreadcrumbSeparator,
+      BreadcrumbEllipsis,
+      BreadcrumbPage,
+    } from "@/components/ui/breadcrumb";
+    ---
 
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/home">Home</BreadcrumbLink>
-    </BreadcrumbItem>
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/home">Home</BreadcrumbLink>
+        </BreadcrumbItem>
 
-    <BreadcrumbSeparator />
+        <BreadcrumbSeparator />
 
-    <BreadcrumbEllipsis />
+        <BreadcrumbEllipsis />
 
-    <BreadcrumbSeparator />
+        <BreadcrumbSeparator />
 
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/guide"> Guide </BreadcrumbLink>
-    </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/guide"> Guide </BreadcrumbLink>
+        </BreadcrumbItem>
 
-    <BreadcrumbSeparator />
+        <BreadcrumbSeparator />
 
-    <BreadcrumbItem>
-      <BreadcrumbPage> Current Page </BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-```
+        <BreadcrumbItem>
+          <BreadcrumbPage> Current Page </BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

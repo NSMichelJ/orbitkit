@@ -3,6 +3,10 @@ title: Divider
 description: A flexible component to visually separate content horizontally or vertically.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Divider } from "@/components/ui/divider";
+
 The `Divider` component provides a clear and semantically appropriate way to separate content blocks or inline elements in your layout. It's ideal for enhancing readability and organizing information visually within your application.
 
 ## Installation
@@ -17,29 +21,53 @@ npx orbitkit@latest add divider
 
 Import the `Divider` component and use it in your Astro components or pages. You can control its orientation using the `orientation` prop.
 
-```astro
----
-// index.astro
-import { Divider } from "@/components/ui/divider";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="mx-auto max-w-sm">
+        <div class="space-y-1">
+          <h4 class="text-sm font-medium leading-none">OrbitUI</h4>
+          <p class="text-muted-foreground text-sm">
+            Accessible, Customizable, & Lightweight component library.
+          </p>
+        </div>
+        <Divider class="my-4" />
+        <div class="flex h-5 items-center space-x-4 text-sm">
+          <div>Blog</div>
+          <Divider orientation="vertical" />
+          <div>Docs</div>
+          <Divider orientation="vertical" />
+          <div>Source</div>
+        </div>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Divider } from "@/components/ui/divider";
+    ---
 
-<div class="mx-auto max-w-sm">
-  <div class="space-y-1">
-    <h4 class="text-sm font-medium leading-none">OrbitUI</h4>
-    <p class="text-muted-foreground text-sm">
-      Accessible, Customizable, & Lightweight component library.
-    </p>
-  </div>
-  <Divider class="my-4" />
-  <div class="flex h-5 items-center space-x-4 text-sm">
-    <div>Blog</div>
-    <Divider orientation="vertical" />
-    <div>Docs</div>
-    <Divider orientation="vertical" />
-    <div>Source</div>
-  </div>
-</div>
-```
+    <div class="mx-auto max-w-sm">
+      <div class="space-y-1">
+        <h4 class="text-sm font-medium leading-none">OrbitUI</h4>
+        <p class="text-muted-foreground text-sm">
+          Accessible, Customizable, & Lightweight component library.
+        </p>
+      </div>
+      <Divider class="my-4" />
+      <div class="flex h-5 items-center space-x-4 text-sm">
+        <div>Blog</div>
+        <Divider orientation="vertical" />
+        <div>Docs</div>
+        <Divider orientation="vertical" />
+        <div>Source</div>
+      </div>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

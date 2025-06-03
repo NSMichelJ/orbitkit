@@ -3,6 +3,10 @@ title: Switch
 description: A control that allows the user to toggle a setting on or off.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Switch } from "@/components/ui/switch";
+
 The Switch component provides a visual toggle that allows users to turn a setting or option on or off. It's often implemented semantically as a checkbox with custom styling.
 
 ## Installation
@@ -17,13 +21,30 @@ npx orbitkit@latest add switch
 
 Import the `Switch` component and use it in your forms or settings panels. Since it's based on an input, you can use standard HTML input attributes like `id`, `name`, `value`, and `disabled`. Use the `checked` attribute to control its toggle state (on or off). It is highly recommended to pair a Switch with a `<label>` element for accessibility.
 
-```astro
----
-import { Switch } from "@/components/ui/switch";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="flex gap-2 items-center">
+        <span>OFF</span>
+        <Switch id="toggle-setting" />
+        <span>ON</span>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    import { Switch } from "@/components/ui/switch";
+    ---
 
-<Switch id="toggle-setting" />
-```
+    <div class="flex gap-2 items-center">
+      <span>OFF</span>
+      <Switch id="toggle-setting" />
+      <span>ON</span>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

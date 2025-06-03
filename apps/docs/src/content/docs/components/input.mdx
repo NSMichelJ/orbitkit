@@ -3,6 +3,10 @@ title: Input
 description: Allows users to enter text or data into a form field.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Input } from "@/components/ui/input";
+
 The Input component is a fundamental form control used to receive text, numbers, emails, passwords, and other data from the user.
 
 ## Installation
@@ -17,22 +21,37 @@ npx orbitkit@latest add input
 
 Import the `Input` component and use it in your forms or interactive elements. You'll typically use standard HTML `input` attributes like `type`, `id`, `name`, `placeholder`, and `required`. It's also highly recommended to pair an input with a `<label>` element for accessibility.
 
-```astro
----
-// index.astro
-import { Input } from "@/components/ui/input";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="name@company.com"
+        required
+      />
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Input } from "@/components/ui/input";
+    ---
 
-<div>
-  <Input
-    type="email"
-    name="email"
-    id="email"
-    placeholder="name@company.com"
-    required
-  />
-</div>
-```
+    <div>
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="name@company.com"
+        required
+      />
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

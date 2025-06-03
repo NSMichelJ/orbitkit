@@ -3,6 +3,10 @@ title: Progress
 description: Displays the progress of a task or process.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { ProgressContainer, Progress } from "@/components/ui/progress";
+
 The Progress component is used to visualize the completion status of a task, download, or any process that advances over time. It typically consists of a container or track and a bar that fills up to indicate the current progress.
 
 ## Installation
@@ -17,16 +21,27 @@ npx orbitkit@latest add progress
 
 Import the `ProgressContainer` and `Progress` components. Wrap the `Progress` component inside `ProgressContainer`. Use the value prop on the `Progress` component to set the current `progress`.
 
-```astro
----
-// index.astro
-import { ProgressContainer, Progress } from "@/components/ui/progress"; // This is the default path
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <ProgressContainer>
+        <Progress value={50} />
+      </ProgressContainer>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { ProgressContainer, Progress } from "@/components/ui/progress";
+    ---
 
-<ProgressContainer>
-  <Progress value={50} />
-</ProgressContainer>
-```
+    <ProgressContainer>
+      <Progress value={50} />
+    </ProgressContainer>
+    ```
+  </TabItem>
+</Tabs>
 
 The value prop should typically be a number between 0 and 100, representing the percentage of completion.
 

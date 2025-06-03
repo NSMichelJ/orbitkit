@@ -3,6 +3,10 @@ title: Alert
 description: Display a callout box for highlighting important information.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import {Alert, AlertTitle, AlertDescription} from "@/components/ui/alert"
+
 The Alert component is used to display important information or messages to the user in a prominent callout box. It supports different styles to indicate the nature of the message (e.g., info, success, danger).
 
 ## Installation
@@ -17,19 +21,31 @@ npx orbitkit@latest add alert
 
 Import the `Alert`, `AlertTitle`, and `AlertDescription` components and use them in your Astro components or pages:
 
-```astro
----
-// index.astro
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Alert>
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>This is an example alert to grab attention.</AlertDescription>
+      </Alert>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+    ---
 
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
-    This is an example alert to grab attention.
-  </AlertDescription>
-</Alert>
-```
+    <Alert>
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        This is an example alert to grab attention.
+      </AlertDescription>
+    </Alert>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

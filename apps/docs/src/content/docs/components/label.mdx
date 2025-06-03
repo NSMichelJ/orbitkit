@@ -3,6 +3,11 @@ title: Label
 description: Provides a descriptive label for form controls.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 The `Label` component is used to provide a descriptive text label for form controls such as `Input`, `Checkbox`, `Radio`, and `Textarea`. Associating a label with a form control is a fundamental aspect of web accessibility.
 
 ## Installation
@@ -17,15 +22,40 @@ npx orbitkit@latest add label
 
 Import the `Label` component and use it next to your form control. The most important attribute for a `Label` is for, which should match the id of the form control it is associated with. Clicking on the label text will focus the associated control.
 
-```astro
----
-import { Label } from "@/components/ui/label";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="space-y-2">
+        <Label for="email">Email Address</Label>
+        <Input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="name@company.com"
+          required
+        />
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    import { Label } from "@/components/ui/label";
+    ---
 
-<div>
-  <Label for="email-address">Email Address</Label>
-</div>
-```
+    <div class="space-y-2">
+      <Label for="email">Email Address</Label>
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="name@company.com"
+        required
+      />
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

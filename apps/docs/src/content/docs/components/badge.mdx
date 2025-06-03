@@ -3,6 +3,10 @@ title: Badge
 description: Display small status descriptors or labels.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Badge } from "@/components/ui/badge";
+
 The Badge component is used to display small status descriptors, labels, or categorical information. They are visually distinct and help highlight specific information within a UI.
 
 ## Installation
@@ -17,14 +21,29 @@ npx orbitkit@latest add badge
 
 Import the Badge component and use it in your Astro components or pages. Place the content you want inside the badge as children of the `<Badge>` component. This can be text, icons (like SVGs), or other inline elements.
 
-```astro
----
-// index.astro 
-import {Badge} from "@/components/ui/badge";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="flex gap-2">
+        <Badge>Default</Badge>
+        <Badge variant="outline">Outline</Badge>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro 
+    import {Badge} from "@/components/ui/badge";
+    ---
 
-<Badge>Text</Badge>
-```
+    <div class="flex gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

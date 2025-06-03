@@ -3,6 +3,10 @@ title: Button
 description: A button component to trigger actions.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+
 The Button component allows users to trigger actions or events. They are essential interactive elements in any user interface.
 
 ## Installation
@@ -17,14 +21,31 @@ npx orbitkit@latest add button
 
 Import the `Button` component and use it in your Astro components or pages. Place the content you want inside the button as children of the `<Button>` tag. This can be text, icons (like SVGs), or a combination.
 
-```astro
----
-// index.astro
-import { Button } from "@/components/ui/button";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="flex gap-2">
+        <Button>Default</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="outline">Outline</Button>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    ---
 
-<Button>Accept</Button>
-```
+    <div class="flex gap-2">
+      <Button>Default</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="outline">Outline</Button>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ### Using the Button as a Link:
 

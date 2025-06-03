@@ -3,6 +3,10 @@ title: Avatar
 description: Display a user's profile picture, initials, or a fallback icon.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar";
+
 The Avatar component is used to display a visual representation of a user, typically their profile picture. It can also fall back to initials or a generic icon if no image is available (though the provided `cva` only details image handling).
 
 ## Installation
@@ -17,17 +21,60 @@ npx orbitkit@latest add avatar
 
 Import the Avatar, AvatarImage, and AvatarFallback components and use them in your Astro components or pages. Place both AvatarImage and AvatarFallback inside the Avatar component. The AvatarFallback will be displayed if the AvatarImage fails to load.
 
-```astro
----
-// index.astro
-import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="flex gap-2">
+        <Avatar>
+          <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+          <AvatarFallback>YOU</AvatarFallback>
+        </Avatar>
+        
+        <Avatar bordered>
+          <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+          <AvatarFallback>YOU</AvatarFallback>
+        </Avatar>
 
-<Avatar>
-  <AvatarImage src="..." alt="A description of the image" />
-  <AvatarFallback>...</AvatarFallback>
-</Avatar>
-```
+        <Avatar variant="square">
+          <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+          <AvatarFallback>YOU</AvatarFallback>
+        </Avatar>
+
+        <Avatar variant="square" bordered>
+          <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+          <AvatarFallback>YOU</AvatarFallback>
+        </Avatar>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar";
+    ---
+
+    <div class="flex gap-2">
+      <Avatar>
+        <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+        <AvatarFallback>YOU</AvatarFallback>
+      </Avatar>
+      <Avatar bordered>
+        <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+        <AvatarFallback>YOU</AvatarFallback>
+      </Avatar>
+      <Avatar variant="square">
+        <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+        <AvatarFallback>YOU</AvatarFallback>
+      </Avatar>
+      <Avatar variant="square" bordered>
+        <AvatarImage src="https://i.pravatar.cc/300" alt="Avatar" />
+        <AvatarFallback>YOU</AvatarFallback>
+      </Avatar>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

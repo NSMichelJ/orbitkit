@@ -3,6 +3,17 @@ title: Card
 description: A flexible container for grouping related content.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+
 The Card component is a versatile container used to group related content in a visually distinct block. It's commonly used to display information, forms, or actions in a structured format. A Card is composed of several sub-components that define its different areas: `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, and `CardFooter`.
 
 ## Installation
@@ -17,34 +28,56 @@ npx orbitkit@latest add card
 
 Import the `Card` component and its sub-components (`CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) and assemble them to create your card structure.
 
-```astro
----
-// index.astro
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Card>
+        <CardHeader>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Optional description for the card header.</CardDescription>
+        </CardHeader>
 
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Optional description for the card header.</CardDescription>
-  </CardHeader>
+        <CardContent>
+          <p>This is the main body of the card.</p>
+        </CardContent>
 
-  <CardContent>
-    <p>This is the main body of the card.</p>
-  </CardContent>
+        <CardFooter>
+          <p>Card footer content or actions.</p>
+        </CardFooter>
+      </Card>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      Card,
+      CardHeader,
+      CardTitle,
+      CardDescription,
+      CardContent,
+      CardFooter,
+    } from "@/components/ui/card";
+    ---
 
-  <CardFooter>
-    <p>Card footer content or actions.</p>
-  </CardFooter>
-</Card>
-```
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Optional description for the card header.</CardDescription>
+      </CardHeader>
+
+      <CardContent>
+        <p>This is the main body of the card.</p>
+      </CardContent>
+
+      <CardFooter>
+        <p>Card footer content or actions.</p>
+      </CardFooter>
+    </Card>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

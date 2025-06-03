@@ -3,6 +3,10 @@ title: List
 description: A flexible container for displaying a series of related content items with optional borders and rounding.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { List, ListItem } from "@/components/ui/list";
+
 The `List` component is a versatile container designed to display a collection of related `ListItem` elements. It offers various styling options, including outer borders, inner dividers between items, and customizable rounding, allowing you to create organized and visually appealing content presentations.
 
 ## Installation
@@ -17,50 +21,95 @@ npx orbitkit@latest add list
 
 Import the `List` and `ListItem` components and use them in your Astro components or pages. Place `ListItem` components inside the `List` to create your content structure.
 
-```astro
----
-// index.astro
-import { List, ListItem } from "@/components/ui/list";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <List class="mx-auto max-w-md">
+        <ListItem as="button">
+          <div>
+            <p class="text-sm font-semibold">From: John Doe</p>
+            <p class="text-muted-foreground text-sm">
+              Project Update: Q2 Performance
+            </p>
+          </div>
+          <span class="text-muted-foreground mt-1 block text-right text-xs">
+            May 20, 2025
+          </span>
+        </ListItem>
 
-<List class="mx-auto max-w-md">
-  <ListItem as="button">
-    <div>
-      <p class="text-sm font-semibold">From: John Doe</p>
-      <p class="text-muted-foreground text-sm">
-        Project Update: Q2 Performance
-      </p>
-    </div>
-    <span class="text-muted-foreground mt-1 block text-right text-xs">
-      May 20, 2025
-    </span>
-  </ListItem>
+        <ListItem as="button">
+          <div>
+            <p class="text-sm font-semibold">User: Jane Smith</p>
+            <p class="text-muted-foreground text-sm">
+              Commented on your post: "Great insights!"
+            </p>
+          </div>
+          <span class="text-muted-foreground mt-1 block text-right text-xs">
+            10:30 AM
+          </span>
+        </ListItem>
 
-  <ListItem as="button">
-    <div>
-      <p class="text-sm font-semibold">User: Jane Smith</p>
-      <p class="text-muted-foreground text-sm">
-        Commented on your post: "Great insights!"
-      </p>
-    </div>
-    <span class="text-muted-foreground mt-1 block text-right text-xs">
-      10:30 AM
-    </span>
-  </ListItem>
+        <ListItem as="button">
+          <div>
+            <p class="text-sm font-semibold">Event: Team Meeting</p>
+            <p class="text-muted-foreground text-sm">
+              Discussing Q3 Goals and Strategy
+            </p>
+          </div>
+          <span class="text-muted-foreground mt-1 block text-right text-xs">
+            May 22, 2025 - 2:00 PM
+          </span>
+        </ListItem>
+      </List>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { List, ListItem } from "@/components/ui/list";
+    ---
 
-  <ListItem as="button">
-    <div>
-      <p class="text-sm font-semibold">Event: Team Meeting</p>
-      <p class="text-muted-foreground text-sm">
-        Discussing Q3 Goals and Strategy
-      </p>
-    </div>
-    <span class="text-muted-foreground mt-1 block text-right text-xs">
-      May 22, 2025 - 2:00 PM
-    </span>
-  </ListItem>
-</List>
-```
+    <List class="mx-auto max-w-md">
+      <ListItem as="button">
+        <div>
+          <p class="text-sm font-semibold">From: John Doe</p>
+          <p class="text-muted-foreground text-sm">
+            Project Update: Q2 Performance
+          </p>
+        </div>
+        <span class="text-muted-foreground mt-1 block text-right text-xs">
+          May 20, 2025
+        </span>
+      </ListItem>
+
+      <ListItem as="button">
+        <div>
+          <p class="text-sm font-semibold">User: Jane Smith</p>
+          <p class="text-muted-foreground text-sm">
+            Commented on your post: "Great insights!"
+          </p>
+        </div>
+        <span class="text-muted-foreground mt-1 block text-right text-xs">
+          10:30 AM
+        </span>
+      </ListItem>
+
+      <ListItem as="button">
+        <div>
+          <p class="text-sm font-semibold">Event: Team Meeting</p>
+          <p class="text-muted-foreground text-sm">
+            Discussing Q3 Goals and Strategy
+          </p>
+        </div>
+        <span class="text-muted-foreground mt-1 block text-right text-xs">
+          May 22, 2025 - 2:00 PM
+        </span>
+      </ListItem>
+    </List>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

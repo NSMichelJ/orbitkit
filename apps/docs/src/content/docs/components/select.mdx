@@ -3,6 +3,10 @@ title: Select
 description: Allows users to choose from a predefined list of options in a dropdown.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Select, Option } from "@/components/ui/select";
+
 The `Select` component provides a dropdown list that allows users to choose options from a predefined set. It supports both **single selection** (the default behavior) and **multiple selection**. It's a standard form element for collecting user input from a list of choices.
 
 ## Installation
@@ -19,35 +23,59 @@ Import the `Select` and `Option` components. Place the `Option` components insid
 
 For **single selection** (default):
 
-```astro
----
-// index.astro
-import { Select, Option } from "@/components/ui/select";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Select id="theme-select" name="theme" class="w-[100px]">
+        <Option value="dark">Dark</Option>
+        <Option value="white">White</Option>
+        <Option value="system">System</Option>
+      </Select>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Select, Option } from "@/components/ui/select";
+    ---
 
-<Select id="theme-select" name="theme">
-  <Option value="dark">Dark</Option>
-  <Option value="white">White</Option>
-  <Option value="system">System</Option>
-</Select>
-```
+    <Select id="theme-select" name="theme">
+      <Option value="dark">Dark</Option>
+      <Option value="white">White</Option>
+      <Option value="system">System</Option>
+    </Select>
+    ```
+  </TabItem>
+</Tabs>
 
 For **multiple selection**, add the `multiple` attribute to the `Select` component:
 
-```astro
----
-// index.astro
-import { Select, Option } from "@/components/ui/select";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Select id="colors-select" name="colors" class="w-[100px]" multiple>
+        <Option value="red">Red</Option>
+        <Option value="blue">Blue</Option>
+        <Option value="green">Green</Option>
+      </Select>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Select, Option } from "@/components/ui/select";
+    ---
 
-<Select id="colors-select" name="colors" multiple>
-  <Option value="red">Red</Option>
-  <Option value="blue">Blue</Option>
-  <Option value="green">Green</Option>
-</Select>
-```
-
----
+    <Select id="colors-select" name="colors" multiple>
+      <Option value="red">Red</Option>
+      <Option value="blue">Blue</Option>
+      <Option value="green">Green</Option>
+    </Select>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props
 

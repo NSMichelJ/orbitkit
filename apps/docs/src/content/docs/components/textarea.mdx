@@ -2,6 +2,9 @@
 title: Textarea
 description: Allows users to enter multi-line text input.
 ---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Textarea } from "@/components/ui/textarea";
 
 ## Textarea
 
@@ -19,18 +22,33 @@ npx orbitkit add textarea
 
 Import the `Textarea` component and use it in your forms. You'll typically use standard HTML textarea attributes like `id`, `name`, `rows`, `cols`, and `placeholder`. It's also highly recommended to pair a textarea with a `<label>` element for accessibility.
 
-```astro
----
-import { Textarea } from "@/components/ui/textarea";
----
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Textarea
+        id="note"
+        name="note"
+        rows={4}
+        placeholder="Enter your notes here..."
+      />
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    import { Textarea } from "@/components/ui/textarea";
+    ---
 
-<Textarea
-  id="note"
-  name="note"
-  rows={4}
-  placeholder="Enter your notes here..."
-/>
-```
+    <Textarea
+      id="note"
+      name="note"
+      rows={4}
+      placeholder="Enter your notes here..."
+    />
+    ```
+  </TabItem>
+</Tabs>
+
 
 ## Props
 
