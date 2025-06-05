@@ -18,7 +18,7 @@ And that’s how we got here.
 
 ## 📖 Documentation
 
-pending...
+**Full documentation in progress**. You can find the most complete documentation at [https://orbitui-docs.vercel.app/](https://orbitui-docs.vercel.app/)
 
 ## 🚀 Future Roadmap
 
@@ -42,7 +42,7 @@ has been the guiding principle of this project. Thank you, shadcn/ui and the com
 
 ## 🤝Contributing
 
-Pull requests are welcome! For major changes, open an issue first.
+Pull requests are welcome! For major changes, open an issue first. For more details and best practices, check the [contribution guide](./CONTRIBUTING.md). There you'll find detailed instructions on how to set up your environment, structure your commits, and ensure your changes follow the project standards.
 
 ## 📜 License
 
