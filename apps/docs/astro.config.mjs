@@ -28,6 +28,11 @@ export default defineConfig({
           label: "GitHub",
           href: "https://github.com/nsmichelj/orbitui",
         },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/JZHt3dNeJm",
+        },
       ],
       editLink: {
         baseUrl: "https://github.com/nsmichelj/orbitui/edit/main/apps/docs/",

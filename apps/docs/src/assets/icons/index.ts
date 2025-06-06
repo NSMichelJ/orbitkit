@@ -1,5 +1,6 @@
 import BlocksIcon from "./blocks.svg";
 import BrandGitHubIcon from "./brand-github.svg";
+import BrandDiscordIcon from "./discord.svg";
 import CircleCheckIcon from "./circle-check.svg";
 import CircleIcon from "./circle.svg";
 import ClockIcon from "./clock.svg";
@@ -15,6 +16,7 @@ import TerminalIcon from "./terminal-2.svg";
 
 export {
   BlocksIcon,
+  BrandDiscordIcon,
   BrandGitHubIcon,
   CircleCheckIcon,
   CircleIcon,
