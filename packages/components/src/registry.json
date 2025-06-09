@@ -67,6 +67,18 @@
     {
       "name": "skeleton",
       "version": "0.0.1"
+    },
+    {
+      "name": "accordion",
+      "version": "0.0.1"
+    },
+    {
+      "name": "modal",
+      "version": "0.0.1"
+    },
+    {
+      "name": "tooltip",
+      "version": "0.0.1"
     }
   ]
 }

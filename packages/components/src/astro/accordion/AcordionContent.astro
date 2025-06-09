@@ -1,0 +1,26 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+  open?: boolean;
+}
+
+const { class: className, open = false, ...attrs } = Astro.props;
+---
+
+<div
+  {...attrs}
+  role="region"
+  data-accordion-content
+  data-open={open}
+  class={cn(
+    "overflow-hidden transition-all duration-300 ease-in-out",
+    { "max-h-0": !open },
+    className,
+  )}
+>
+  <div class="pb-4">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,71 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  showCloseButton?: boolean;
+  backdrop?: boolean;
+  allowOutsideClick?: boolean;
+}
+
+const {
+  class: className,
+  showCloseButton = true,
+  backdrop = true,
+  allowOutsideClick = true,
+  ...attrs
+} = Astro.props;
+---
+
+{
+  backdrop && (
+    <div
+      {...attrs}
+      class="bg-foreground/50 fixed inset-0 left-0 top-0 z-50 hidden h-dvh w-full backdrop-blur-md transition-opacity duration-200"
+      aria-hidden="true"
+      data-state="closed"
+      data-backdrop
+    />
+  )
+}
+
+<div
+  data-modal
+  role="dialog"
+  aria-hidden="true"
+  data-state="closed"
+  data-show-close-button={showCloseButton}
+  data-allow-outside-click={allowOutsideClick}
+  class={cn(
+    "hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-surface text-foreground border-border border rounded-lg shadow-sm p-6 w-full max-w-[calc(100%-2rem)] sm:max-w-md transform transition-all ease-in data-[state=closed]:opacity-0 data-[state=closed]:scale-95 data[state=open]:opacity-100 data[state=open]:scale-100",
+    className,
+  )}
+>
+  {
+    showCloseButton && (
+      <button
+        class="text-foreground hover:bg-muted absolute right-3 top-3 cursor-pointer rounded-lg p-1 transition-colors duration-150"
+        aria-label="close modal"
+        data-close-modal
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+        >
+          <>
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </>
+        </svg>
+      </button>
+    )
+  }
+  <slot />
+</div>

@@ -1,0 +1,39 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { tooltipArrowVariants, tooltipVariants } from "./tooltipVariants";
+
+interface Props
+  extends HTMLAttributes<"div">,
+    VariantProps<typeof tooltipVariants> {
+  sideOffset?: number;
+  arrow?: boolean;
+}
+
+const {
+  class: className,
+  side,
+  alignment,
+  sideOffset = 2,
+  arrow = true,
+  ...attrs
+} = Astro.props;
+---
+
+<div
+  {...attrs}
+  role="tooltip"
+  data-tooltip-content
+  aria-hidden="false"
+  data-state="closed"
+  data-side={sideOffset}
+  data-alignment={alignment}
+  class={cn(tooltipVariants({ side, alignment, className }))}
+  style={{
+    "--tooltip-offset": `calc(var(--spacing) * ${sideOffset})`,
+  }}
+>
+  <slot />
+  {arrow && <span class={cn(tooltipArrowVariants({ side, alignment }))} />}
+</div>
