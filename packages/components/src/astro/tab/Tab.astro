@@ -1,0 +1,33 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  defaultValue?: string;
+}
+
+const { class: className, defaultValue, ...attrs } = Astro.props;
+---
+
+<div
+  {...attrs}
+  data-tab
+  data-default-value={defaultValue}
+  class={cn(className)}
+>
+  <slot />
+</div>
+
+<script>
+  import { Tab } from "./tab";
+
+  function init() {
+    const tabs = document.querySelectorAll<HTMLElement>("[data-tab]");
+    tabs.forEach((tab) => {
+      new Tab(tab);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

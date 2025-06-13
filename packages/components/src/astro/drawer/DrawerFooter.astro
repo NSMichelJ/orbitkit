@@ -1,0 +1,15 @@
+---
+import { cn } from "@/utils/cn";
+import { type HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div
+  class={cn("pt-4 flex items-center justify-end gap-2", className)}
+  {...attrs}
+>
+  <slot />
+</div>
