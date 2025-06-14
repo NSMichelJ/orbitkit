@@ -37,10 +37,10 @@ export class Accordion {
     if (item.trigger && item.content) {
       const triggerId =
         item.trigger.id ||
-        `modal-id-${Math.random().toString(36).substring(2, 9)}`;
+        `accordion-id-${Math.random().toString(36).substring(2, 9)}`;
       const contentId =
         item.content.id ||
-        `modal-id-${Math.random().toString(36).substring(2, 9)}`;
+        `accordion-id-${Math.random().toString(36).substring(2, 9)}`;
 
       item.trigger.id = triggerId;
       item.trigger.setAttribute("aria-controls", contentId);
