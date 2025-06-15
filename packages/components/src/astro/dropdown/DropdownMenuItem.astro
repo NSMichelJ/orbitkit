@@ -1,0 +1,27 @@
+---
+import { cn } from "@/utils/cn";
+import type { VariantProps } from "class-variance-authority";
+import { dropdownMenuItemVariants } from "./dropdownVariants";
+
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> &
+  VariantProps<typeof dropdownMenuItemVariants>;
+
+const {
+  class: className,
+  as: Tag = "div",
+  disabled = false,
+  ...attrs
+} = Astro.props;
+---
+
+<Tag
+  role="menuitem"
+  tabindex={disabled ? "-1" : "0"}
+  data-disabled={disabled}
+  class={cn(dropdownMenuItemVariants({ disabled, className }))}
+  {...attrs}
+>
+  <slot />
+</Tag>
