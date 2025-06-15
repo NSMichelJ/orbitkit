@@ -2,16 +2,13 @@
 import { cn } from "@/utils/cn";
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"button"> {
-  open?: boolean;
-}
+interface Props extends HTMLAttributes<"div"> {}
 
-const { class: className, open = false, ...attrs } = Astro.props;
+const { class: className, ...attrs } = Astro.props;
 ---
 
 <div
   data-collapsible-content
-  data-open={open}
   class={cn(
     "overflow-hidden transition-all duration-300 ease-in-out",
     className,

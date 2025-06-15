@@ -10,9 +10,8 @@ export class Drawer {
     this.drawer = this.wrapper.querySelector("[data-drawer-content]");
     this.backdrop = this.wrapper.querySelector("[data-drawer-backdrop]");
     this.trigger = this.wrapper.querySelector("[data-trigger]");
-    this.closeButtons = this.wrapper.querySelectorAll<HTMLElement>(
-      "[data-close-drawer]",
-    );
+    this.closeButtons =
+      this.wrapper.querySelectorAll<HTMLElement>("[data-close]");
 
     if (!this.drawer || !this.trigger) {
       console.error("Drawer not initialized properly", {
