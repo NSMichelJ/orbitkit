@@ -7,18 +7,10 @@ export class Modal {
 
   constructor(wrapper: HTMLElement) {
     this.wrapper = wrapper;
-    this.modal = this.wrapper.querySelector<HTMLElement>("[data-modal]");
-    this.backdrop = this.wrapper.querySelector<HTMLElement>("[data-backdrop]");
-    this.trigger = this.wrapper.firstElementChild as HTMLElement;
-
-    // Ensure trigger is not the modal or backdrop
-    while (this.trigger === this.modal || this.trigger === this.backdrop) {
-      this.trigger = this.trigger.nextElementSibling as HTMLElement;
-      if (!this.trigger) break;
-    }
-
-    this.closeButtons =
-      this.wrapper.querySelectorAll<HTMLElement>("[data-close-modal]");
+    this.modal = this.wrapper.querySelector("[data-modal]");
+    this.backdrop = this.wrapper.querySelector("[data-backdrop]");
+    this.trigger = this.wrapper.querySelector("[data-trigger]");
+    this.closeButtons = this.wrapper.querySelectorAll("[data-close]");
 
     if (!this.modal || !this.trigger) {
       console.error("Modal not initialized properly", {

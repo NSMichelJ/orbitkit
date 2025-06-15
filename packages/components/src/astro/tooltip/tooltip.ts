@@ -16,14 +16,8 @@ export class Tooltip {
 
   constructor(tooltip: HTMLElement) {
     this.tooltip = tooltip;
-    this.content = this.tooltip.querySelector<HTMLElement>(
-      "[data-tooltip-content]",
-    );
-    this.trigger = this.tooltip.firstElementChild as HTMLElement;
-
-    if (this.trigger === this.content) {
-      this.trigger = this.trigger.nextElementSibling as HTMLElement;
-    }
+    this.content = this.tooltip.querySelector("[data-tooltip-content]");
+    this.trigger = this.tooltip.querySelector("[data-trigger]");
 
     this.duration = parseFloat(tooltip.dataset.duration || "200");
     this.openDelay = parseFloat(tooltip.dataset.openDelay || "0");

@@ -4,7 +4,6 @@ import ModalDescription from "./ModalDescription.astro";
 import ModalFooter from "./ModalFooter.astro";
 import ModalHeader from "./ModalHeader.astro";
 import ModalTitle from "./ModalTitle.astro";
-import ModalTrigger from "./ModalTrigger.astro";
 
 export {
   Modal,
@@ -13,5 +12,4 @@ export {
   ModalFooter,
   ModalHeader,
   ModalTitle,
-  ModalTrigger,
 };

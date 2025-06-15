@@ -9,14 +9,7 @@ export class Drawer {
     this.wrapper = drawerWrraper;
     this.drawer = this.wrapper.querySelector("[data-drawer-content]");
     this.backdrop = this.wrapper.querySelector("[data-drawer-backdrop]");
-    this.trigger = this.wrapper.firstElementChild as HTMLElement;
-
-    // Ensure trigger is not the drawer or backdrop
-    while (this.trigger === this.drawer || this.trigger === this.backdrop) {
-      this.trigger = this.trigger.nextElementSibling as HTMLElement;
-      if (!this.trigger) break;
-    }
-
+    this.trigger = this.wrapper.querySelector("[data-trigger]");
     this.closeButtons = this.wrapper.querySelectorAll<HTMLElement>(
       "[data-close-drawer]",
     );
@@ -24,6 +17,7 @@ export class Drawer {
     if (!this.drawer || !this.trigger) {
       console.error("Drawer not initialized properly", {
         drawer: this.drawer,
+        trigger: this.trigger,
       });
       return;
     }

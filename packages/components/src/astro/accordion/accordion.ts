@@ -111,7 +111,7 @@ export class Accordion {
   }
 
   private setFocusItem(items: AccordionItem[], index: number) {
-    const newIndex = index % items.length;
+    const newIndex = (index + items.length) % items.length;
     if (items[newIndex].trigger) {
       items[newIndex].trigger.focus();
     }
