@@ -79,6 +79,38 @@
     {
       "name": "tooltip",
       "version": "0.0.1"
+    },
+    {
+      "name": "collapsible",
+      "version": "0.0.1"
+    },
+    {
+      "name": "drawer",
+      "version": "0.0.1"
+    },
+    {
+      "name": "dropdown",
+      "version": "0.0.1"
+    },
+    {
+      "name": "kbd",
+      "version": "0.0.1"
+    },
+    {
+      "name": "pagination",
+      "version": "0.0.1"
+    },
+    {
+      "name": "popover",
+      "version": "0.0.1"
+    },
+    {
+      "name": "stat",
+      "version": "0.0.1"
+    },
+    {
+      "name": "tab",
+      "version": "0.0.1"
     }
   ]
 }
