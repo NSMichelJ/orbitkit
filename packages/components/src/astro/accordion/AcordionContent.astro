@@ -2,21 +2,18 @@
 import { cn } from "@/utils/cn";
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"div"> {
-  open?: boolean;
-}
+interface Props extends HTMLAttributes<"div"> {}
 
-const { class: className, open = false, ...attrs } = Astro.props;
+const { class: className, ...attrs } = Astro.props;
 ---
 
 <div
   {...attrs}
   role="region"
   data-accordion-content
-  data-open={open}
+  data-state="closed"
   class={cn(
-    "overflow-hidden transition-all duration-300 ease-in-out",
-    { "max-h-0": !open },
+    "overflow-hidden transition-all duration-300 ease-in-out data-[state=closed]:max-h-0",
     className,
   )}
 >

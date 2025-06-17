@@ -70,15 +70,15 @@
     },
     {
       "name": "accordion",
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     {
       "name": "modal",
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     {
       "name": "tooltip",
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     {
       "name": "collapsible",
@@ -86,7 +86,7 @@
     },
     {
       "name": "drawer",
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     {
       "name": "dropdown",

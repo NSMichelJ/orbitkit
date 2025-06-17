@@ -20,7 +20,7 @@ const {
 {
   backdrop && (
     <div
-      class="bg-background/10 fixed inset-0 left-0 top-0 z-50 hidden h-dvh w-full backdrop-blur-md transition-opacity duration-200"
+      class="bg-background fixed inset-0 left-0 top-0 z-50 hidden h-dvh w-full transition-opacity duration-100 data-[state=closed]:opacity-0 data-[state=open]:opacity-80"
       aria-hidden="true"
       data-state="closed"
       data-backdrop
@@ -36,7 +36,7 @@ const {
   data-show-close-button={showCloseButton}
   data-allow-outside-click={allowOutsideClick}
   class={cn(
-    "hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-surface text-foreground border-border border rounded-lg shadow-sm p-6 w-full max-w-[calc(100%-2rem)] sm:max-w-md transform transition-all ease-in data-[state=closed]:opacity-0 data-[state=closed]:scale-95 data[state=open]:opacity-100 data[state=open]:scale-100",
+    "hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-surface text-foreground border-border border rounded-lg shadow-sm p-6 w-full max-w-[calc(100%-2rem)] sm:max-w-md transform transition-all ease-in data-[state=closed]:opacity-0 data-[state=closed]:scale-95 data-[state=open]:opacity-100 data-[state=open]:scale-100",
     className,
   )}
   {...attrs}

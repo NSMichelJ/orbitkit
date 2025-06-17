@@ -15,6 +15,8 @@ export class Accordion {
   }
 
   private init() {
+    const defaultOpenItems = [];
+
     this.items?.forEach((item: AccordionItem) => {
       const trigger = item.querySelector<HTMLElement>(
         "[data-accordion-trigger]",
@@ -29,6 +31,24 @@ export class Accordion {
 
         this.setupAccessibility(item);
         this.setupEventListeners(item);
+
+        if (item.dataset.defaultOpen === "true") {
+          if (
+            defaultOpenItems.length > 0 &&
+            this.wrapper.dataset.multiple !== "true"
+          ) {
+            console.warn(
+              "Warning! This accordion is not configured to open multiple items by default. " +
+                "Only the first item will be opened." +
+                "Consider adding the multiple prop to the accordion if you want to allow multiple items to be open by default.",
+            );
+            return;
+          }
+
+          this.setContentHeight(content);
+          this.setState(item, "open");
+          defaultOpenItems.push(item);
+        }
       }
     });
   }
@@ -77,8 +97,9 @@ export class Accordion {
 
   private openAccordionItem(item: AccordionItem) {
     this.setState(item, "open");
-    const height = item.content?.scrollHeight + "px";
-    item.content!.style.maxHeight = height;
+    if (item.content) {
+      this.setContentHeight(item.content);
+    }
   }
 
   private closeAccordionItem(item: AccordionItem) {
@@ -115,6 +136,11 @@ export class Accordion {
     if (items[newIndex].trigger) {
       items[newIndex].trigger.focus();
     }
+  }
+
+  private setContentHeight(content: HTMLElement) {
+    const height = content.scrollHeight + "px";
+    content.style.maxHeight = height;
   }
 
   private setState(item: AccordionItem, state: "closed" | "open") {
