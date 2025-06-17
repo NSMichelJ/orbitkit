@@ -7,7 +7,8 @@ import { ComponentRegistryEntry } from "./types/registry";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function getAllComponents() {
-  return registry.components as ComponentRegistryEntry[];
+  const availableComponents = registry.components as ComponentRegistryEntry[];
+  return availableComponents.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getComponentPath(componentName: string) {
