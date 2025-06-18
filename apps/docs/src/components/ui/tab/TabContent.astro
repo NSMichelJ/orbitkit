@@ -1,0 +1,19 @@
+---
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+---
+
+<div
+  role="tabpanel"
+  aria-orientation="horizontal"
+  data-tab-content
+  data-state="inactive"
+  data-value={value}
+  hidden
+  class="mt-2 w-full"
+>
+  <slot />
+</div>

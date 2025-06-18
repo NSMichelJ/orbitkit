@@ -1,0 +1,162 @@
+---
+title: Tab
+description: A set of layered content, where only one panel of content is visible at a time, controlled by a set of corresponding triggers.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Tab, TabContent, TabList, TabTrigger } from "@/components/ui/tab";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The Tab component offers an effective way to organize and display content in a layered interface. It allows users to switch between different sections of information by selecting corresponding tabs, making it ideal for displaying diverse content without overwhelming the user.
+
+### Installation
+
+Add the Tab component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add tab
+```
+
+## Usage
+
+Import the `Tab`, `TabList`, `TabTrigger`, and `TabContent` components.
+
+Start with the main `Tab` component, which can optionally set a defaultValue for the initially active tab. Inside, place a `TabList` to group your `TabTrigger` elements. Each `TabTrigger` needs a unique value that corresponds to the value of its associated `TabContent`. Finally, add your `TabContent` panels, ensuring each has a value that matches a `TabTrigger`.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Tab class="w-full max-w-xs p-4 border-border border bg-surface rounded-lg">
+        <TabList class="mx-auto">
+          <TabTrigger value="Standard"> Standard </TabTrigger>
+          <TabTrigger value="Pro"> Pro </TabTrigger>
+        </TabList>
+        <TabContent value="Standard">
+          <div class="p-4">
+            <h2 class="text-lg font-bold mb-2">Plan Standard</h2>
+            <p class="mb-2">
+              Ideal para sitios web personales y pequeños negocios.
+            </p>
+            <ul class="mb-4 list-disc list-inside">
+              <li>1 sitio web</li>
+              <li>10 GB de almacenamiento SSD</li>
+              <li>Certificado SSL gratuito</li>
+              <li>Soporte 24/7</li>
+              <li>Actualizaciones automáticas</li>
+            </ul>
+            <div class="text-2xl font-semibold mb-2">$3.99/mes</div>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded">Elegir Standard</button>
+          </div>
+        </TabContent>
+        <TabContent value="Pro">
+          <div class="p-4">
+            <h2 class="text-lg font-bold mb-2">Plan Pro</h2>
+            <p class="mb-2">Perfecto para empresas y proyectos en crecimiento.</p>
+            <ul class="mb-4 list-disc list-inside">
+              <li>Sitios web ilimitados</li>
+              <li>100 GB de almacenamiento SSD</li>
+              <li>Certificado SSL premium</li>
+              <li>Soporte prioritario 24/7</li>
+              <li>Copias de seguridad diarias</li>
+            </ul>
+            <div class="text-2xl font-semibold mb-2">$9.99/mes</div>
+            <button class="bg-green-600 text-white px-4 py-2 rounded">
+            Elegir Pro
+            </button>
+          </div>
+        </TabContent>
+      </Tab>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Tab, TabContent, TabList, TabTrigger } from "@/components/ui/tab";
+    ---
+    <Tab class="w-full max-w-xs p-4 border-border border bg-surface rounded-lg">
+      <TabList class="mx-auto">
+        <TabTrigger value="Standard"> Standard </TabTrigger>
+        <TabTrigger value="Pro"> Pro </TabTrigger>
+      </TabList>
+      <TabContent value="Standard">
+        <div class="p-4">
+          <h2 class="text-lg font-bold mb-2">Plan Standard</h2>
+          <p class="mb-2">
+            Ideal para sitios web personales y pequeños negocios.
+          </p>
+          <ul class="mb-4 list-disc list-inside">
+            <li>1 sitio web</li>
+            <li>10 GB de almacenamiento SSD</li>
+            <li>Certificado SSL gratuito</li>
+            <li>Soporte 24/7</li>
+            <li>Actualizaciones automáticas</li>
+          </ul>
+          <div class="text-2xl font-semibold mb-2">$3.99/mes</div>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded">Elegir Standard</button>
+        </div>
+      </TabContent>
+      <TabContent value="Pro">
+        <div class="p-4">
+          <h2 class="text-lg font-bold mb-2">Plan Pro</h2>
+          <p class="mb-2">Perfecto para empresas y proyectos en crecimiento.</p>
+          <ul class="mb-4 list-disc list-inside">
+            <li>Sitios web ilimitados</li>
+            <li>100 GB de almacenamiento SSD</li>
+            <li>Certificado SSL premium</li>
+            <li>Soporte prioritario 24/7</li>
+            <li>Copias de seguridad diarias</li>
+          </ul>
+          <div class="text-2xl font-semibold mb-2">$9.99/mes</div>
+          <button class="bg-green-600 text-white px-4 py-2 rounded">
+          Elegir Pro
+          </button>
+        </div>
+      </TabContent>
+    </Tab>
+    ```
+  </TabItem>
+</Tabs>
+
+
+## Props
+
+The Tab system consists of several components, each with its own set of props:
+
+### Tab
+
+The Tab component serves as the main wrapper for the entire tabbed interface. It manages the active tab state and provides context to its children.
+
+| Prop           | Type     | Default |
+| -------------- | -------- | ------- |
+| `defaultValue` | `string` | `undefined`     |
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### TabList
+
+The `TabList` component acts as the container for all TabTrigger elements. It semantically groups the tab controls. This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### TabTrigger
+
+The `TabTrigger` component represents an individual clickable tab that controls the visibility of its corresponding `TabContent`.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `value` | `string` | `undefined`     |
+
+- `value`: A unique identifier that links this trigger to its corresponding TabContent panel.
+
+This component accepts all the standard HTML attributes that a `<button>` element would.
+
+### TabContent
+
+The `TabContent` component contains the actual content associated with a specific tab. Its visibility is controlled by the active `TabTrigger`.
+
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `value` | `string` | `undefined`     |
+
+- `value`: A unique identifier that links this content panel to its corresponding TabTrigger.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.

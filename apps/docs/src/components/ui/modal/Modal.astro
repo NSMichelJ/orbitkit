@@ -1,0 +1,19 @@
+<div data-modal-wrapper>
+  <slot />
+</div>
+
+<script>
+  import { Modal } from "./modal";
+
+  function init() {
+    const modals = document.querySelectorAll<HTMLElement>(
+      "[data-modal-wrapper]",
+    );
+    modals.forEach((modal) => {
+      new Modal(modal);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

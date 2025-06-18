@@ -1,0 +1,40 @@
+---
+interface Props {
+  disableHoverableContent?: boolean;
+  openDelay?: number;
+  closeDelay?: number;
+  duration?: number;
+}
+
+const {
+  openDelay = 150,
+  closeDelay = 150,
+  duration = 200,
+  disableHoverableContent = false,
+} = Astro.props;
+---
+
+<div
+  class="relative inline-flex"
+  data-tooltip
+  data-open-delay={openDelay}
+  data-close-delay={closeDelay}
+  data-duration={duration}
+  data-disable-hoverable-content={disableHoverableContent}
+>
+  <slot />
+</div>
+
+<script>
+  import { Tooltip } from "./tooltip";
+
+  function init() {
+    const tooltips = document.querySelectorAll<HTMLElement>("[data-tooltip]");
+    tooltips.forEach((tooltip) => {
+      new Tooltip(tooltip);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

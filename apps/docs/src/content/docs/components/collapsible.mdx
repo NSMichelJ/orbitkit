@@ -1,0 +1,116 @@
+---
+title: Collapsible
+description: A component that allows you to expand and collapse a section of content, saving space and improving content organization.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Collapsible` component provides a flexible way to show or hide content based on user interaction. It's perfect for managing large amounts of information on a page, like FAQs, advanced settings, or detailed descriptions, by making content progressively disclosed.
+
+## Installation
+
+Add the Collapsible component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add collapsible
+```
+
+## Usage
+
+Import the `Collapsible` and `CollapsibleContent` components. Wrap your trigger element (like a Button or an `<h4>` with an inner Button) directly inside the Collapsible component and add the `data-trigger` attribute to it. The `CollapsibleContent` will contain the content that expands and collapses.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Collapsible class="max-w-md">
+        <h4 class="text-sm font-semibold flex justify-between items-center mb-2">
+          Toggle Collapsible
+          <Button data-trigger variant="ghost"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-4"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M8 7l4 -4l4 4"></path><path d="M8 17l4 4l4 -4"></path>
+              <path d="M12 3l0 18"></path>
+            </svg>
+          </Button>
+        </h4>
+
+        <CollapsibleContent>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas ratione a
+          eos, ea sequi minima eaque! Numquam sunt vero at dolorum quas officia.
+          Deserunt animi voluptate nisi. Quaerat, neque officiis.
+        </CollapsibleContent>
+      </Collapsible>
+    </PreviewCard>
+
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+    import Layout from "../layouts/Layout.astro";
+    ---
+
+    <Collapsible class="max-w-md">
+      <h4 class="text-sm font-semibold flex justify-between items-center mb-2">
+        Toggle Collapsible
+        <Button data-trigger variant="ghost"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-4"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M8 7l4 -4l4 4"></path><path d="M8 17l4 4l4 -4"></path>
+            <path d="M12 3l0 18"></path>
+          </svg>
+        </Button>
+      </h4>
+      <CollapsibleContent>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas ratione a
+        eos, ea sequi minima eaque! Numquam sunt vero at dolorum quas officia.
+        Deserunt animi voluptate nisi. Quaerat, neque officiis.
+      </CollapsibleContent>
+    </Collapsible>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Collapsible system consists of two main components, each with its own set of props:
+
+### Collapsible
+
+The `Collapsible` component serves as the main wrapper for the expandable content system. It manages the open/closed state of its child `CollapsibleContent`.
+
+| Prop     | Type      | Default |
+| -------- | --------- | ------- |
+| `isOpen` | `boolean` | `false` |
+
+- `isOpen`: Controls the visibility state of the content (true for open, false for closed).
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### CollapsibleContent
+
+The `CollapsibleContent` component contains the actual content that will be shown or hidden when the collapsible is toggled. This component accepts all the standard HTML attributes that a `<div>` element would.

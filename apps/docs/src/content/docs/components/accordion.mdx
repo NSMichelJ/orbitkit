@@ -1,0 +1,171 @@
+---
+title: Accordion
+description: A collapsible component used to toggle the visibility of content sections.
+lenguajes: ["JavaScript", "Python", "Go"]
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+export const faqItems = [
+  {
+    id: "faq-1",
+    title: "What is an accordion in web design?",
+    content:
+      "An accordion is a user interface component that organizes content into collapsible sections. Users can click on headers to expand or collapse the content,       which helps save space on the page and improves navigation experience.",
+      open: true
+  },
+  {
+    id: "faq-2",
+    title: "How does accessibility work in this component?",
+    content:
+      "This accordion includes full keyboard navigation support using arrow keys, Enter, Space, Home, and End. It also implements appropriate ARIA attributes like      aria-expanded and aria-controls for screen readers, and manages focus intuitively.",
+  },
+  {
+    id: "faq-3",
+    title: "Can I customize the styles?",
+    content:
+      "Absolutely! The component is built with Tailwind CSS, which means you can easily modify colors, spacing, typography, and effects. You can also extend the CSS      classes or create your own custom styles.",
+  },
+  {
+    id: "faq-4",
+    title: "Is it responsive?",
+    content:
+      "Yes, the component is designed to be fully responsive. It automatically adapts to different screen sizes and devices, maintaining an optimal user experience       on mobile, tablet, and desktop.",
+  },
+];
+
+The `Accordion` component is a flexible UI element that organizes content into vertically stacked, collapsible sections. It's commonly used for FAQs, feature lists, or any scenario where you need to display a lot of information in a compact, organized manner.
+
+The `Accordion` system comprises a main `Accordion` wrapper, individual `AccordionItem` components, an `AccordionTrigger` to toggle content, and the `AccordionContent` which holds the collapsible content.
+
+## Installation
+
+Add the `Accordion` component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add accordion
+```
+
+## Usage
+
+Import the `Accordion` component along with `AccordionItem`, `AccordionTrigger`, and `AccordionContent`. Wrap your `AccordionItem` components within the main `Accordion` container. Each `AccordionItem` should contain an `AccordionTrigger` (the clickable header) and an `AccordionContent` (the collapsible body).
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div class="max-w-md">
+        <Accordion>
+          {
+            faqItems.map((faq) => (
+              <AccordionItem isOpen={faq.open}>
+                <AccordionTrigger> {faq.title} </AccordionTrigger>
+                <AccordionContent>{faq.content}</AccordionContent>
+              </AccordionItem>
+            ))
+          }
+        </Accordion>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      Accordion,
+      AccordionContent,
+      AccordionItem,
+      AccordionTrigger,
+    } from "@/components/ui/accordion";
+    import Layout from "../layouts/Layout.astro";
+
+    const faqItems = [
+      {
+        id: "faq-1",
+        title: "What is an accordion in web design?",
+        content:
+          "An accordion is a user interface component that organizes content into collapsible sections. Users can click on headers to expand or collapse thecontent,       which helps save space on the page and improves navigation experience.",
+        open: true
+      },
+      {
+        id: "faq-2",
+        title: "How does accessibility work in this component?",
+        content:
+          "This accordion includes full keyboard navigation support using arrow keys, Enter, Space, Home, and End. It also implements appropriate ARIA attributeslike      aria-expanded and aria-controls for screen readers, and manages focus intuitively.",
+      },
+      {
+        id: "faq-3",
+        title: "Can I customize the styles?",
+        content:
+          "Absolutely! The component is built with Tailwind CSS, which means you can easily modify colors, spacing, typography, and effects. You can also extendthe CSS      classes or create your own custom styles.",
+      },
+      {
+        id: "faq-4",
+        title: "Is it responsive?",
+        content:
+          "Yes, the component is designed to be fully responsive. It automatically adapts to different screen sizes and devices, maintaining an optimal userexperience       on mobile, tablet, and desktop.",
+      },
+    ];
+    ---
+
+    <div class="max-w-md">
+      <Accordion>
+        {
+          faqItems.map((faq) => (
+            <AccordionItem isOpen={faq.open}>
+              <AccordionTrigger> {faq.title} </AccordionTrigger>
+              <AccordionContent>{faq.content}</AccordionContent>
+            </AccordionItem>
+          ))
+        }
+      </Accordion>
+    </div>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The `Accordion` system consists of several components, each with its own set of props:
+
+### Accordion
+
+The main `Accordion` component serves as the container for all `AccordionItem`s and controls the behavior of the group (e.g., single or multiple open items). 
+
+This component accepts all the standard HTML attributes that a `<div>` element would. Plus the following:
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `multiple` | `boolean` | `false` |
+
+- `multiple`: multiple accordion items can be open simultaneously. If false, opening one item will close others.
+
+### AccordionItem
+
+The `AccordionItem` component acts as a wrapper for a single collapsible section, containing both its AccordionTrigger and AccordionContent.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+| Prop   | Type      | Default |
+| ------ | --------- | ------- |
+| `isOpen` | `boolean` | `false` |
+
+- `isOpen`: Controls the visibility state of the content (true for open, false for closed). This prop is managed internally by the Accordion logic but can be used for initial state if exposed.
+
+
+### AccordionTrigger
+
+The `AccordionTrigger` component acts as the interactive header that toggles the visibility of its associated `AccordionContent`. It's semantically rendered as a `<button>` element, nested within an `<h3>` tag for proper document structure. accepts all the standard HTML attributes that a `<button>` element would.
+
+### AccordionContent
+
+The `AccordionContent` component contains the actual content that is hidden or revealed when its corresponding `AccordionTrigger` is activated.
+

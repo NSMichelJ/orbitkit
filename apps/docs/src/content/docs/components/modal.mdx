@@ -1,0 +1,132 @@
+---
+title: Modal
+description: A customizable and accessible dialog box for displaying content on top of the current page.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import {
+  Modal,
+  ModalContent,
+  ModalDescription,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+} from "@/components/ui/modal";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Modal` component is a flexible and accessible dialog system that interrupts the user's workflow to display important information or collect input. It's composed of several sub-components that allow you to structure your modal's content, header, and footer.
+
+## Installation
+
+Add the `Modal` component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add modal
+```
+
+## Usage
+
+Import the `Modal`, `ModalContent`, `ModalHeader`, `ModalTitle`, `ModalDescription`, and `ModalFooter` components. Place your trigger element (e.g., a `Button`) directly inside the Modal component and add the `data-trigger` attribute to it. The `ModalContent` will house the modal's actual dialog.
+
+Any element inside the `ModalContent` that includes the `data-close` attribute will be capable of closing the modal when interacted with. This is especially useful for custom close buttons within the header or action buttons in the footer.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Modal>
+        <Button data-trigger>Open Modal</Button>
+        <ModalContent>
+          <ModalHeader>
+            <ModalTitle>Mi Modal</ModalTitle>
+            <ModalDescription>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+              perspiciatis!
+            </ModalDescription>
+          </ModalHeader>
+
+          <ModalFooter>
+            <Button variant="outline" data-close>Reject</Button>
+            <Button>Accept</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import {
+      Modal,
+      ModalContent,
+      ModalDescription,
+      ModalFooter,
+      ModalHeader,
+      ModalTitle,
+    } from "@/components/ui/modal";
+    ---
+    <Modal>
+      <Button data-trigger>Open Modal</Button>
+      <ModalContent>
+        <ModalHeader>
+          <ModalTitle>Mi Modal</ModalTitle>
+          <ModalDescription>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            perspiciatis!
+          </ModalDescription>
+        </ModalHeader>
+
+        <ModalFooter>
+          <Button variant="outline" data-close>Reject</Button>
+          <Button>Accept</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Modal system consists of several components, each with its own set of props:
+
+### Modal
+
+The `Modal` component serves as the main wrapper for the entire modal system. It initializes the modal's behavior through a client-side script and provides the necessary context for its children to function.
+
+This component primarily acts as a container and **does not accept explicit props**. Its functionality is driven by the JavaScript initialization script.
+
+### ModalContent
+
+The `ModalContent` component contains the actual content of the modal dialog, including its header, body, and footer. It handles the display of the modal overlay and the dialog box itself. Accepts the following props, plus standard `div` attributes:
+
+| Prop                | Type      | Default |
+| ------------------- | --------- | ------- |
+| `showCloseButton`   | `boolean` | `true`  |
+| `backdrop`          | `boolean` | `true`  |
+| `allowOutsideClick` | `boolean` | `true`  |
+
+- `showCloseButtonThis`: property determines whether a close button is displayed in the top-right corner of the modal.
+- `backdrop`: This property controls whether a dark or semi-transparent background is displayed behind the modal (commonly referred to as the "backdrop").
+- `allowOutsideClick`: This property defines whether the modal will close when the user clicks outside the modal area (i.e., on the backdrop or anywhere outside the modal content)
+
+### ModalHeader
+
+The `ModalHeader` component is used to define the top section of the modal, typically containing the `ModalTitle` and `ModalDescription`. This component accepts all the standard HTML attributes that a `div` element would.
+
+### ModalTitle
+
+The `ModalTitle` component provides the main title or heading for the modal dialog. This component accepts all the standard HTML attributes that an `<h2>` (or similar heading) element would.
+
+### ModalDescription
+
+The `ModalDescription` component provides supplementary text or a detailed explanation for the modal's purpose. This component accepts all the standard HTML attributes that a `<p>` element would.
+
+### ModalFooter
+
+The `ModalFooter` component is typically used for action buttons (e.g., `Save`, `Cancel`, `Confirm`) or other elements that appear at the bottom of the modal.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.

@@ -1,0 +1,74 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { drawerVariants } from "./drawerVariants";
+
+interface Props
+  extends HTMLAttributes<"div">,
+    VariantProps<typeof drawerVariants> {
+  showCloseButton?: boolean;
+  backdrop?: boolean;
+  allowOutsideClick?: boolean;
+}
+
+const {
+  class: className,
+  showCloseButton = true,
+  backdrop = true,
+  allowOutsideClick = true,
+  position = "right",
+  size = "sm",
+  ...attrs
+} = Astro.props;
+---
+
+{
+  backdrop && (
+    <div
+      aria-hidden="true"
+      data-state="closed"
+      data-drawer-backdrop
+      class="bg-background fixed inset-0 left-0 top-0 z-50 hidden h-dvh w-full transition-opacity duration-100 data-[state=closed]:opacity-0 data-[state=open]:opacity-80"
+    />
+  )
+}
+
+<div
+  data-drawer-content
+  aria-hidden="true"
+  data-state="closed"
+  data-position={position}
+  data-show-close-button={showCloseButton}
+  data-allow-outside-click={allowOutsideClick}
+  class={cn(drawerVariants({ position, size, className }))}
+  {...attrs}
+>
+  {
+    showCloseButton && (
+      <button
+        class="text-foreground hover:bg-muted absolute right-3 top-3 cursor-pointer rounded-lg p-1 transition-colors duration-150"
+        aria-label="close modal"
+        data-close
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+        >
+          <>
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </>
+        </svg>
+      </button>
+    )
+  }
+  <slot />
+</div>

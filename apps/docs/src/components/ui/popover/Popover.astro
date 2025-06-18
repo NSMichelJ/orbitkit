@@ -1,0 +1,17 @@
+<div class="relative" data-popover>
+  <slot />
+</div>
+
+<script>
+  import { Popover } from "./popover";
+
+  function init() {
+    const popovers = document.querySelectorAll<HTMLElement>("[data-popover]");
+    popovers.forEach((dropdown) => {
+      new Popover(dropdown);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

@@ -1,0 +1,47 @@
+---
+title: Kbd 
+description: A component to display keyboard inputs, such as key presses or key combinations, in a visually distinct way.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Kbd } from "@/components/ui/kbd";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The Kbd component is used to represent user input from a keyboard, voice input, or any other text-entry device. It's ideal for documentation, tutorials, or user interfaces where you need to clearly indicate which keys a user should press.
+
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Kbd>enter</Kbd>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Kbd } from "@/components/ui/kbd";
+    ---
+
+    <Kbd>enter</Kbd>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Installation
+Add the Kbd component to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add kbd
+```
+
+## Usage
+
+Import the `Kbd` component and place the key or key combination you want to display as its child.
+
+### Props
+
+### Kbd
+
+The `Kbd` component renders a small box around its content, making it look like a physical key on a keyboard. This component accepts all the standard HTML attributes that a `<kbd>` element would.

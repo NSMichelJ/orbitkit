@@ -1,0 +1,76 @@
+---
+title: Stat
+description: A component used to display a single, key metric or data point with an optional title, value, and description.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  Stat,
+  StatDescription,
+  StatTitle,
+  StatValue,
+} from "@/components/ui/stat";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Stat` component is designed for presenting individual statistics or key performance indicators (KPIs) in a clear and concise manner. It helps highlight important data points, making them easily digestible for users. It is composed of a main Stat wrapper and sub-components for its title, value, and description.
+
+## Installation
+Add the Stat component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add stat
+```
+
+## Usage
+
+Import the `Stat`, `StatTitle`, `StatValue`, and `StatDescription` components. Wrap your statistic content within the main Stat component, using `StatTitle` for the metric's name, `StatValue` for its numerical or primary value, and `StatDescription` for any additional context.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Stat>
+        <StatTitle> Total users </StatTitle>
+        <StatValue> 12,345 </StatValue>
+        <StatDescription> Registered users this month </StatDescription>
+      </Stat>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      Stat,
+      StatDescription,
+      StatTitle,
+      StatValue,
+    } from "@/components/ui/stat";
+    ---
+    <Stat>
+      <StatTitle> Total users </StatTitle>
+      <StatValue> 12,345 </StatValue>
+      <StatDescription> Registered users this month </StatDescription>
+    </Stat>
+    ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Stat system consists of the following components, each with its own set of props:
+
+### Stat
+
+The `Stat` component serves as the main container for a single statistic, ensuring proper layout and grouping of its sub-elements. This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### StatTitle
+
+The `StatTitle` component is used to display the name or label of the statistic. This component accepts all the standard HTML attributes that a `<h3>` element would.
+
+### StatValue
+
+The `StatValue` component displays the primary value of the statistic. This is typically a number, percentage, or other key metric. This component accepts all the standard HTML attributes that a `<span>` element would.
+
+### StatDescription
+
+The `StatDescription` component provides additional context, a brief explanation, or a time frame for the statistic. This component accepts all the standard HTML attributes that a `<p>` element would.

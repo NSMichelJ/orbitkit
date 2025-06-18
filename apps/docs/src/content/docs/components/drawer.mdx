@@ -1,0 +1,140 @@
+---
+title: Drawer
+description: A panel that slides in from the edge of the screen, providing supplementary content or navigation without interrupting the user's main flow.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The Drawer component is a versatile UI element that slides into view from the edge of the screen, typically used for navigation menus, filter options, or supplementary forms. It offers more screen real estate than a modal for content that doesn't require a full-page overlay.
+
+### Installation
+
+Add the Drawer component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add drawer
+```
+
+## Usage
+
+Import the `Drawer`, `DrawerContent`, `DrawerHeader`, `DrawerTitle`, `DrawerDescription`, and `DrawerFooter` components. Place your trigger element (e.g., a `Button`) directly inside the `Drawer` component and add the `data-trigger` attribute to it. The `DrawerContent` will house the drawer's actual content.
+
+Any element inside the `DrawerContent` that includes the `data-close` attribute will be capable of closing the drawer when interacted with. This is useful for custom close buttons or action buttons within the footer.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Drawer>
+        <Button data-trigger> Open </Button>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Drawer</DrawerTitle>
+            <DrawerDescription>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Voluptates, in?
+            </DrawerDescription>
+          </DrawerHeader>
+
+          <div class="grid flex-1 auto-rows-min gap-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+            laudantium ad nobis quas quidem magnam excepturi illo, temporibus
+            delectus minima vel asperiores ex dolor consequuntur esse cum sint
+            deserunt velit!
+          </div>
+
+          <DrawerFooter>
+            <Button data-close>Close</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import {
+      Drawer,
+      DrawerContent,
+      DrawerDescription,
+      DrawerFooter,
+      DrawerHeader,
+      DrawerTitle,
+    } from "@/components/ui/drawer";
+    ---
+    <Drawer>
+      <Button data-trigger> Open </Button>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer</DrawerTitle>
+          <DrawerDescription>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Voluptates, in?
+          </DrawerDescription>
+        </DrawerHeader>
+        <div class="grid flex-1 auto-rows-min gap-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+          laudantium ad nobis quas quidem magnam excepturi illo, temporibus
+          delectus minima vel asperiores ex dolor consequuntur esse cum sint
+          deserunt velit!
+        </div>
+        <DrawerFooter>
+          <Button data-close>Close</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Drawer system consists of several components, each with its own set of props:
+
+### Drawer
+
+This component primarily acts as a container and **does not accept explicit props**. Its functionality is driven by the JavaScript initialization script.
+
+### DrawerContent
+
+The `DrawerContent` component defines the actual content of the drawer panel. It controls the drawer's position and size. The `DrawerContent` component accepts the following props, plus standard `<div>` attributes:
+
+| Prop                | Type                                 | Default |
+| ------------------- | ------------------------------------ | ------- |
+| `showCloseButton`   | `boolean`                            | `true`  |
+| `backdrop`          | `boolean`                            | `true`  |
+| `allowOutsideClick` | `boolean`                            | `true`  |
+| `position`          | `top`, `bottom`, `left`, `right`     | `right` |
+| `size`              | `xs`, `sm`, `md`, `lg`, `xl`, `full` | `sm`    |
+
+- `showCloseButtonThis`: property determines whether a close button is displayed in the top-right corner of the modal.
+- `backdrop`: This property controls whether a dark or semi-transparent background is displayed behind the modal (commonly referred to as the "backdrop").
+- `allowOutsideClick`: This property defines whether the modal will close when the user clicks outside the modal area (i.e., on the backdrop or anywhere outside the modal content)
+
+## DrawerHeader
+
+The DrawerHeader component is used to define the top section of the drawer, typically containing a title and potentially a close button or other controls. This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### DrawerTitle
+
+The `DrawerTitle` component provides the main title or heading for the drawer panel. This component accepts all the standard HTML attributes that an `<h2>` element would.
+
+### DrawerDescription
+
+The `DrawerDescription` component provides supplementary text or a detailed explanation for the drawer's purpose. This component accepts all the standard HTML attributes that a `<p>` element would.
+
+## DrawerFooter
+
+The `DrawerFooter` component is typically used for action buttons (e.g., "Save", "Cancel", "Apply Filters") or other elements that appear at the bottom of the drawer. This component accepts all the standard HTML attributes that a `<div>` element would.

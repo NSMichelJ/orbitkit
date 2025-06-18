@@ -1,0 +1,19 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  role="tablist"
+  data-tab-list
+  class={cn(
+    "flex flex-row justify-between flex-wrap bg-surface border border-border p-1 rounded-lg w-fit",
+    className,
+  )}
+>
+  <slot />
+</div>

@@ -1,0 +1,42 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import {
+  dropdownArrowVariants,
+  dropdownMenuVariants,
+} from "./dropdownVariants";
+
+interface Props
+  extends HTMLAttributes<"div">,
+    VariantProps<typeof dropdownMenuVariants> {
+  sideOffset?: number;
+  arrow?: boolean;
+}
+
+const {
+  class: className,
+  side,
+  alignment,
+  sideOffset = 2,
+  arrow = false,
+  ...attrs
+} = Astro.props;
+---
+
+<div
+  {...attrs}
+  role="menu"
+  data-dropdown-content
+  aria-hidden="true"
+  data-state="closed"
+  data-side={sideOffset}
+  data-alignment={alignment}
+  class={cn(dropdownMenuVariants({ side, alignment, className }))}
+  style={{
+    "--tooltip-offset": `calc(var(--spacing) * ${sideOffset})`,
+  }}
+>
+  <slot />
+  {arrow && <span class={cn(dropdownArrowVariants({ side, alignment }))} />}
+</div>

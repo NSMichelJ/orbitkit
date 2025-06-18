@@ -1,0 +1,33 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<h3>
+  <button
+    {...attrs}
+    aria-expanded="false"
+    data-accordion-trigger
+    class={cn(
+      "flex items-center justify-between py-4 border-b border-border last:border-b-0 w-full text-start text-base font-medium cursor-pointer [&[data-state=open]>svg]:rotate-180",
+      className,
+    )}
+  >
+    <slot />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="size-4 transform transition-transform duration-200"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M6 9l6 6l6 -6"></path></svg
+    >
+  </button>
+</h3>

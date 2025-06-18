@@ -1,0 +1,102 @@
+---
+title: Tooltip
+description: A small popover that displays informative text when a user hovers over or focuses on an element.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Tooltip` component provides a lightweight, unobtrusive way to display supplementary information or context when a user interacts with an element (typically on hover or focus). It's ideal for clarifying icons, truncated text, or actions without cluttering the main UI.
+
+The `Tooltip` system comprises a main `Tooltip` wrapper, a `TooltipTrigger` for the interactive element, and `TooltipContent` for the popover itself.
+
+## Installation
+
+Add the `Tooltip` component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add tooltip
+```
+
+## Usage
+
+Import the `Tooltip` and `TooltipContent` components. Place your trigger element (like a Button or Icon) directly inside the `Tooltip` component and add the `data-trigger` attribute to it. The `TooltipContent` with your desired message should also be placed inside the main `Tooltip` component.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Tooltip>
+        <Button data-trigger> Hover Me </Button>
+        <TooltipContent side="top" alignment="start">
+          My tooltip
+        </TooltipContent>
+      </Tooltip>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import {
+      Tooltip,
+      TooltipContent,
+      TooltipTrigger,
+    } from "@/components/ui/tooltip";
+    import Layout from "@/layouts/Layout.astro";
+    ---
+    <Tooltip>
+      <Button data-trigger> Hover Me </Button>
+      <TooltipContent side="top" alignment="start">
+        My tooltip
+      </TooltipContent>
+    </Tooltip>
+    ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+The `Tooltip` system consists of several components, each with its own set of props:
+
+### Tooltip
+
+The `Tooltip` component acts as the main wrapper for the tooltip system. It manages the tooltip's open/closed state and interaction delays.
+
+| Prop                      | Type      | Default |
+| ------------------------- | --------- | ------- |
+| `disableHoverableContent` | `boolean` | `true`  |
+| `openDelay`               | `number`  | `150`   |
+| `closeDelay`              | `number`  | `150`   |
+| `duration`                | `number`  | `200`   |
+
+- `disableHoverableContent`: the tooltip content will not be hoverable, and the tooltip will close immediately if the pointer leaves the trigger area.
+- `openDelay`: The delay in milliseconds before the tooltip content appears when triggered.
+- `closeDelay`: The delay in milliseconds before the tooltip content disappears when interaction ends.
+- `duration`: The duration in milliseconds of the tooltip's open/close transition animation.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### TooltipContent
+
+The `TooltipContent` component defines the actual content that appears in the tooltip popover. It also controls the positioning and appearance of the tooltip itself, including an optional arrow.
+
+| Prop         | Type                             | Default  |
+| ------------ | -------------------------------- | -------- |
+| `side`       | `top`, `bottom`, `left`, `right` | `top`    |
+| `alignment`  | `start`, `center`, `end`         | `center` |
+| `sideOffset` | `number`                         | `2`      |
+| `arrow`      | `boolean`                        | `200`    |
+
+- `side`: Defines the primary position of the tooltip relative to the element that triggers it.
+- `alignment`: Defines how the tooltip is aligned horizontally or vertically in relation to the triggering element.
+- `sideOffset`: The distance in pixels between the trigger and the tooltip content.
+- `arrow`: a small arrow pointing to the trigger will be rendered on the tooltip.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.

@@ -1,0 +1,19 @@
+<div class="relative" data-dropdown-menu>
+  <slot />
+</div>
+
+<script>
+  import { DowndownMenu } from "./dropdown";
+
+  function init() {
+    const dropdowns = document.querySelectorAll<HTMLElement>(
+      "[data-dropdown-menu]",
+    );
+    dropdowns.forEach((dropdown) => {
+      new DowndownMenu(dropdown);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

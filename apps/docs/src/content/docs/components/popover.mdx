@@ -1,0 +1,105 @@
+---
+title: Popover
+description: A small overlay that displays rich content when a user interacts with a trigger element, often used for additional context, forms,
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent } from "@/components/ui/popover";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Popover` component provides a non-modal dialog that floats over other content, typically used to display supplementary information, complex forms, or interactive elements when a user clicks or hovers over a specific trigger. It's similar to a tooltip but supports richer, more interactive content.
+
+## Installation
+Add the Popover component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add popover
+```
+
+## Usage
+
+Import the `Popover` and `PopoverContent` components. Place your trigger element (e.g., a Button) directly inside the `Popover` component and add the `data-trigger` attribute to it. The `PopoverContent` will contain the rich content that appears in the popover.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Popover>
+        <Button data-trigger>Open</Button>
+        <PopoverContent class="w-80">
+          <div class="flex gap-4 items-center mb-4">
+            <img
+              src="https://i.pravatar.cc/300"
+              alt=""
+              class="size-10 aspect-square rounded-full"
+            />
+            <div class="flex flex-col gap-0.5">
+              <h5 class="font-bold text-base">My profile</h5>
+              <p>UX/UI Designer</p>
+            </div>
+          </div>
+
+          <Button class="block w-full">View profile</Button>
+        </PopoverContent>
+      </Popover>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import { Popover, PopoverContent } from "@/components/ui/popover";
+    ---
+
+    <Layout>
+      <Popover>
+        <Button data-trigger>Open</Button>
+        <PopoverContent class="w-80">
+          <div class="flex gap-4 items-center mb-4">
+            <img
+              src="https://i.pravatar.cc/300"
+              alt=""
+              class="size-10 aspect-square rounded-full"
+            />
+            <div class="flex flex-col gap-0.5">
+              <h5 class="font-bold text-base">My profile</h5>
+              <p>UX/UI Designer</p>
+            </div>
+          </div>
+
+          <Button class="block w-full">View profile</Button>
+        </PopoverContent>
+      </Popover>
+    </Layout>
+    ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Popover system consists of two main components, each with its own set of props:
+
+### Popover
+
+The Popover component serves as the main wrapper for the popover system. It manages the popover's open/closed state.
+
+This component primarily acts as a container and doesn't accept explicit props. Its functionality is driven by a client-side JavaScript initialization script.
+
+### PopoverContent
+
+The `PopoverContent` component contains the actual content displayed within the popover. It also controls the popover's positioning and appearance.
+
+| Prop         | Type                             | Default  |
+| ------------ | -------------------------------- | -------- |
+| `side`       | `top`, `bottom`, `left`, `right` | `bottom` |
+| `alignment`  | `start`, `center`, `end`         | `start`  |
+| `sideOffset` | `number`                         | `2`      |
+| `arrow`      | `boolean`                        | `false`  |
+
+- `side`: Defines the primary position of the tooltip relative to the element that triggers it.
+- `alignment`: Defines how the tooltip is aligned horizontally or vertically in relation to the triggering element.
+- `sideOffset`: The distance in pixels between the trigger and the tooltip content.
+- `arrow`: a small arrow pointing to the trigger will be rendered on the tooltip.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.

@@ -1,0 +1,158 @@
+---
+title: Dropdown
+description: A contextual menu that appears upon user interaction, offering a list of actions or navigation options.
+---
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `DropdownMenu` component provides a versatile and accessible way to present a list of actions or navigation links to the user in a compact, popover-like menu. It's ideal for user profiles, settings, or contextual actions where space is limited.
+
+## Installation
+
+Add the DropdownMenu component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add dropdown
+```
+
+## Usage
+
+Import the `DropdownMenu` component along with its sub-components: `DropdownMenuContent`, `DropdownMenuLabel`, `DropdownMenuGroup`, `DropdownMenuItem`, and `DropdownMenuSeparator`.
+
+Place your trigger element (e.g., a Button) directly inside the DropdownMenu component and add the `data-trigger` attribute to it. The `DropdownMenuContent` will house the actual menu items.
+
+Organize your menu items using `DropdownMenuGroup` for logical grouping, `DropdownMenuLabel` for group titles, and `DropdownMenuSeparator` for visual dividers. Individual actions or links should be `DropdownMenuItem`s.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <DropdownMenu>
+        <Button data-trigger> Open </Button>
+        <DropdownMenuContent class="w-40">
+          <DropdownMenuLabel> My Account </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem> Profile </DropdownMenuItem>
+            <DropdownMenuItem> Billing </DropdownMenuItem>
+            <DropdownMenuItem> Settings </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem as="a" href="/"> Team </DropdownMenuItem>
+            <DropdownMenuItem disabled> Api </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem> Signout</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuGroup,
+      DropdownMenuItem,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+    } from "@/components/ui/dropdown";
+    ---
+
+    <DropdownMenu>
+      <Button data-trigger> Open </Button>
+      <DropdownMenuContent class="w-40">
+        <DropdownMenuLabel> My Account </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuItem> Profile </DropdownMenuItem>
+          <DropdownMenuItem> Billing </DropdownMenuItem>
+          <DropdownMenuItem> Settings </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem as="a" href="/"> Team </DropdownMenuItem>
+          <DropdownMenuItem disabled> Api </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem> Signout</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The `DropdownMenu` system consists of several components, each with its own set of props:
+
+### DropdownMenu
+
+The `DropdownMenu` component serves as the main wrapper for the dropdown menu system. It manages the menu's open/closed state.
+
+This component primarily acts as a container and **does not accept explicit props**. Its functionality is driven by a client-side JavaScript initialization script.
+
+### DropdownMenuContent
+
+The `DropdownMenuContent` component contains the actual items of the dropdown menu. It controls the menu's positioning relative to its trigger, size, and appearance.
+
+The `DropdownMenuContent` component accepts the following props:
+
+| Prop         | Type                             | Default  |
+| ------------ | -------------------------------- | -------- |
+| `side`       | `top`, `bottom`, `left`, `right` | `bottom` |
+| `alignment`  | `start`, `center`, `end`         | `start`  |
+| `sideOffset` | `number`                         | `2`      |
+| `arrow`      | `boolean`                        | `false`  |
+
+- `side`: Defines the primary position of the tooltip relative to the element that triggers it.
+- `alignment`: Defines how the tooltip is aligned horizontally or vertically in relation to the triggering element.
+- `sideOffset`: The distance in pixels between the trigger and the tooltip content.
+- `arrow`: a small arrow pointing to the trigger will be rendered on the tooltip.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### DropdownMenuLabel
+
+The `DropdownMenuLabel` component is used to provide a non-interactive label or heading within the dropdown menu, typically used to title groups of items.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### DropdownMenuGroup
+
+The `DropdownMenuGroup` component is used to semantically group related DropdownMenuItems together within the dropdown content.
+
+This component accepts all the standard HTML attributes that a `<div>` element would.
+
+### DropdownMenuItem
+
+The `DropdownMenuItem` component represents an individual, interactive item within the dropdown menu. It can act as a button or a link.
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `as`       | `HTMLTag` | `div`   |
+| `disabled` | `boolean` | `false` |
+
+- `as`: Allows the component to be rendered as a different HTML tag. Useful for rendering an item as an `<a>` tag for navigation links or a `<button>` for actions, inheriting appropriate semantic behavior.
+- `disabled`: If true, the menu item will be visually styled as disabled and will not be interactive. Its tabindex will be set to -1.
+
+This component accepts all the standard HTML attributes relevant to the tag it renders (as prop), such as href for `<a>` tags or onClick for `<div>` or `<button>` elements.
+
+### DropdownMenuSeparator
+
+The `DropdownMenuSeparator` component renders a visual line to separate groups of menu items, enhancing readability and organization. This component accepts all the standard HTML attributes that a `<div>` element would.

@@ -1,0 +1,19 @@
+<div data-drawer-wrapper>
+  <slot />
+</div>
+
+<script>
+  import { Drawer } from "./drawer";
+
+  function init() {
+    const drawers = document.querySelectorAll<HTMLElement>(
+      "[data-drawer-wrapper]",
+    );
+    drawers.forEach((modal) => {
+      new Drawer(modal);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", () => init());
+</script>

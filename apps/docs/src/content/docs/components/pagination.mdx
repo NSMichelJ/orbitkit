@@ -1,0 +1,151 @@
+---
+title: Pagination
+description: A component for navigating through a series of content pages.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
+} from "@/components/ui/pagination";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+
+The Pagination component provides a set of controls that allow users to navigate between pages of content, typically used for lists, search results, or articles.
+
+## Installation
+
+Add the Pagination component and its sub-components to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add pagination
+```
+
+## Usage
+
+Import the `Pagination` component along with its sub-components: `PaginationContent`, `PaginationItem`, `PaginationLink`, `PaginationPrevious`, `PaginationNext`, and `PaginationEllipsis`.
+
+Structure your pagination controls by wrapping them in `PaginationContent` within the main `Pagination` component. Each navigation element should be enclosed in a `PaginationItem`. Use `PaginationLink` for page numbers, `PaginationPrevious` and `PaginationNext` for navigation buttons, and `PaginationEllipsis` to indicate skipped page ranges.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious>Prev </PaginationPrevious>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationLink>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink>2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive>3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationLink>10</PaginationLink>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationNext> Next </PaginationNext>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      Pagination,
+      PaginationContent,
+      PaginationEllipsis,
+      PaginationItem,
+      PaginationLink,
+      PaginationNext,
+      PaginationPrevious
+    } from "@/components/ui/pagination";
+    import Layout from "../layouts/Layout.astro";
+    ---
+
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious>Prev </PaginationPrevious>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink>10</PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationNext> Next </PaginationNext>
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+The Pagination system consists of several components, each with its own set of props:
+
+### Pagination
+
+The `Pagination` component serves as the main wrapper for the entire pagination system. It semantically represents a navigation section. This component accepts all the standard HTML attributes that a `<nav>` element would.
+
+### PaginationContent
+
+The `PaginationContent` component acts as the container for all pagination items. This component accepts all the standard HTML attributes that a `<ul>` (unordered list) element would.
+
+### PaginationItem
+
+The `PaginationItem` component is a wrapper for individual pagination elements. Each link, button, or ellipsis should be enclosed within a `PaginationItem`. This component accepts all the standard HTML attributes that an `<li>` (list item) element would.
+
+### PaginationLink
+
+The `PaginationLink` component represents a clickable link to a specific page number. This component accepts all the standard HTML attributes that an `<a>` element would. Plus the following props:
+
+| Prop       | Type      | Default |
+| ---------- | --------- | ------- |
+| `isActive` | `boolean` | `false` |
+
+### PaginationPrevious
+
+The `PaginationPrevious` component represents a button or link to navigate to the previous page. This component accepts all the standard HTML attributes that an `<a>` element would.
+
+### PaginationNext
+
+The `PaginationNext` component represents a button or link to navigate to the next page. This component accepts all the standard HTML attributes that an `<a>` element would.
+
+### PaginationEllipsis
+
+The `PaginationEllipsis` component is used to indicate a skipped range of pages. This component accepts all the standard HTML attributes that a `<span>` element would.
