@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 
-import { add, init, remove } from "@/commands";
+import { add, info, init, remove } from "@/commands";
 import packageJson from "package.json";
 
 const program = new Command();
@@ -25,6 +25,7 @@ function main() {
   program.addCommand(init);
   program.addCommand(add);
   program.addCommand(remove);
+  program.addCommand(info);
 
   program.parse();
 }
