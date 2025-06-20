@@ -45,4 +45,36 @@ npx orbitkit@latest add [components...]
 #### Options:
 
 - `-a, --all`: Add all available OrbitUI components to your project.
+- `-o, --overwrite`: Overwrite existing components if they already exist in your project.
+- `-w, --working-directory <path>`: Specify the working directory path. Defaults to the current working directory where the command is executed.
+
+If you try to add a component that already exists, the CLI will skip it by default and show a message. Use `--overwrite` to overwrite existing components and update their configuration.
+
+### `remove`
+
+Removes one or more OrbitUI components from your project and updates the configuration.
+
+```bash
+npx orbitkit@latest remove [components...]
+```
+
+`[components...]`: A space-separated list of the names of the components you want to remove.
+
+#### Options:
+
+- `-a, --all`: Remove all OrbitUI components from your project.
+- `-w, --working-directory <path>`: Specify the working directory path. Defaults to the current working directory where the command is executed.
+
+The CLI will prompt you to select components to remove if you do not specify any.
+
+### `info`
+
+Shows information about your OrbitUI project, including the components directory and a list of installed components.
+
+```bash
+npx orbitkit@latest info
+```
+
+#### Options:
+
 - `-w, --working-directory <path>`: Specify the working directory path. Defaults to the current working directory where the command is executed.
