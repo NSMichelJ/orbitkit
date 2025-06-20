@@ -170,7 +170,7 @@ async function promptForComponents(opts: { components: string[]; all: true }) {
 
     if (!selectedComponents.length) {
       log.warn("You did not select any components to add.");
-      return;
+      return [];
     }
 
     return selectedComponents;
