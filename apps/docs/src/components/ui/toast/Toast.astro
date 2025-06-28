@@ -1,0 +1,36 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div
+  data-toast
+  class={cn(
+    "fixed z-[1000] p-4 bg-background text-foreground border border-border rounded-lg shadow-lg flex flex-row items-start gap-2 overflow-hidden opacity-0 duration-500 transition-all ease-in-out min-w-xs max-w-md data-[state=showing]:opacity-100 data-[state=hide]:pointer-events-none ",
+    className,
+  )}
+  {...attrs}
+>
+  <slot />
+</div>
+
+<style>
+  @reference "@/styles/global.css";
+
+  [data-toast][data-toast-type="success"] {
+    @apply border-green-500 bg-green-50 text-green-800;
+  }
+  [data-toast][data-toast-type="error"] {
+    @apply border-red-500 bg-red-50 text-red-800;
+  }
+  [data-toast][data-toast-type="warning"] {
+    @apply border-orange-400 bg-orange-50 text-orange-800;
+  }
+  [data-toast][data-toast-type="info"] {
+    @apply border-blue-500 bg-blue-50 text-blue-800;
+  }
+</style>

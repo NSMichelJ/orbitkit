@@ -114,6 +114,10 @@
     {
       "name": "tooltip",
       "version": "0.0.2"
+    },
+    {
+      "name": "toast",
+      "version": "0.0.1"
     }
   ]
 }

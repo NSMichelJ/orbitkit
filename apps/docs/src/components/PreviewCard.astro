@@ -5,3 +5,15 @@ import "@/styles/global.css";
 <div class="not-content flex flex-row items-center justify-center p-8">
   <slot />
 </div>
+
+<script>
+  import { toast } from "@/components/ui/toast";
+
+  const btn = document.querySelector<HTMLButtonElement>("#showToast");
+  btn?.addEventListener("click", () => {
+    toast({
+      title: "Item Added",
+      description: "Your item has been successfully added to the cart.",
+    });
+  });
+</script>

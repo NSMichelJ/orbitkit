@@ -1,0 +1,113 @@
+---
+title: Toast
+description: A transient, non-intrusive message that appears temporarily to provide feedback to the user, without interrupting their workflow.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Button } from "@/components/ui/button";
+import Toaster from "@/components/ui/toast/Toaster.astro";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The `Toast` component provides a non-intrusive way to display short, timely feedback messages to users. These messages appear briefly, often at the edge of the screen, and then disappear automatically, informing the user about an action's success, failure, or other important events without requiring interaction.
+
+## Installation
+
+Add the Toast components and the toast utility to your project using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add toast
+```
+
+## Usage
+
+To use the `Toast` system, render the `Toaster` component once in your layout or a high-level component. This component acts as the container for all toasts.
+
+Import and use the `toast` utility function in your client-side JavaScript (e.g., within `<script>` tags in Astro components) to trigger new toast messages.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <Toaster/>
+      <Button id="showToast"> Show Toast </Button>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Button } from "@/components/ui/button";
+    import Toaster from "@/components/ui/toast/Toaster.astro";
+    ---
+    <Button id="showToast"> Show Toast </Button>
+
+
+    <script>
+      import { toast } from "@/components/ui/toast";
+
+      const btn = document.querySelector<HTMLButtonElement>("#showToast");
+      btn?.addEventListener("click", () => {
+        toast({
+          title: "Item Added",
+          description: "Your item has been successfully added to the cart.",
+        });
+      });
+    </script>
+    ```
+
+  </TabItem>
+</Tabs>
+
+Convenience Methods:
+
+For common toast types, you can use shorthand methods that automatically set the type property:
+
+- `toast.success(options)`
+- `toast.error(options)`
+- `toast.info(options)`
+- `toast.warning(options)`
+
+## Props
+
+### toast (Utility Function)
+
+The `toast` utility function is a JavaScript function used to programmatically create and display toast notifications.
+
+| Prop          | Type                                             | Default     |
+| ------------- | ------------------------------------------------ | ----------- |
+| `title`       | `string`                                         | `required`  |
+| `description` | `string`                                         | `undefined` |
+| `duration`    | `number`                                         | `5000`      |
+| `dismissible` | `boolean`                                        | `true`      |
+| `autoClose`   | `boolean`                                        | `true`      |
+| `type`        | `success`, `error`, `info`, `warning`, `default` | `default`   |
+| `onClose`     | `function`                                       | `undefined` |
+
+- `title`: The main heading or short message for the toast.
+- `description`: Additional, more detailed text to display below the title.
+- `duration`: The time in milliseconds after which the toast will automatically close. Overrides the autoClose setting on `Toaster` for this specific toast.
+- `dismissible`: If true, this specific toast will display a close button and can be manually dismissed. Overrides the dismissible setting on Toaster.
+- `autoClose`: If true, this specific toast will automatically disappear after its duration. Overrides the autoClose setting on Toaster.
+- `type`: Defines the visual style and implicit icon of the toast. Also available as convenience methods (`toast.success()`, `toast.error()`, etc.).
+- `onClose`: A callback function that executes when the toast is closed, either manually by the user or automatically after its duration.
+
+### Toaster
+
+The `Toaster` component acts as the main container for displaying toast notifications and sets the global default properties for all toasts.
+
+| Prop            | Type                                                                                  | Default        |
+| --------------- | ------------------------------------------------------------------------------------- | -------------- |
+| `offset`        | `number`                                                                              | `24`           |
+| `gap`           | `number`                                                                              | `16`           |
+| `position`      | `top-right`, `top-center`, `top-left`, `bottom-right`, `bottom-center`, `bottom-left` | `bottom-right` |
+| `visibleToasts` | `number`                                                                              | `3`            |
+| `dismissible`   | `boolean`                                                                             | `true`         |
+| `autoClose`     | `boolean`                                                                             | `true`         |
+| `type`          | `success`, `error`, `info`, `warning`, `default`                                      | `default`      |
+| `onClose`       | `function`                                                                            | `undefined`    |
+
+- `offset`: The distance in pixels from the screen edge, based on the position of the toaster.
+- `gap`: The spacing in pixels between multiple toasts when they are stacked.
+- `position`: Determines where on the screen the toasts will appear.
+- `visibleToasts`: The maximum number of toasts that will be visible on the screen at any given time. Older toasts will be hidden/removed as new ones appear if this limit is exceeded.
+- `dismissible`: If true, a close button will be displayed on each toast, allowing the user to manually dismiss it.
+- `autoClose`: If true, toasts will automatically disappear after a default duration. If false, toasts must be dismissed manually (if dismissible is true) or will remain until a page refresh.
