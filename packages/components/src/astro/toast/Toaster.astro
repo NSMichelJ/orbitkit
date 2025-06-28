@@ -1,0 +1,78 @@
+---
+import Toast from "./Toast.astro";
+import ToastDescription from "./ToastDescription.astro";
+import ToastTitle from "./ToastTitle.astro";
+
+interface Props {
+  offset?: number;
+  gap?: number;
+  position?:
+    | "top-right"
+    | "top-center"
+    | "top-left"
+    | "bottom-right"
+    | "bottom-center"
+    | "bottom-left";
+  visibleToasts?: number;
+  dismissible?: boolean;
+  autoClose?: boolean;
+}
+
+const {
+  offset = 24,
+  gap = 16,
+  position = "bottom-right",
+  visibleToasts = 3,
+  dismissible = true,
+  autoClose = true,
+} = Astro.props;
+---
+
+<section
+  tabindex="-1"
+  data-toaster
+  data-position={position}
+  data-visible-toasts={visibleToasts}
+  data-offset={offset}
+  data-dismissible={dismissible}
+  data-position={position}
+  data-gap={gap}
+  data-auto-close={autoClose}
+>
+  <template id="toast-template">
+    <slot>
+      <Toast>
+        <div data-toast-icon></div>
+
+        <div>
+          <ToastTitle />
+          <ToastDescription />
+        </div>
+
+        <button
+          class="absolute right-1 top-1 cursor-pointer rounded-lg p-1 transition-colors duration-150"
+          aria-label="close toast"
+          data-close
+          data-dismissible-button
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-4"
+          >
+            <>
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M18 6l-12 12"></path>
+              <path d="M6 6l12 12"></path>
+            </>
+          </svg>
+        </button>
+      </Toast>
+    </slot>
+  </template>
+</section>

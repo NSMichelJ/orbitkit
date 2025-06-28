@@ -111,6 +111,10 @@
     {
       "name": "tab",
       "version": "0.0.1"
+    },
+    {
+      "name": "toast",
+      "version": "0.0.1"
     }
   ]
 }
