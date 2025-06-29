@@ -7,7 +7,7 @@ export const ORBIT_CONFIG_CSS_TEMPLATE = `@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
+@theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
@@ -28,6 +28,27 @@ export const ORBIT_CONFIG_CSS_TEMPLATE = `@import "tailwindcss";
   --color-input: var(--input);
   --color-input-border: var(--input-border);
   --color-input-placeholder: var(--input-placeholder);
+
+  --animate-marquee-horizontal: marquee-horizontal var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) infinite linear;
+
+  @keyframes marquee-horizontal {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 
 @layer base {
