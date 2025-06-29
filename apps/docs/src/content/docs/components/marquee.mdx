@@ -1,0 +1,363 @@
+---
+title: Marquee
+description: Create continuously scrolling content, perfect for testimonials, logos, or announcements.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import { Marquee } from "@/components/ui/marquee";
+import { TabItem, Tabs } from '@astrojs/starlight/components';
+
+export const reviews = [
+  {
+    author: "María G.",
+    username: "maria.g_travels",
+    photo: "https://i.pravatar.cc/100?img=1",
+    content:
+      "Incredible service! Package arrived fast and in perfect condition. Highly recommended.",
+    date: "2024-06-25",
+  },
+  {
+    author: "Juan P.",
+    username: "juan_p_reads",
+    photo: "https://i.pravatar.cc/100?img=2",
+    content:
+      "Product quality exceeded expectations. Will definitely buy here again.",
+    date: "2024-06-20",
+  },
+  {
+    author: "Ana R.",
+    username: "ana_r_design",
+    photo: "https://i.pravatar.cc/100?img=3",
+    content:
+      "Excellent customer service. Resolved my query immediately and kindly.",
+    date: "2024-06-18",
+  },
+  {
+    author: "Carlos S.",
+    username: "carlos_s_foodie",
+    photo: "https://i.pravatar.cc/100?img=4",
+    content: "Love the variety of products. Always find what I need.",
+    date: "2024-06-15",
+  },
+  {
+    author: "Laura M.",
+    username: "laura_m_tech",
+    photo: "https://i.pravatar.cc/100?img=5",
+    content: "Smooth and pleasant shopping experience. Website is easy to use.",
+    date: "2024-06-12",
+  },
+  {
+    author: "Pedro L.",
+    username: "pedro_l_music",
+    photo: "https://i.pravatar.cc/100?img=6",
+    content: "Tried many similar products, this is the best in performance.",
+    date: "2024-06-10",
+  },
+  {
+    author: "Pablo C.",
+    username: "pablo_c_games",
+    photo: "https://i.pravatar.cc/100?img=7",
+    content:
+      "After-sales support is exceptional. Helped efficiently with a small query.",
+    date: "2024-06-01",
+  },
+  {
+    author: "Diego F.",
+    username: "diego_f_sport",
+    photo: "https://i.pravatar.cc/100?img=8",
+    content:
+      "Highly value transparency and detailed info for each item. Thank you.",
+    date: "2024-06-05",
+  },
+  {
+    author: "Elena V.",
+    username: "elena_v_fashion",
+    photo: "https://i.pravatar.cc/100?img=9",
+    content:
+      "Wonderful. Everything was perfect from order to reception. Will repeat.",
+    date: "2024-06-03",
+  },
+  {
+    author: "Sofía H.",
+    username: "sofia_h_art",
+    photo: "https://i.pravatar.cc/100?img=10",
+    content:
+      "Punctual delivery, impeccable packaging. Attention to detail is evident.",
+    date: "2024-06-08",
+  },
+];
+
+export const firstRow = reviews.slice(0, reviews.length / 2);
+export const secondRow = reviews.slice(reviews.length / 2);
+
+The `Marquee` component allows you to display a continuous, looping scroll of content. It's ideal for showcasing testimonials, partner logos, news headlines, or any information you want to keep visible without taking up permanent static space.
+
+## Installation
+
+Since OrbitUI components are copied directly into your project, you'll add the `Marquee` component using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add marquee
+```
+
+## Usage
+
+Import the `Marquee` component and wrap your desired content with it. You can control the scroll behavior using various props.
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div
+        class="relative flex w-2xl flex-col items-center justify-center overflow-hidden"
+      >
+        <Marquee duration={30}>
+          {
+            firstRow.map((review) => (
+              <figure
+                class="relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border border-border bg-surface p-4 hover:scale-105 transform transition-all duration-300"
+              >
+                <div class="flex flex-row items-center gap-2">
+                  <img
+                    class="rounded-full"
+                    width="32"
+                    height="32"
+                    alt=""
+                    src={review.photo}
+                  />
+                  <div class="flex flex-col">
+                    <figcaption class="text-sm font-medium text-foreground">
+                      {review.author}
+                    </figcaption>
+                    <p class="text-xs font-medium text-muted-foreground">
+                      {review.username}
+                    </p>
+                  </div>
+                </div>
+                <blockquote class="mt-2 text-sm">{review.content}</blockquote>
+              </figure>
+            ))
+          }
+        </Marquee>
+        <Marquee duration={30} reverse>
+          {
+            secondRow.map((review) => (
+              <figure
+                class=
+                  "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border border-border bg-surface p-4 hover:scale-105 transform transition-all  duration-300"
+              >
+                <div class="flex flex-row items-center gap-2">
+                  <img
+                    class="rounded-full"
+                    width="32"
+                    height="32"
+                    alt=""
+                    src={review.photo}
+                  />
+                  <div class="flex flex-col">
+                    <figcaption class="text-sm font-medium text-foreground">
+                      {review.author}
+                    </figcaption>
+                    <p class="text-xs font-medium text-muted-foreground">
+                      {review.username}
+                    </p>
+                  </div>
+                </div>
+                <blockquote class="mt-2 text-sm">{review.content}</blockquote>
+              </figure>
+            ))
+          }
+        </Marquee>
+
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#0f1a24]"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#0f1a24]"
+        >
+        </div>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import { Marquee } from "@/components/ui/marquee";
+    const reviews = [
+      {
+        author: "María G.",
+        username: "maria.g_travels",
+        photo: "https://i.pravatar.cc/100?img=1",
+        content:
+          "Incredible service! Package arrived fast and in perfect condition. Highly recommended.",
+        date: "2024-06-25",
+      },
+      {
+        author: "Juan P.",
+        username: "juan_p_reads",
+        photo: "https://i.pravatar.cc/100?img=2",
+        content:
+          "Product quality exceeded expectations. Will definitely buy here again.",
+        date: "2024-06-20",
+      },
+      {
+        author: "Ana R.",
+        username: "ana_r_design",
+        photo: "https://i.pravatar.cc/100?img=3",
+        content:
+          "Excellent customer service. Resolved my query immediately and kindly.",
+        date: "2024-06-18",
+      },
+      {
+        author: "Carlos S.",
+        username: "carlos_s_foodie",
+        photo: "https://i.pravatar.cc/100?img=4",
+        content: "Love the variety of products. Always find what I need.",
+        date: "2024-06-15",
+      },
+      {
+        author: "Laura M.",
+        username: "laura_m_tech",
+        photo: "https://i.pravatar.cc/100?img=5",
+        content: "Smooth and pleasant shopping experience. Website is easy to use.",
+        date: "2024-06-12",
+      },
+      {
+        author: "Pedro L.",
+        username: "pedro_l_music",
+        photo: "https://i.pravatar.cc/100?img=6",
+        content: "Tried many similar products, this is the best in performance.",
+        date: "2024-06-10",
+      },
+      {
+        author: "Pablo C.",
+        username: "pablo_c_games",
+        photo: "https://i.pravatar.cc/100?img=7",
+        content:
+          "After-sales support is exceptional. Helped efficiently with a small query.",
+        date: "2024-06-01",
+      },
+      {
+        author: "Diego F.",
+        username: "diego_f_sport",
+        photo: "https://i.pravatar.cc/100?img=8",
+        content:
+          "Highly value transparency and detailed info for each item. Thank you.",
+        date: "2024-06-05",
+      },
+      {
+        author: "Elena V.",
+        username: "elena_v_fashion",
+        photo: "https://i.pravatar.cc/100?img=9",
+        content:
+          "Wonderful. Everything was perfect from order to reception. Will repeat.",
+        date: "2024-06-03",
+      },
+      {
+        author: "Sofía H.",
+        username: "sofia_h_art",
+        photo: "https://i.pravatar.cc/100?img=10",
+        content:
+          "Punctual delivery, impeccable packaging. Attention to detail is evident.",
+        date: "2024-06-08",
+      },
+    ];
+    
+    const firstRow = reviews.slice(0, reviews.length / 2);
+    const secondRow = reviews.slice(reviews.length / 2);
+    ---
+    <div
+      class="relative flex w-2xl flex-col items-center justify-center overflow-hidden"
+    >
+      <Marquee duration={30}>
+        {
+          firstRow.map((review) => (
+            <figure
+              class="relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border border-border bg-surface p-4 hover:scale-105 transform transition-all duration-300"
+            >
+              <div class="flex flex-row items-center gap-2">
+                <img
+                  class="rounded-full"
+                  width="32"
+                  height="32"
+                  alt=""
+                  src={review.photo}
+                />
+                <div class="flex flex-col">
+                  <figcaption class="text-sm font-medium text-foreground">
+                    {review.author}
+                  </figcaption>
+                  <p class="text-xs font-medium text-muted-foreground">
+                    {review.username}
+                  </p>
+                </div>
+              </div>
+              <blockquote class="mt-2 text-sm">{review.content}</blockquote>
+            </figure>
+          ))
+        }
+      </Marquee>
+      <Marquee duration={30} reverse>
+        {
+          secondRow.map((review) => (
+            <figure
+              class="relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border border-border bg-surface p-4 hover:scale-105 transform transition-all duration-300"
+            >
+              <div class="flex flex-row items-center gap-2">
+                <img
+                  class="rounded-full"
+                  width="32"
+                  height="32"
+                  alt=""
+                  src={review.photo}
+                />
+                <div class="flex flex-col">
+                  <figcaption class="text-sm font-medium text-foreground">
+                    {review.author}
+                  </figcaption>
+                  <p class="text-xs font-medium text-muted-foreground">
+                    {review.username}
+                  </p>
+                </div>
+              </div>
+              <blockquote class="mt-2 text-sm">{review.content}</blockquote>
+            </figure>
+          ))
+        }
+      </Marquee>
+
+      <div
+        class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"
+      >
+      </div>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+### Markee
+
+The `Marquee` component wraps content and makes it scroll continuously either horizontally or vertically across a defined area.The `Marquee` component accepts the following props:
+
+| Prop           | Type         | Default |
+| -------------- | ------------ | ------- |
+| `duration`     | `number`     | `10`    |
+| `gap`          | `number`     | `1`     |
+| `repeat`       | `number`     | `4`     |
+| `pauseOnHover` | `boolean` | `true`   |
+| `vertical`     | `boolean`    | `false`  |
+| `reverse`      | `boolean`     | `false`    |
+
+- `duration`: The time in seconds it takes for one full cycle of the marquee content to scroll across. Lower values mean faster scrolling.
+- `gap`: The spacing factor between repetitions of the content.
+- `repeat`: The number of times the content sequence is repeated within the marquee track. Higher values ensure continuous scrolling without visible gaps during a cycle.
+- `pauseOnHover`: If true, the marquee animation will pause when the user's mouse hovers over the component.
+- `vertical`: If true, the marquee will scroll vertically instead of horizontally.
+- `reverse`: If true, the marquee will scroll in the opposite direction.

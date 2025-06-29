@@ -1,0 +1,53 @@
+---
+import { cn } from "@/utils/cn";
+
+interface Props {
+  duration?: number;
+  gap?: number;
+  repeat?: number;
+  pauseOnHover?: boolean;
+  vertical?: boolean;
+  reverse?: boolean;
+}
+
+const {
+  duration = 10,
+  gap = 1,
+  repeat = 4,
+  pauseOnHover = true,
+  vertical = false,
+  reverse = false,
+} = Astro.props;
+---
+
+<div
+  class={cn(
+    "group flex overflow-hidden max-w-max p-2 gap-(--gap)",
+    vertical ? "flex-col" : "flex-row",
+  )}
+  style={{
+    "--gap": `${gap}rem`,
+    "--duration": `${duration}s`,
+  }}
+>
+  {
+    Array(repeat)
+      .fill(0)
+      .map(() => (
+        <div
+          class={cn(
+            "gap-(--gap) flex shrink-0 justify-around",
+            {
+              "group-hover:[animation-play-state:paused]": pauseOnHover,
+              "[animation-direction:reverse]": reverse,
+            },
+            vertical
+              ? "animate-marquee-vertical flex-col"
+              : "animate-marquee-horizontal flex-row",
+          )}
+        >
+          <slot />
+        </div>
+      ))
+  }
+</div>

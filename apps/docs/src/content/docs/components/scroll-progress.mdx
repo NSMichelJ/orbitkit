@@ -1,0 +1,74 @@
+---
+title: Scroll Progress
+description: Display a progress bar indicating the user's scroll position on the page.
+---
+
+import PreviewCard from "@/components/PreviewCard.astro";
+import {
+  ScrollProgress,
+  ScrollProgressBar,
+} from "@/components/ui/scroll-progress";
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+The Scroll Progress component provides a visual indicator of how far a user has scrolled down a page. It's useful for long-form content, giving users a sense of their reading progress.
+
+## Installation
+
+Since OrbitUI components are copied directly into your project, you'll add the Scroll Progress component using the OrbitUI CLI:
+
+```bash
+npx orbitkit@latest add scroll-progress
+```
+
+## Usage
+
+Import the `ScrollProgress` component into your Astro components or pages. By default, `ScrollProgress` renders a `ScrollProgressBar` internally, but you can also explicitly pass `ScrollProgressBar` as a child to customize it.
+
+
+<Tabs>
+  <TabItem label="Preview">
+    <PreviewCard>
+      <div>
+        <ScrollProgress class="static" />
+        <p class="mt-2">This progress bar is generally positioned at the top of your page.</p>
+      </div>
+    </PreviewCard>
+  </TabItem>
+  <TabItem label="Code">
+    ```astro
+    ---
+    // index.astro
+    import {
+      ScrollProgress,
+      ScrollProgressBar,
+    } from "@/components/ui/scroll-progress";
+    ---
+
+    <ScrollProgress />
+
+    <!--
+    <ScrollProgress>
+      <ScrollProgressBar />
+    </ScrollProgress>
+    -->
+
+    <div class="p-8 space-y-10">
+      <h1 class="text-3xl font-bold">Scroll Down</h1>
+      <div class="h-[2000px] bg-gradient-to-b from-white to-gray-100 rounded-lg shadow-inner">
+        <!-- Simulates long content -->
+      </div>
+    </div>
+    ```
+
+  </TabItem>
+</Tabs>
+
+## Props
+
+### ScrollProgress
+
+The `ScrollProgress` component accepts all standard HTML attributes that a `<div>` element would. This allows you to apply general styling or additional attributes to the container of the scroll progress mechanism.
+
+### ScrollProgressBar
+
+The `ScrollProgressBar` component also accepts all standard HTML attributes that a `<div>` element would. This is particularly useful when you want to directly style the visual progress bar itself, such as changing its background color.
