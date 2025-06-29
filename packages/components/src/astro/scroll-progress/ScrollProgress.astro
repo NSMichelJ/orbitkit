@@ -1,0 +1,41 @@
+---
+import ScrollProgressBar from "./ScrollProgressBar.astro";
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div
+  class={cn("fixed top-0 left-0 w-full h-[2px] bg-muted z-[1000]", className)}
+  {...attrs}
+>
+  <slot>
+    <ScrollProgressBar />
+  </slot>
+</div>
+
+<script>
+  function initScrollProgress() {
+    const bar = document.querySelector<HTMLElement>(
+      "[data-scroll-progress-bar]",
+    );
+    if (!bar) return;
+
+    function updateBar() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / total) * 100;
+      bar!.style.width = `${progress}%`;
+    }
+
+    window.addEventListener("scroll", updateBar);
+    updateBar();
+  }
+
+  initScrollProgress();
+  document.addEventListener("astro:after-swap", () => {
+    initScrollProgress();
+  });
+</script>

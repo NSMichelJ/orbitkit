@@ -1,0 +1,19 @@
+---
+import { cn } from "@/utils/cn";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div
+  data-scroll-progress-bar
+  class={cn(
+    "h-full bg-primary transition-all duration-100 ease-out",
+    className,
+  )}
+  style="width: 0%;"
+  {...attrs}
+>
+</div>

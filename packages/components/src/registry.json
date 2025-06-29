@@ -115,6 +115,14 @@
     {
       "name": "toast",
       "version": "0.0.1"
+    },
+    {
+      "name": "scroll-progress",
+      "version": "0.0.1"
+    },
+    {
+      "name": "marquee",
+      "version": "0.0.1"
     }
   ]
 }
