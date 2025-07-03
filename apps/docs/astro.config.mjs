@@ -38,6 +38,7 @@ export default defineConfig({
         baseUrl: "https://github.com/nsmichelj/orbitui/edit/main/apps/docs/",
       },
       components: {
+        TwoColumnContent: "./src/components/overrides/TwoColumnContent/TwoColumnContent.astro",
         Pagination: "./src/components/overrides/pagination/Pagination.astro",
       },
       head: [
