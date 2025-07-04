@@ -1,38 +1,17 @@
 ---
-import { RocketIcon } from "@/assets/icons";
-import FeatureHighlights from "@/components/sections/FeatureHighlights.astro";
 import Footer from "@/components/sections/Footer.astro";
+import Hero from "@/components/sections/Hero.astro";
 import OriginQuote from "@/components/sections/OriginQuote.astro";
 import Roadmap from "@/components/sections/Roadmap.astro";
 import Support from "@/components/sections/Support.astro";
 import WhyOrbitUI from "@/components/sections/WhyOrbitUI.astro";
-import StarryBackground from "@/components/StarryBackground.astro";
-import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
   title="OrbitUI Accessible, Customizable, & Lightweight component library"
 >
-  <StarryBackground />
-
-  <div class="mx-auto my-32 max-w-xl px-4 md:my-36">
-    <div class="mx-auto mb-6 flex items-start justify-center gap-2">
-      <img src="/orbitui.png" alt="orbitui logo" class="h-12 sm:h-20 md:h-24" />
-      <span class="text-2xl font-bold sm:text-3xl md:text-4xl">BETA</span>
-    </div>
-    <h2 class="mb-8 max-w-xl text-center text-2xl font-semibold sm:text-3xl">
-      Accessible, Customizable, & Lightweight component library
-    </h2>
-
-    <FeatureHighlights />
-
-    <div class="mt-12 flex justify-center gap-4">
-      <Button class="text-lg [&_svg]:size-5" href="/getting-started/">
-        Get Started <RocketIcon />
-      </Button>
-    </div>
-  </div>
+  <Hero />
 
   <WhyOrbitUI />
 
@@ -44,3 +23,27 @@ import Layout from "@/layouts/Layout.astro";
 
   <Footer />
 </Layout>
+
+<style>
+  .mesh {
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    position: fixed;
+    height: 100dvh;
+    width: 100%;
+    background-color: hsla(200, 62%, 6%, 1);
+    background-image:
+      radial-gradient(
+        at 73% 74%,
+        hsla(172, 75%, 27%, 0.3) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 25% 32%,
+        hsla(202, 75%, 27%, 0.45) 0px,
+        transparent 50%
+      );
+  }
+</style>

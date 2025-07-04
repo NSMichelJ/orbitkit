@@ -43,6 +43,31 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
+    <div class="mesh"></div>
     <slot />
   </body>
 </html>
+
+<style>
+  .mesh {
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    position: fixed;
+    height: 100dvh;
+    width: 100%;
+    background-color: hsla(200, 62%, 6%, 1);
+    background-image:
+      radial-gradient(
+        at 73% 74%,
+        hsla(172, 75%, 27%, 0.3) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 25% 32%,
+        hsla(202, 75%, 27%, 0.45) 0px,
+        transparent 50%
+      );
+  }
+</style>
